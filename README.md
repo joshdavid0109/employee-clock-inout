@@ -1,4 +1,4 @@
-# RMI Server
+# 2022-2_9328-midgrp7
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.com/reybans/rmi-server.git
+git remote add origin https://gitlab.com/rbmakil/2022-2_9328-midgrp7.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/reybans/rmi-server/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.com/rbmakil/2022-2_9328-midgrp7/-/settings/integrations)
 
 ## Collaborate with your team
 
