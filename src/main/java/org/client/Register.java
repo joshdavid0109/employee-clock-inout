@@ -31,6 +31,8 @@ public class Register {
             stub.addEmployee(ep);
             stub.addEmployee(ep1);
             stub.addEmployee(ep2);
+
+            System.out.println("test push");
         }
         catch (Exception e){
             System.out.println(e.getMessage());
