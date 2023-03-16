@@ -4,7 +4,12 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Attendance extends Remote {
-    String LogIn() throws RemoteException;
+    EmployeeProfile LogIn() throws RemoteException;
+    EmployeeProfile SignUp() throws RemoteException;
+    void TimeIn() throws RemoteException;
+    void TimeOut() throws RemoteException;
+    void getSummary() throws RemoteException;
+    void getCurrentStatus() throws RemoteException;
     void addEmployee(EmployeeProfile emp) throws RemoteException;
 
 }

@@ -2,15 +2,21 @@ package org.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 
 import java.io.FileWriter;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,9 +28,9 @@ public class Server extends AttendanceServant {
             .setPrettyPrinting()
             .setDateFormat("yyyy-MM-dd")
             .create();
-    private static List<EmployeeProfile> employeesList = new ArrayList<>();
 
     private static final AttendanceServant ers = new AttendanceServant();
+    private static final List<EmployeeProfile> employeesList = ers.getEmpList(); // this updates in real time
 
     public static void main(String[] args) {
         try {
@@ -46,8 +52,8 @@ public class Server extends AttendanceServant {
 
     private static void menuList() {
         System.out.println("\n--------ADMIN PANEL---------");
-        System.out.println("[1] GET LIST OF EMPLOYEES");
-        System.out.println("[2] PRINT LIST TO JSON FILE");
+        System.out.println("[1] GET LIST OF EMPLOYEES FROM JSON FILE");
+        System.out.println("[2] ADD EMPLOYEES TO JSON FILE");
         System.out.println("[3] EXIT");
         System.out.print("Enter choice: ");
     }
@@ -55,8 +61,8 @@ public class Server extends AttendanceServant {
     private static void options(int choice) {
         switch (choice) {
             case 1 -> {
-                employeesList = ers.getEmpList();
-                printEmpList();
+                getFromFile();
+                System.out.println("EMPLOYEE LIST READ FROM .JSON FILE SUCCESSFULLY");
             }
             case 2 -> {
                 addToFile();
@@ -77,9 +83,17 @@ public class Server extends AttendanceServant {
         }
     }
 
-    private static void printEmpList() {
-        for (EmployeeProfile profile : employeesList) {
-            System.out.println("\n" + profile);
+    private static void getFromFile() {
+        try(Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/employees.json"))) {
+            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
+            for (EmployeeProfile temp : employees) {
+                System.out.println("\n" + temp);
+            }
+        } catch (Exception e) {
+            System.err.println("FILE NOT FOUND");
+            e.printStackTrace();
         }
     }
+
 }

@@ -9,6 +9,7 @@ public class EmployeeProfile implements Serializable {
     String userName;
     String passWord;
     EmployeeDetails personalDetails;
+    boolean isLoggedIn;
     List<Date> totalDates = new ArrayList<>();
 
     public EmployeeProfile() {}
@@ -39,6 +40,10 @@ public class EmployeeProfile implements Serializable {
         this.totalDates.add(totalDates);
     }
 
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
     public String getEmpID() {
         return empID;
     }
@@ -57,6 +62,10 @@ public class EmployeeProfile implements Serializable {
 
     public List<Date> getTotalDates() {
         return totalDates;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
     }
 
     @Override

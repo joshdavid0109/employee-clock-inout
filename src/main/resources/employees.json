@@ -1,0 +1,107 @@
+[
+  {
+    "empID": "ue72ysh",
+    "userName": "robin",
+    "passWord": "batmansidekick",
+    "personalDetails": {
+      "firstName": "Damian",
+      "lastName": "Wayne",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "ue72ysh",
+    "userName": "robin",
+    "passWord": "batmansidekick",
+    "personalDetails": {
+      "firstName": "Damian",
+      "lastName": "Wayne",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "ue72ysh",
+    "userName": "robin",
+    "passWord": "batmansidekick",
+    "personalDetails": {
+      "firstName": "Damian",
+      "lastName": "Wayne",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  },
+  {
+    "empID": "amuu291",
+    "userName": "spoiler",
+    "passWord": "spoiler",
+    "personalDetails": {
+      "firstName": "Stephanie",
+      "lastName": "Brown",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-16"
+    ]
+  }
+]
