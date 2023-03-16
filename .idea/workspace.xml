@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="list of employee objects done">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/employees.json" afterDir="false" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="deserialization done, list of users updates in real time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/AttendanceServant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/AttendanceServant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/shared_classes/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeProfile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,7 @@
       <workItem from="1678663889430" duration="3877000" />
       <workItem from="1678709117817" duration="31000" />
       <workItem from="1678754657544" duration="4973000" />
-      <workItem from="1678928844404" duration="1969000" />
+      <workItem from="1678928844404" duration="2364000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1678578790854</created>
@@ -161,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678759048980</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="deserialization done, list of users updates in real time">
+      <created>1678931041527</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678931041528</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +184,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="gson implementation done" />
     <MESSAGE value="list of employee objects done" />
-    <option name="LAST_COMMIT_MESSAGE" value="list of employee objects done" />
+    <MESSAGE value="deserialization done, list of users updates in real time" />
+    <option name="LAST_COMMIT_MESSAGE" value="deserialization done, list of users updates in real time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
