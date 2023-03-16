@@ -16,27 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceServant implements Attendance {
-    private final List<EmployeeProfile> empList = new ArrayList<>();
+    private List<EmployeeProfile> empList = new ArrayList<>();
     private String nasaanYungJsonList = "src/main/resources/employees.json";
 
     @Override
     public EmployeeProfile LogIn(String username, String password) throws RemoteException {
-        System.out.println("aaaa");
-        try (Reader reader = Files.newBufferedReader(Paths.get(nasaanYungJsonList))) {
-            Gson gson = new Gson();
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
-            for (EmployeeProfile employee : employees) {
-                if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
-                    employee.setLoggedIn(true);
-                    System.out.println("kasjay");
-                    return employee;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+
+        EmployeeProfile a = JSONHandler.checkIfValidLogIn(username, password);
+        return a;
     }
 
     @Override

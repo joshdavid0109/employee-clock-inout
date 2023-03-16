@@ -11,7 +11,37 @@
     },
     "isLoggedIn": false,
     "totalDates": [
-      "2023-03-16"
+      "Mar 16, 2023, 12:00:00 AM"
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "Mar 16, 2023, 12:00:00 AM"
+    ]
+  },
+  {
+    "empID": "amuu291",
+    "userName": "spoiler",
+    "passWord": "spoiler",
+    "personalDetails": {
+      "firstName": "Stephanie",
+      "lastName": "Brown",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": true,
+    "totalDates": [
+      "Mar 16, 2023, 12:00:00 AM"
     ]
   }
 ]

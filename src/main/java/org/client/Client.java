@@ -8,6 +8,7 @@ import org.shared_classes.EmployeeProfile;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Client {
 
@@ -15,38 +16,24 @@ public class Client {
 
     public static void main(String[] args) {
         try {
-            Date d = new Date();
+            Scanner scanner = new Scanner(System.in);
             Registry registry = LocateRegistry.getRegistry(2001);
             Attendance stub = (Attendance) registry.lookup("sayhi");
-            EmployeeDetails ed = new EmployeeDetails("Damian", "Wayne", 14, "Male");
-            EmployeeProfile ep = new EmployeeProfile("ue72ysh", "robin", "batmansidekick");
-            ep.setPersonalDetails(ed);
-            ep.setTotalDates(d);
-            stub.addEmployee(ep);
 
-            String username = "DAsd";
-            String password = "asds";
+            while (employee == null) {
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine();
+                System.out.print("Enter password: ");
+                String password = scanner.nextLine();
 
-            employee = stub.LogIn(username, password);
+                employee = stub.LogIn(username, password);
 
-            if (employee != null) {
-                System.err.println("dapat hindi mo ito nakikita");
-            } else {
-                System.out.println("dapat nakikita mo ito");
+                if (employee == null) {
+                    System.out.println("Invalid username or password. Please try again.");
+                }
             }
 
-            username = "robin";
-            password = "batmansidekick";
-
-            employee = stub.LogIn(username, password);
-
-            if (employee != null) {
-                System.out.println("dapat nakikita mo ito");
-                System.out.println("u have logged in as "+ employee.getUserName());
-            } else {
-                System.err.println("dapat hindi mo ito nakikita");
-            }
-
+            System.out.println("Logged in as " + employee.getUserName());
 
         } catch (Exception e) {
             System.err.println("Client exception: " + e);
