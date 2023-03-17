@@ -1,14 +1,18 @@
-module RMI.Server {
+module com.example.helloworld {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.graphics;
-
-    requires java.rmi;
+    requires javafx.web;
 
     requires org.controlsfx.controls;
-    requires org.kordamp.bootstrapfx.core;
-
     requires com.dlsc.formsfx;
-
+    requires validatorfx;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.bootstrapfx.core;
+    requires eu.hansolo.tilesfx;
+    requires com.almasb.fxgl.all;
+    requires java.rmi;
     requires com.google.gson;
+
+    opens com.example.helloworld to javafx.fxml;
+    exports com.example.helloworld;
 }
