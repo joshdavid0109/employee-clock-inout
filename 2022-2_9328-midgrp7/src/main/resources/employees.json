@@ -1,0 +1,47 @@
+[
+  {
+    "empID": "ue72ysh",
+    "userName": "robin",
+    "passWord": "batmansidekick",
+    "personalDetails": {
+      "firstName": "Damian",
+      "lastName": "Wayne",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "Mar 16, 2023, 12:00:00 AM"
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "Mar 16, 2023, 12:00:00 AM"
+    ]
+  },
+  {
+    "empID": "amuu291",
+    "userName": "spoiler",
+    "passWord": "spoiler",
+    "personalDetails": {
+      "firstName": "Stephanie",
+      "lastName": "Brown",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": true,
+    "totalDates": [
+      "Mar 16, 2023, 12:00:00 AM"
+    ]
+  }
+]
