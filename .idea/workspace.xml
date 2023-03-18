@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeDailyReport.java" afterDir="false" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="asd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/javaFx/EmployeeGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employees.json" beforeDir="false" afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,16 +49,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Program Files/IdeaProjects/2022-2_9328-midgrp7Cloned/2022-2_9328-midgrp7/src/main/java/com/example/helloworld",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.7468355",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\java\com\example\helloworld" />
@@ -83,7 +63,7 @@
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EmployeeInterface">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Client" />
       <module name="helloworld" />
@@ -160,11 +140,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.EmployeeInterface" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="Application.Register" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.LoginInterface" />
+        <item itemvalue="Application.Server" />
+        <item itemvalue="Application.EmployeeInterface" />
+        <item itemvalue="Application.Register" />
       </list>
     </recent_temporary>
   </component>
