@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: royalblue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helloworld.ServerInterface">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: royalblue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helloworld.ServerController">
    <children>
       <ScrollPane layoutX="22.0" layoutY="186.0" prefHeight="200.0" prefWidth="562.0">
         <content>

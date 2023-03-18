@@ -32,6 +32,8 @@ public class Client {
 
             System.out.println("Logged in as " + employee.getUserName());
 
+
+
         } catch (Exception e) {
             System.err.println("Client exception: " + e);
             e.printStackTrace();

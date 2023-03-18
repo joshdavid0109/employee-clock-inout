@@ -13,5 +13,8 @@ module com.example.helloworld {
     requires com.google.gson;
 
     opens com.example.helloworld to javafx.fxml;
+    opens org.server to com.google.gson;
+    opens org.shared_classes;
     exports com.example.helloworld;
+    exports org.shared_classes;
 }

@@ -16,8 +16,8 @@ public class Register {
             Date d = new Date();
             Registry registry = LocateRegistry.getRegistry(2001);
             Attendance stub = (Attendance) registry.lookup("sayhi");
-            EmployeeDetails ed = new EmployeeDetails("Damian", "Wayne", 14, "Male");
-            EmployeeProfile ep = new EmployeeProfile("ue72ysh", "robin", "batmansidekick");
+            EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
+            EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
             ep.setPersonalDetails(ed);
             ep.setTotalDates(d);
             EmployeeDetails ed1 = new EmployeeDetails("Jason", "Todd", 24, "Male");
@@ -28,9 +28,15 @@ public class Register {
             EmployeeProfile ep2 = new EmployeeProfile("amuu291", "spoiler", "spoiler");
             ep2.setPersonalDetails(ed2);
             ep2.setTotalDates(d);
+
+            EmployeeDetails ed3 = new EmployeeDetails("as", "asd", 18, "Female");
+            EmployeeProfile ep3 = new EmployeeProfile("asd", "asweq", "asdcasxd");
+            ep3.setPersonalDetails(ed3);
+            ep3.setTotalDates(d);
             stub.addEmployee(ep);
             stub.addEmployee(ep1);
             stub.addEmployee(ep2);
+            stub.addEmployee(ep3);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

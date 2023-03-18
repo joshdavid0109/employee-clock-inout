@@ -1,17 +1,17 @@
 [
   {
-    "empID": "ue72ysh",
-    "userName": "robin",
-    "passWord": "batmansidekick",
+    "empID": "c123c",
+    "userName": "testuser",
+    "passWord": "testuser",
     "personalDetails": {
-      "firstName": "Damian",
-      "lastName": "Wayne",
+      "firstName": "Test",
+      "lastName": "asd",
       "age": 14,
       "gender": "Male"
     },
     "isLoggedIn": false,
     "totalDates": [
-      "Mar 16, 2023, 12:00:00 AM"
+      "2023-03-18"
     ]
   },
   {
@@ -26,7 +26,7 @@
     },
     "isLoggedIn": false,
     "totalDates": [
-      "Mar 16, 2023, 12:00:00 AM"
+      "2023-03-18"
     ]
   },
   {
@@ -39,9 +39,24 @@
       "age": 18,
       "gender": "Female"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "totalDates": [
-      "Mar 16, 2023, 12:00:00 AM"
+      "2023-03-18"
+    ]
+  },
+  {
+    "empID": "asd",
+    "userName": "asweq",
+    "passWord": "asdcasxd",
+    "personalDetails": {
+      "firstName": "as",
+      "lastName": "asd",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "totalDates": [
+      "2023-03-18"
     ]
   }
 ]

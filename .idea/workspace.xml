@@ -4,7 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="asd" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="asd">
+      <change afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/2022-2_9328-midgrp7.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/Project.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/AdminLoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/AdminLoginInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/LoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/LoginInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/ServerInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/ServerInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/employees.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/helloworld/MainInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/helloworld/MainInterfaceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Register.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/javaFx/EmployeeGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/AttendanceServant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/JSONHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/MainInterface.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/employees.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +75,14 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2MtERAqDwoAz5B4xSILwiXUl2kS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -35,28 +91,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Program Files/IdeaProjects/2022-2_9328-midgrp7Cloned/2022-2_9328-midgrp7/src/main/java/com/example/helloworld",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.7468355",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\java\com\example\helloworld" />
       <recent name="D:\2222551\mid\src\main\java\JAVAFX\com\example\helloworld" />
       <recent name="D:\2222551\mid\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\resources\com\example\helloworld" />
+      <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\resources" />
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example\helloworld\example\helloworld" />
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example\helloworld\example\helloworld\asd\helloworld" />
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example" />
-      <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\helloworld" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HelloApplication">
+  <component name="RunManager" selected="Application.EmployeeInterface">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Client" />
-      <module name="RMI-Server" />
+      <module name="helloworld" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.client.*" />
@@ -67,12 +129,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="JAVAFX.com.example.helloworld.HelloApplication" />
-      <module name="RMI-Server" />
+    <configuration name="EmployeeInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.helloworld.EmployeeInterface" />
+      <module name="helloworld" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="JAVAFX.com.example.helloworld.*" />
+          <option name="PATTERN" value="com.example.helloworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.helloworld.LoginInterface" />
+      <module name="helloworld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.helloworld.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,7 +157,7 @@
     </configuration>
     <configuration name="Register" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Register" />
-      <module name="RMI-Server" />
+      <module name="helloworld" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.client.*" />
@@ -95,23 +170,10 @@
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.server.Server" />
-      <module name="RMI-Server" />
+      <module name="helloworld" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="testfxx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="JAVAFX.testfxx" />
-      <module name="RMI-Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="JAVAFX.*" />
+          <option name="PATTERN" value="org.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,19 +182,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.HelloApplication" />
-      <item itemvalue="Application.testfxx" />
+      <item itemvalue="Application.LoginInterface" />
+      <item itemvalue="Application.EmployeeInterface" />
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Register" />
       <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.testfxx" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.EmployeeInterface" />
+        <item itemvalue="Application.LoginInterface" />
         <item itemvalue="Application.Register" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -154,6 +216,8 @@
       <workItem from="1678967258654" duration="430000" />
       <workItem from="1678967737426" duration="8928000" />
       <workItem from="1679111034093" duration="39000" />
+      <workItem from="1679117917839" duration="2813000" />
+      <workItem from="1679120739078" duration="1836000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1678578790854</created>
@@ -220,7 +284,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

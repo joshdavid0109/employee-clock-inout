@@ -26,6 +26,8 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public void TimeIn() throws RemoteException {
+
+
         //TODO
     }
 

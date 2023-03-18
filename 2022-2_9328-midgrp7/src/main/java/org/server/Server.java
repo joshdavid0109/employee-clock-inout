@@ -73,7 +73,7 @@ public class Server extends AttendanceServant {
     }
 
     private static void addToFile() {
-        try (FileWriter writer = new FileWriter("src/main/resources/employees.json")) {
+        try (FileWriter writer = new FileWriter("employees.json")) {
             gson.toJson(employeesList, writer);
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class Server extends AttendanceServant {
     }
 
     private static void getFromFile() {
-        try(Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/employees.json"))) {
+        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
             Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
             for (EmployeeProfile temp : employees) {
