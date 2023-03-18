@@ -4,54 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="asd">
-      <change afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/2022-2_9328-midgrp7.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeDailyReport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/Project.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/javaFx/EmployeeGUI.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/AdminLoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/AdminLoginInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/LoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/LoginInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/ServerInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/ServerInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/employees.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/helloworld/MainInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/helloworld/MainInterfaceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Register.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/javaFx/EmployeeGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/AttendanceServant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/JSONHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/MainInterface.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/helloworld/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/employee.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/employees.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/employees.json" beforeDir="false" afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +31,9 @@
       <list>
         <option value="Interface" />
         <option value="module-info" />
-        <option value="Class" />
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -132,6 +100,7 @@
     <configuration name="EmployeeInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.helloworld.EmployeeInterface" />
       <module name="helloworld" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/java.util=ALL-UNNAMED" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.helloworld.*" />
@@ -171,6 +140,7 @@
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.server.Server" />
       <module name="helloworld" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/java.util=ALL-UNNAMED" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.server.*" />
@@ -191,10 +161,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.EmployeeInterface" />
-        <item itemvalue="Application.LoginInterface" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="Application.Register" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.LoginInterface" />
       </list>
     </recent_temporary>
   </component>
@@ -217,7 +187,7 @@
       <workItem from="1678967737426" duration="8928000" />
       <workItem from="1679111034093" duration="39000" />
       <workItem from="1679117917839" duration="2813000" />
-      <workItem from="1679120739078" duration="1836000" />
+      <workItem from="1679120739078" duration="19686000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1678578790854</created>
@@ -268,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679009824817</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="some fixes">
+      <created>1679122592080</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679122592080</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +270,8 @@
     <MESSAGE value="deserialization done, list of users updates in real time" />
     <MESSAGE value="log in? am not sure" />
     <MESSAGE value="asd" />
-    <option name="LAST_COMMIT_MESSAGE" value="asd" />
+    <MESSAGE value="some fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

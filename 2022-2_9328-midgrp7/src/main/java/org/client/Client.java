@@ -31,7 +31,7 @@ public class Client {
             }
 
             System.out.println("Logged in as " + employee.getUserName());
-
+            stub.TimeIn(employee);
 
 
         } catch (Exception e) {

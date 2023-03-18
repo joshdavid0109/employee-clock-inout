@@ -18,7 +18,7 @@ import java.util.List;
 
 public class JSONHandler {
 
-    static private final String employeesJSONPath = "src/main/resources/employees.json";
+    static private final String employeesJSONPath = "employees.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
