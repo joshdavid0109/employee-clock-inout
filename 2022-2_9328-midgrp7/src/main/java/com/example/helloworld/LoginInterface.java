@@ -7,19 +7,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainInterface extends Application {
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
+public class LoginInterface extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainInterface.class.getResource("MainInterface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("LoginInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 600);
         primaryStage.setTitle("Hello!");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
