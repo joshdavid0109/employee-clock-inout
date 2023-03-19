@@ -23,8 +23,8 @@ public class Register {
             EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
             EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
             ep.setPersonalDetails(ed);
-            ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
-            ep.setTotalDates(new EmployeeDailyReport(d));
+           /* ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
+            ep.setTotalDates(new EmployeeDailyReport(d));*/
 
 
             EmployeeDetails ed1 = new EmployeeDetails("Jason", "Todd", 24, "Male");
@@ -34,12 +34,12 @@ public class Register {
             EmployeeDetails ed2 = new EmployeeDetails("Stephanie", "Brown", 18, "Female");
             EmployeeProfile ep2 = new EmployeeProfile("amuu291", "spoiler", "spoiler");
             ep2.setPersonalDetails(ed2);
-            ep2.setEmployeeDailyReport(new EmployeeDailyReport(d));
+            /*ep2.setEmployeeDailyReport(new EmployeeDailyReport(d));*/
 
             EmployeeDetails ed3 = new EmployeeDetails("as", "asd", 18, "Female");
             EmployeeProfile ep3 = new EmployeeProfile("asd", "asweq", "asdcasxd");
             ep3.setPersonalDetails(ed3);
-            ep3.setEmployeeDailyReport(new EmployeeDailyReport(d));
+            /*ep3.setEmployeeDailyReport(new EmployeeDailyReport(d));*/
             stub.addEmployee(ep);
             stub.addEmployee(ep1);
             stub.addEmployee(ep2);

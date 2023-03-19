@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.shared_classes.Attendance;
+import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,11 +77,22 @@ public class LoginController implements Initializable {
 
         logInButton.getScene().getWindow().hide();
 
-        Stage emp = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(EmployeeInterface.class.getResource("/fxml/EmployeeInterface.fxml")));
-        Scene scene = new Scene(root);
-        emp.setScene(scene);
-        emp.show();
-        emp.setResizable(false);
+        EmployeeProfile employee = stub.LogIn(userName, passWord);
+
+        if(employee == null){
+            System.out.println("mali");
+        }
+        else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+            EmployeeController employeeController = new EmployeeController(employee);
+            loader.setController(employeeController);
+            Parent root = loader.load();
+
+            Stage emp = new Stage();
+            Scene scene = new Scene(root);
+            emp.setScene(scene);
+            emp.show();
+            emp.setResizable(false);
+        }
     }
 }

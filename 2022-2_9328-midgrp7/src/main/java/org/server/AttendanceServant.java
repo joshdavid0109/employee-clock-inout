@@ -35,7 +35,8 @@ public class AttendanceServant implements Attendance {
         System.out.println("Date : "  + this.dateFormat.format(date));
         for (EmployeeProfile employeeProfile : empList) {
             if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
-                EmployeeDailyReport dailyReport = new EmployeeDailyReport(date);
+                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
+                dailyReport.setTimeIn(date);
                 employeeProfile.setEmployeeDailyReport(dailyReport);
             }
         }

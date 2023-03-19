@@ -15,8 +15,7 @@ public class EmployeeDailyReport implements Serializable {
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
 
-    public EmployeeDailyReport(Date timeIn) {
-        this.timeIn = timeIn;
+    public EmployeeDailyReport() {;
     }
 
     public Date getTimeIn() {

@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
@@ -27,6 +28,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
+
+
+
+    private Attendance stub;
+    private EmployeeProfile employee;
 
     @FXML
     private Button summaryButton;
@@ -72,32 +78,47 @@ public class EmployeeController implements Initializable {
     @FXML
     private Text statusLabel;
 
-
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
+    public EmployeeController(){
+
+    }
+
+    public EmployeeController(EmployeeProfile employee){
+        this.employee = employee;
+    }
+
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
 
     @FXML
     void addTimeIn(MouseEvent event) {
-        statusLabel.setText("test");
+        statusLabel.setText("TIMED IN");
         Date date = new Date();
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
-            EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(date);
+            EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
             employeeDailyReport.setStatus("Working");
-            employeeDailyReport.setTimeOut(date);
+            employeeDailyReport.setTimeIn(date);
 
             tableData.add(employeeDailyReport);
 
             tableView.setItems(tableData);
             tableView.refresh();
-
-
-
     }
 
     @FXML
     void addTimeOut(MouseEvent event) {
-
+        statusLabel.setText("TIMED OUT");
+        Date date = new Date();
+        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
+        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
+        employeeDailyReport.setStatus("Break");
+        employeeDailyReport.setTimeOut(date);
+        tableData.add(employeeDailyReport);
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 
     @FXML
@@ -170,8 +191,8 @@ public class EmployeeController implements Initializable {
         EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
         EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
         ep.setPersonalDetails(ed);
-        ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
-        ep.setTotalDates(new EmployeeDailyReport(d));
+        /*ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
+        ep.setTotalDates(new EmployeeDailyReport(d));*/
 
         Date date = new Date();
         employeeName.setText(ep.getFullName());
@@ -180,8 +201,6 @@ public class EmployeeController implements Initializable {
         column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
         column2.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeOut"));
         column3.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
-
-
     }
 
 }
