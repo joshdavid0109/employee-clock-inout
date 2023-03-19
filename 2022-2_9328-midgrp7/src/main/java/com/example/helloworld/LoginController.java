@@ -83,12 +83,18 @@ public class LoginController implements Initializable {
             System.out.println("mali");
         }
         else{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-            EmployeeController employeeController = new EmployeeController(employee);
-            loader.setController(employeeController);
+            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+            EmployeeController controller = new EmployeeController(employee);
+            loader.setController(controller);
             Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage emp = new Stage();
+            emp.setScene(scene);
+            emp.show();
+            emp.setResizable(false);*/
 
             Stage emp = new Stage();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(EmployeeInterface.class.getResource("/fxml/EmployeeInterface.fxml")));
             Scene scene = new Scene(root);
             emp.setScene(scene);
             emp.show();
