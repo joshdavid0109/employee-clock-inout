@@ -83,6 +83,7 @@ public class LoginController implements Initializable {
             System.out.println("mali");
         }
         else{
+            System.out.println("log in OK");
             /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmployeeInterface.fxml"));
             EmployeeController controller = new EmployeeController(employee);
             loader.setController(controller);
