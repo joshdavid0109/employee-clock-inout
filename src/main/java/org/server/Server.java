@@ -18,6 +18,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -102,7 +103,6 @@ public class Server extends AttendanceServant {
         ep.setPersonalDetails(ed);
             ep.setEmployeeDailyReport(new EmployeeDailyReport());
             ep.setTotalDates(new EmployeeDailyReport());
-            ep.getEmployeeDailyReport().setTimeIn(d);
 
         try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
             Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
@@ -113,8 +113,20 @@ public class Server extends AttendanceServant {
                 if (emp.getEmpID().equals(ep.getEmpID())) {
                     JsonElement jsonElement= gson.toJsonTree(ep);
 
+
+                    //add timeout
+                    emp.getEmployeeDailyReport().setTimeOut(d);
+
+                    List<Date> timeIs = emp.getEmployeeDailyReport().getListofTimeIns(); // list of time ins in the whole day
+                    List<Date> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts(); // list of time ins in the whole day
+
+                    JsonElement timeIns = gson.toJsonTree(timeIs);
+                    JsonElement timeOuts = gson.toJsonTree(timeOs);
+
                     //add timeout sa json file
-                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().addProperty("timeOut", format1.format(d));
+
+                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
+
 
                     String updatedEmployee = jsonElement.toString();
                     // get sa json as EmployeeProfile object

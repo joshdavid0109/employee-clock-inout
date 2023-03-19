@@ -11,11 +11,16 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeIn": "Jan 01 2023, 18:56:09",
-      "timeOut": "Jan 01 2023, 06:56:09"
+      "listofTimeIns": [
+        "Jan 01 2023, 19:18:59"
+      ],
+      "listofTimeOuts": []
     },
     "totalDates": [
-      {}
+      {
+        "listofTimeIns": [],
+        "listofTimeOuts": []
+      }
     ]
   },
   {
