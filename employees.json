@@ -9,7 +9,7 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
     "employeeDailyReport": {
       "listofTimeIns": [
         "Jan 01 2023, 19:18:59"

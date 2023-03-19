@@ -42,7 +42,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private StackPane parentContainer;
-    private Attendance stub;
+    public Attendance stub;
 
     @FXML
     public void LoadRegisterGUI() throws IOException {
@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Registry registry = LocateRegistry.getRegistry(2001);
+            Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,35 +84,12 @@ public class LoginController implements Initializable {
         }
         else{
             System.out.println("log in OK");
-            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-            EmployeeController controller = new EmployeeController(employee);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage emp = new Stage();
-            emp.setScene(scene);
-            emp.show();
-            emp.setResizable(false);*/
-
-           /* Stage emp = new Stage();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(EmployeeInterface.class.getResource("/fxml/EmployeeInterface.fxml")));
-            Scene scene = new Scene(root);
-            emp.setScene(scene);
-            emp.show();
-            emp.setResizable(false);*/
-
-            /*FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-            loginAnchorPane = loader.load();
-
-            EmployeeController employeeController = loader.getController();
-            employeeController.setEmployee(employee);*/
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
             Parent root = loader.load();
             EmployeeController employeeController = loader.getController();
             employeeController.setEmployee(employee);
+            employeeController.setStub(stub);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) logInButton.getScene().getWindow();

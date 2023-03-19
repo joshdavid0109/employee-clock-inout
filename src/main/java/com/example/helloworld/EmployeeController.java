@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
 public class EmployeeController implements Initializable {
     private Attendance stub;
     private EmployeeProfile employee;
+    private Date date;
 
     @FXML
     private Button summaryButton;
@@ -82,11 +83,14 @@ public class EmployeeController implements Initializable {
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
     public EmployeeController(){
-
     }
 
     public EmployeeController(EmployeeProfile employee){
         this.employee = employee;
+    }
+
+    public void setStub(Attendance stub) {
+        this.stub = stub;
     }
 
     public void setEmployee(EmployeeProfile employee) {
@@ -102,6 +106,11 @@ public class EmployeeController implements Initializable {
 
         statusLabel.setText("TIMED IN");
         Date date = new Date();
+        try {
+            date = stub.getDateAndTime();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
             employeeDailyReport.setStatus("Working");
@@ -122,6 +131,11 @@ public class EmployeeController implements Initializable {
 
         statusLabel.setText("TIMED OUT");
         Date date = new Date();
+        try {
+            date = stub.getDateAndTime();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
         employeeDailyReport.setStatus("On break");
@@ -194,9 +208,17 @@ public class EmployeeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            Registry registry = LocateRegistry.getRegistry(2001);
+            Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            date = stub.getDateAndTime();
+            System.out.println("B  "+date);
+            dateLabel.setText(dateFormat.format(date));
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
@@ -209,23 +231,9 @@ public class EmployeeController implements Initializable {
         };
         timer.start();
 
-        // Sample Employee
-
-
-        /*Date d = new Date();
-        EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
-        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
-        ep.setPersonalDetails(ed);
-        *//*ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
-        ep.setTotalDates(new EmployeeDailyReport(d));*//*
-
-        Date date = new Date();
-        employeeName.setText(ep.getFullName());
-        dateLabel.setText(dateFormat.format(date));*/
-
         if(employee!= null){
-            System.out.println("ASDzzz");
             System.out.println(employee.toString());
+            dateLabel.setText(dateFormat.format(date));
         }
 
         column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));

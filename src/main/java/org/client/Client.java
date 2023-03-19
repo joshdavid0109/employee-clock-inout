@@ -1,5 +1,6 @@
 package org.client;
 
+import com.example.helloworld.LoginInterface;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeProfile;
 
@@ -11,13 +12,9 @@ public class Client {
 
     static EmployeeProfile employee;
     static Scanner scanner = new Scanner(System.in);
+    static Attendance stub;
+
     public static void main(String[] args) {
-        try {
-            Registry registry = LocateRegistry.getRegistry(2001);
-            Attendance stub = (Attendance) registry.lookup("sayhi");
-        } catch (Exception e) {
-            System.err.println("Client exception: " + e);
-            e.printStackTrace();
-        }
+        new LoginInterface();
     }
 }

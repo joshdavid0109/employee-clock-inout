@@ -1,19 +1,16 @@
 package org.server;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.GZIPOutputStream;
 
 public class AttendanceServant implements Attendance {
+    static Date serverDate = new Date();
     static List<EmployeeProfile> empList = JSONHandler.getFromFile();
     private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -23,8 +20,6 @@ public class AttendanceServant implements Attendance {
     @Override
     public EmployeeProfile LogIn(String username, String password) throws RemoteException {
         EmployeeProfile a = JSONHandler.checkIfValidLogIn(username, password);
-       /* a = new EmployeeProfile("69696", "Darren", "1234");*/
-
         return a;
     }
 
@@ -92,6 +87,12 @@ public class AttendanceServant implements Attendance {
         }
         if (!employeeExists)
             empList.add(emp);
+    }
+
+    @Override
+    public Date getDateAndTime() throws RemoteException {
+        System.out.println("A "+serverDate);
+        return serverDate;
     }
 
     protected List<EmployeeProfile> getEmpList() {
