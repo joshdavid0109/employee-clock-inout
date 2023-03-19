@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="asd" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/GsonDateDeSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/AdminLoginInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/AdminLoginInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/LoginInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/ServerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/ServerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeDailyReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeDailyReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/AdminLoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/fxml/AdminLoginInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/fxml/EmployeeInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/LoginInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/fxml/LoginInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/ServerInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/fxml/ServerInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employees.json" beforeDir="false" afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,9 +32,9 @@
       <list>
         <option value="Interface" />
         <option value="module-info" />
-        <option value="Class" />
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -31,6 +48,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -42,11 +60,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/joshdavid0109/Desktop",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.7468355",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\java\com\example\helloworld" />
@@ -54,14 +78,14 @@
       <recent name="D:\2222551\mid\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\resources\fxml" />
       <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\resources\com\example\helloworld" />
       <recent name="E:\Program Files\IdeaProjects\2022-2_9328-midgrp7Cloned\2022-2_9328-midgrp7\src\main\resources" />
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example\helloworld\example\helloworld" />
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example\helloworld\example\helloworld\asd\helloworld" />
-      <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EmployeeInterface">
+  <component name="RunManager" selected="Application.LoginInterface">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Client" />
       <module name="helloworld" />
@@ -78,6 +102,7 @@
     <configuration name="EmployeeInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.helloworld.EmployeeInterface" />
       <module name="helloworld" />
+      <option name="VM_PARAMETERS" value="--add-opens java.base/java.util=ALL-UNNAMED" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.helloworld.*" />
@@ -128,19 +153,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Register" />
+      <item itemvalue="Application.Server" />
       <item itemvalue="Application.LoginInterface" />
       <item itemvalue="Application.EmployeeInterface" />
       <item itemvalue="Application.Client" />
-      <item itemvalue="Application.Register" />
-      <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.EmployeeInterface" />
         <item itemvalue="Application.LoginInterface" />
+        <item itemvalue="Application.EmployeeInterface" />
+        <item itemvalue="Application.Client" />
         <item itemvalue="Application.Register" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -163,8 +188,8 @@
       <workItem from="1678967737426" duration="8928000" />
       <workItem from="1679111034093" duration="39000" />
       <workItem from="1679117917839" duration="2813000" />
-      <workItem from="1679120739078" duration="1836000" />
-      <workItem from="1679125776200" duration="13000" />
+      <workItem from="1679120739078" duration="20992000" />
+      <workItem from="1679189041548" duration="2415000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1678578790854</created>
@@ -215,7 +240,28 @@
       <option name="project" value="LOCAL" />
       <updated>1679009824817</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="some fixes">
+      <created>1679122592080</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679122592080</updated>
+    </task>
+    <task id="LOCAL-00009" summary="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked">
+      <created>1679140533469</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679140533470</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit">
+      <created>1679189154587</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679189154588</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +277,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -241,7 +286,11 @@
     <MESSAGE value="deserialization done, list of users updates in real time" />
     <MESSAGE value="log in? am not sure" />
     <MESSAGE value="asd" />
-    <option name="LAST_COMMIT_MESSAGE" value="asd" />
+    <MESSAGE value="some fixes" />
+    <MESSAGE value="working time in button sa ui lang, not yet incorporated sa json file" />
+    <MESSAGE value="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

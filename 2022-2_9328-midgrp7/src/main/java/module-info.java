@@ -11,6 +11,7 @@ module com.example.helloworld {
     requires eu.hansolo.tilesfx;
     requires java.rmi;
     requires com.google.gson;
+    requires java.base;
 
     opens com.example.helloworld to javafx.fxml;
     opens org.server to com.google.gson;

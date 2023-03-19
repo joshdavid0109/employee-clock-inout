@@ -9,9 +9,14 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
     "totalDates": [
-      "2023-03-18"
+      {
+        "timeIn": "Mar 19, 2023, 9:53:21 AM"
+      }
     ]
   },
   {
@@ -25,9 +30,7 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "totalDates": [
-      "2023-03-18"
-    ]
+    "totalDates": []
   },
   {
     "empID": "amuu291",
@@ -40,9 +43,10 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "totalDates": [
-      "2023-03-18"
-    ]
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
+    "totalDates": []
   },
   {
     "empID": "asd",
@@ -55,8 +59,9 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "totalDates": [
-      "2023-03-18"
-    ]
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
+    "totalDates": []
   }
 ]

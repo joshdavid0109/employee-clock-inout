@@ -1,21 +1,29 @@
 package org.shared_classes;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class EmployeeProfile implements Serializable {
-    String empID;
-    String userName;
-    String passWord;
-    EmployeeDetails personalDetails;
-    boolean isLoggedIn;
-    List<Date> totalDates = new ArrayList<>();
+    private String empID;
+    private String userName;
+    private String passWord;
+    private EmployeeDetails personalDetails;
+    private boolean isLoggedIn;
+    static String status; // working or break
+    static String note;
+
+    private EmployeeDailyReport employeeDailyReport; // Daily time in/out
+    private final List<EmployeeDailyReport> totalDates = new ArrayList<>();
+
 
     public EmployeeProfile() {}
 
     public EmployeeProfile(String ei, String un, String pw) {
+
         this.empID = ei;
         this.userName = un;
         this.passWord = pw;
@@ -37,7 +45,7 @@ public class EmployeeProfile implements Serializable {
         this.personalDetails = personalDetails;
     }
 
-    public void setTotalDates(Date totalDates) {
+    public void setTotalDates(EmployeeDailyReport totalDates) {
         this.totalDates.add(totalDates);
     }
 
@@ -61,12 +69,16 @@ public class EmployeeProfile implements Serializable {
         return personalDetails;
     }
 
-    public List<Date> getTotalDates() {
+    public List<EmployeeDailyReport> getTotalDates() {
         return totalDates;
     }
 
     public boolean isLoggedIn() {
         return isLoggedIn;
+    }
+
+    public String getFullName() {
+        return this.personalDetails.firstName + " " + this.personalDetails.getLastName();
     }
 
     @Override
@@ -77,9 +89,17 @@ public class EmployeeProfile implements Serializable {
         sb.append("PASSWORD: ").append(passWord).append("\n");
         sb.append("PROFILE: \n").append(personalDetails).append("\n");
         sb.append("DATES: \n");
-        for (Date d : totalDates) {
+        for (EmployeeDailyReport d : totalDates) {
             sb.append(d).append("\n");
         }
         return sb.toString();
+    }
+
+    public EmployeeDailyReport getEmployeeDailyReport() {
+        return employeeDailyReport;
+    }
+
+    public void setEmployeeDailyReport(EmployeeDailyReport employeeDailyReport) {
+        this.employeeDailyReport = employeeDailyReport;
     }
 }

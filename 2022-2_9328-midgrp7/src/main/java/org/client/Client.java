@@ -10,10 +10,9 @@ import java.util.Scanner;
 public class Client {
 
     static EmployeeProfile employee;
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         try {
-            Scanner scanner = new Scanner(System.in);
             Registry registry = LocateRegistry.getRegistry(2001);
             Attendance stub = (Attendance) registry.lookup("sayhi");
 
@@ -29,9 +28,9 @@ public class Client {
                     System.out.println("Invalid username or password. Please try again.");
                 }
             }
-
             System.out.println("Logged in as " + employee.getUserName());
 
+            stub.TimeIn(employee);
 
 
         } catch (Exception e) {
