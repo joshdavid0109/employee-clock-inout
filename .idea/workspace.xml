@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeDailyReport.java" afterDir="false" />
+    <list default="true" id="f2d41d03-6d6e-4d8e-8b5b-c6fc281d324d" name="Changes" comment="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/com/example/helloworld/EmployeeInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/client/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/javaFx/EmployeeGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/AttendanceServant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/JSONHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/java/org/shared_classes/EmployeeProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/2022-2_9328-midgrp7/src/main/resources/com/example/helloworld/EmployeeInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employees.json" beforeDir="false" afterPath="$PROJECT_DIR$/employees.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Program Files/IdeaProjects/2022-2_9328-midgrp7Cloned/2022-2_9328-midgrp7/src/main/java/com/example/helloworld",
+    "last_opened_file_path": "C:/Users/joshdavid0109/Desktop",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.7468355",
@@ -83,7 +70,20 @@
       <recent name="D:\2222551\mid\src\main\resources\com\example\helloworld\example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EmployeeInterface">
+  <component name="RunManager" selected="Application.LoginInterface">
+    <configuration name="AdminLoginInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.helloworld.AdminLoginInterface" />
+      <module name="helloworld" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.helloworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Client" />
       <module name="helloworld" />
@@ -124,26 +124,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Register" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.client.Register" />
+    <configuration name="ServerInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.helloworld.ServerInterface" />
       <module name="helloworld" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.server.Server" />
-      <module name="helloworld" />
-      <option name="VM_PARAMETERS" value="--add-opens java.base/java.util=ALL-UNNAMED" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.server.*" />
+          <option name="PATTERN" value="com.example.helloworld.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -152,19 +138,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.AdminLoginInterface" />
+      <item itemvalue="Application.ServerInterface" />
       <item itemvalue="Application.LoginInterface" />
       <item itemvalue="Application.EmployeeInterface" />
       <item itemvalue="Application.Client" />
-      <item itemvalue="Application.Register" />
-      <item itemvalue="Application.Server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LoginInterface" />
+        <item itemvalue="Application.ServerInterface" />
+        <item itemvalue="Application.AdminLoginInterface" />
         <item itemvalue="Application.EmployeeInterface" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="Application.Register" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="Application.LoginInterface" />
       </list>
     </recent_temporary>
   </component>
@@ -187,7 +173,7 @@
       <workItem from="1678967737426" duration="8928000" />
       <workItem from="1679111034093" duration="39000" />
       <workItem from="1679117917839" duration="2813000" />
-      <workItem from="1679120739078" duration="19686000" />
+      <workItem from="1679120739078" duration="20992000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1678578790854</created>
@@ -245,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679122592080</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked">
+      <created>1679140533469</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679140533470</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +264,9 @@
     <MESSAGE value="log in? am not sure" />
     <MESSAGE value="asd" />
     <MESSAGE value="some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
+    <MESSAGE value="working time in button sa ui lang, not yet incorporated sa json file" />
+    <MESSAGE value="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked" />
+    <option name="LAST_COMMIT_MESSAGE" value="working time in button sa ui lang, not yet incorporated sa json file. &#10;&#10;*updating tableview pane when clicked" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -18,12 +18,16 @@ public class EmployeeInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("EmployeeInterface.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 600);
-        primaryStage.setTitle("Hello!");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("EmployeeInterface.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+            primaryStage.setTitle("Hello!");
+            primaryStage.setResizable(false);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
