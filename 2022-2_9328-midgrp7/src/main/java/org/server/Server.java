@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.GsonDateDeSerializer;
 
 import java.io.FileWriter;
 import java.io.Reader;
@@ -23,12 +24,10 @@ import java.util.Scanner;
 public class Server extends AttendanceServant {
 
     private static final Scanner scanner = new Scanner(System.in);
-/*    private static final GsonBuilder gsonBuilder = new GsonBuilder()
+    private static final GsonBuilder gsonBuilder = new GsonBuilder()
             .registerTypeAdapter(Date.class, new GsonDateDeSerializer())
-            .setPrettyPrinting();*/
-    private static final Gson gson = new GsonBuilder()
-        .setPrettyPrinting()
-        .setDateFormat("yyyy-MMMM-dd, HH:mm:ss")
+            .setPrettyPrinting();
+    private static final Gson gson = gsonBuilder
             .create();
 
 

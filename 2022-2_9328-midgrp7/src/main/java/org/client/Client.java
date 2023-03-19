@@ -16,7 +16,7 @@ public class Client {
             Registry registry = LocateRegistry.getRegistry(2001);
             Attendance stub = (Attendance) registry.lookup("sayhi");
 
-            /*while (employee == null) {
+            while (employee == null) {
                 System.out.print("Enter username: ");
                 String username = scanner.nextLine();
                 System.out.print("Enter password: ");
@@ -28,7 +28,7 @@ public class Client {
                     System.out.println("Invalid username or password. Please try again.");
                 }
             }
-            System.out.println("Logged in as " + employee.getUserName());*/
+            System.out.println("Logged in as " + employee.getUserName());
 
             stub.TimeIn(employee);
 

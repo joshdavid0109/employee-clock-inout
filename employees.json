@@ -1,0 +1,67 @@
+[
+  {
+    "empID": "c123c",
+    "userName": "testuser",
+    "passWord": "testuser",
+    "personalDetails": {
+      "firstName": "Test",
+      "lastName": "asd",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": true,
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
+    "totalDates": [
+      {
+        "timeIn": "Mar 19, 2023, 9:53:21 AM"
+      }
+    ]
+  },
+  {
+    "empID": "ushensga82",
+    "userName": "redhood",
+    "passWord": "edgyboi",
+    "personalDetails": {
+      "firstName": "Jason",
+      "lastName": "Todd",
+      "age": 24,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "totalDates": []
+  },
+  {
+    "empID": "amuu291",
+    "userName": "spoiler",
+    "passWord": "spoiler",
+    "personalDetails": {
+      "firstName": "Stephanie",
+      "lastName": "Brown",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
+    "totalDates": []
+  },
+  {
+    "empID": "asd",
+    "userName": "asweq",
+    "passWord": "asdcasxd",
+    "personalDetails": {
+      "firstName": "as",
+      "lastName": "asd",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+    },
+    "totalDates": []
+  }
+]

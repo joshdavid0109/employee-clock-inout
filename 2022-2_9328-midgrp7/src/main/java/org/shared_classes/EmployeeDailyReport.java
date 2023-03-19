@@ -44,7 +44,7 @@ public class EmployeeDailyReport implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + (timeOut.getMonth()+1) + " - " + timeOut.getDate() + "] : " + "\nTime in: " + timeIn + "\nTime out: " + timeOut;
+        return "[" + (timeIn.getMonth()+1) + " - " + timeIn.getDate() + "] : " + "\nTime in: " + timeIn + "\nTime out: " + timeOut;
     }
 
     public String getStatus() {
