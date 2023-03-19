@@ -6,43 +6,49 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LoginController {
-
-    @FXML
-    private Button loadRegisterGUIbtn;
+public class RegisterController implements Initializable {
 
     @FXML
-    private AnchorPane loginAnchorPane;
+    private Button loadLoginGUIbtn;
+
+    @FXML
+    private AnchorPane registerAnchorPane;
 
     @FXML
     private StackPane parentContainer;
 
-    @FXML
-    public void LoadRegisterGUI() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("RegisterInterface.fxml")));
-        Scene scene = loadRegisterGUIbtn.getScene();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        root.translateXProperty().set(scene.getWidth());
+    }
+
+    @FXML
+    public void LoadLoginGUI() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginInterface.fxml")));
+        Scene scene = loadLoginGUIbtn.getScene();
+
+        root.translateYProperty().set(scene.getHeight());
         parentContainer.getChildren().add(root);
 
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyValue keyValue = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
 
         timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(loginAnchorPane));
+        timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(registerAnchorPane));
         timeline.play();
     }
 }
