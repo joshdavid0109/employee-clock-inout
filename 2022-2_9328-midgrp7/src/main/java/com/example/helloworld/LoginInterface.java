@@ -11,9 +11,9 @@ import java.io.IOException;
 public class LoginInterface extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Image image = new Image("SLU LOGO.jpg");
+        Image image = new Image("SLU_LOGO.jpg");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("LoginInterface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/LoginInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("EMPLOYEE");
         primaryStage.getIcons().add(image);

@@ -37,7 +37,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     public void LoadLoginGUI() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginInterface.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginInterface.fxml")));
         Scene scene = loadLoginGUIbtn.getScene();
 
         root.translateYProperty().set(scene.getHeight());
