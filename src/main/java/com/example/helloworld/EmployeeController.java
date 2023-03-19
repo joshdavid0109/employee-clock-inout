@@ -90,18 +90,26 @@ public class EmployeeController implements Initializable {
     }
 
     public void setEmployee(EmployeeProfile employee) {
+
         this.employee = employee;
+        System.out.println("WORKING");
+        employeeName.setText(employee.getFullName());
+
     }
 
     @FXML
     void addTimeIn(MouseEvent event) {
+
+        System.out.println("EMPLOYEE KASJAY");
+
+        System.out.println(employee.toString());
+
         statusLabel.setText("TIMED IN");
         Date date = new Date();
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
             employeeDailyReport.setStatus("Working");
             employeeDailyReport.setTimeIn(date);
-
             tableData.add(employeeDailyReport);
 
             tableView.setItems(tableData);
@@ -187,16 +195,23 @@ public class EmployeeController implements Initializable {
         timer.start();
 
         // Sample Employee
-        Date d = new Date();
+
+
+        /*Date d = new Date();
         EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
         EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
         ep.setPersonalDetails(ed);
-        /*ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
-        ep.setTotalDates(new EmployeeDailyReport(d));*/
+        *//*ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
+        ep.setTotalDates(new EmployeeDailyReport(d));*//*
 
         Date date = new Date();
         employeeName.setText(ep.getFullName());
-        dateLabel.setText(dateFormat.format(date));
+        dateLabel.setText(dateFormat.format(date));*/
+
+        if(employee!= null){
+            System.out.println("ASDzzz");
+            System.out.println(employee.toString());
+        }
 
         column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
         column2.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeOut"));

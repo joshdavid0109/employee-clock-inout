@@ -94,12 +94,32 @@ public class LoginController implements Initializable {
             emp.show();
             emp.setResizable(false);*/
 
-            Stage emp = new Stage();
+           /* Stage emp = new Stage();
             Parent root = FXMLLoader.load(Objects.requireNonNull(EmployeeInterface.class.getResource("/fxml/EmployeeInterface.fxml")));
             Scene scene = new Scene(root);
             emp.setScene(scene);
             emp.show();
-            emp.setResizable(false);
+            emp.setResizable(false);*/
+
+            /*FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+            loginAnchorPane = loader.load();
+
+            EmployeeController employeeController = loader.getController();
+            employeeController.setEmployee(employee);*/
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+            Parent root = loader.load();
+            EmployeeController employeeController = loader.getController();
+            employeeController.setEmployee(employee);
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) logInButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+
         }
     }
 }

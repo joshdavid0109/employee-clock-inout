@@ -4,8 +4,8 @@
     "userName": "testuser",
     "passWord": "testuser",
     "personalDetails": {
-      "firstName": "Test",
-      "lastName": "asd",
+      "firstName": "FIRSTNAME",
+      "lastName": "LASTNAME",
       "age": 14,
       "gender": "Male"
     },
