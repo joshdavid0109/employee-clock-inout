@@ -69,11 +69,11 @@ public class Server extends AttendanceServant {
     private static void options(int choice) throws IOException, ParseException {
         switch (choice) {
             case 1 -> {
-                getFromFile();
+                System.out.println(JSONHandler.getFromFile());
                 System.out.println("EMPLOYEE LIST READ FROM .JSON FILE SUCCESSFULLY");
             }
             case 2 -> {
-                addToFile();
+                JSONHandler.addToFile(employeesList);
                 System.out.println("EMPLOYEE LIST ADDED TO .JSON FILE SUCCESSFULLY!");
             }
             case 3 -> {
@@ -153,25 +153,25 @@ public class Server extends AttendanceServant {
 
     }
 
-    private static void addToFile() {
-        try (FileWriter writer = new FileWriter("employees.json")) {
-            gson.toJson(employeesList, writer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private static void addToFile() {
+//        try (FileWriter writer = new FileWriter("employees.json")) {
+//            gson.toJson(employeesList, writer);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    private static void getFromFile() {
-        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
-            for (EmployeeProfile temp : employees) {
-                System.out.println("\n" + temp);
-            }
-        } catch (Exception e) {
-            System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
-        }
-    }
+//    private static void getFromFile() {
+//        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
+//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+//            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
+//            for (EmployeeProfile temp : employees) {
+//                System.out.println("\n" + temp);
+//            }
+//        } catch (Exception e) {
+//            System.err.println("FILE NOT FOUND");
+//            e.printStackTrace();
+//        }
+//    }
 
 }

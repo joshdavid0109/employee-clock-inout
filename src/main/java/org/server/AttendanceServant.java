@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.zip.GZIPOutputStream;
 
 public class AttendanceServant implements Attendance {
-    static List<EmployeeProfile> empList = new ArrayList<>();
+    static List<EmployeeProfile> empList = JSONHandler.getFromFile();
     private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
@@ -37,7 +37,7 @@ public class AttendanceServant implements Attendance {
     @Override
     public void TimeIn(EmployeeProfile employee) throws RemoteException {
 
-        System.out.println(employee.getFullName()+" HAS TIMED IN");
+        System.out.println(employee.getFullName()+ " HAS TIMED IN");
 
         Date date = new Date();
         System.out.println("Date : "  + this.dateFormat.format(date));
@@ -48,10 +48,8 @@ public class AttendanceServant implements Attendance {
                 employeeProfile.setEmployeeDailyReport(dailyReport);
             }
         }
-        Gson gson = new Gson();
-        String jsonStr = gson.toJson(employee, EmployeeProfile.class);
-        JsonElement jsonElement= gson.toJsonTree(employee);
-        jsonStr = gson.toJson(jsonElement);
+
+
     //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
     }
 
