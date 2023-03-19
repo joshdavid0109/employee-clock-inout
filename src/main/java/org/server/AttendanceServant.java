@@ -1,5 +1,7 @@
 package org.server;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
@@ -9,9 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.GZIPOutputStream;
 
 public class AttendanceServant implements Attendance {
-    private List<EmployeeProfile> empList = new ArrayList<>();
+    static List<EmployeeProfile> empList = new ArrayList<>();
     private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
@@ -45,6 +48,10 @@ public class AttendanceServant implements Attendance {
                 employeeProfile.setEmployeeDailyReport(dailyReport);
             }
         }
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(employee, EmployeeProfile.class);
+        JsonElement jsonElement= gson.toJsonTree(employee);
+        jsonStr = gson.toJson(jsonElement);
     //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
     }
 

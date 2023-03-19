@@ -4,19 +4,18 @@
     "userName": "testuser",
     "passWord": "testuser",
     "personalDetails": {
-      "firstName": "FIRSTNAME",
-      "lastName": "LASTNAME",
+      "firstName": "Test",
+      "lastName": "asd",
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeIn": "Mar 19, 2023, 9:53:21 AM"
+      "timeIn": "Jan 01 2023, 18:56:09",
+      "timeOut": "Jan 01 2023, 06:56:09"
     },
     "totalDates": [
-      {
-        "timeIn": "Mar 19, 2023, 9:53:21 AM"
-      }
+      {}
     ]
   },
   {
@@ -43,9 +42,6 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "employeeDailyReport": {
-      "timeIn": "Mar 19, 2023, 9:53:21 AM"
-    },
     "totalDates": []
   },
   {
@@ -59,9 +55,6 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "employeeDailyReport": {
-      "timeIn": "Mar 19, 2023, 9:53:21 AM"
-    },
     "totalDates": []
   }
 ]

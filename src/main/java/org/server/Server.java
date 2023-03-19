@@ -2,12 +2,13 @@ package org.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import org.shared_classes.Attendance;
-import org.shared_classes.EmployeeProfile;
-import org.shared_classes.GsonDateDeSerializer;
+import org.shared_classes.*;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -15,6 +16,7 @@ import java.nio.file.Paths;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +27,7 @@ public class Server extends AttendanceServant {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static final GsonBuilder gsonBuilder = new GsonBuilder()
-            .registerTypeAdapter(Date.class, new GsonDateDeSerializer())
+            .setDateFormat("MMM dd YYYY, HH:mm:ss")
             .setPrettyPrinting();
     private static final Gson gson = gsonBuilder
             .create();
@@ -39,7 +41,7 @@ public class Server extends AttendanceServant {
     public static void main(String[] args) {
         try {
             Attendance stub = (Attendance) UnicastRemoteObject.exportObject(ers, 0);
-            Registry registry = LocateRegistry.createRegistry(2001);
+            Registry registry = LocateRegistry.createRegistry(2345);
             registry.rebind("sayhi", stub);
 
             int choice = 0;
@@ -58,11 +60,12 @@ public class Server extends AttendanceServant {
         System.out.println("\n--------ADMIN PANEL---------");
         System.out.println("[1] GET LIST OF EMPLOYEES FROM JSON FILE");
         System.out.println("[2] ADD EMPLOYEES TO JSON FILE");
-        System.out.println("[3] EXIT");
+        System.out.println("[3] ADD TIMEOUT SA EMPLOYEE");
+        System.out.println("[4] EXIT");
         System.out.print("Enter choice: ");
     }
 
-    private static void options(int choice) {
+    private static void options(int choice) throws IOException, ParseException {
         switch (choice) {
             case 1 -> {
                 getFromFile();
@@ -73,10 +76,69 @@ public class Server extends AttendanceServant {
                 System.out.println("EMPLOYEE LIST ADDED TO .JSON FILE SUCCESSFULLY!");
             }
             case 3 -> {
+                addtimeOut();
+            }
+            case 4 -> {
                 System.out.println("Ending server...");
                 System.exit(0);
             }
         }
+    }
+
+
+    /**
+     * Add sa json file ng values
+     * @throws IOException
+     * @throws ParseException
+     */
+    private static void addtimeOut() throws IOException, ParseException {
+
+         SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
+        Date d = new Date();
+
+        // Sample existing employee laang
+        EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
+        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
+        ep.setPersonalDetails(ed);
+            ep.setEmployeeDailyReport(new EmployeeDailyReport());
+            ep.setTotalDates(new EmployeeDailyReport());
+            ep.getEmployeeDailyReport().setTimeIn(d);
+
+        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
+            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
+
+            for (int i =0; i < employees.size();i++) {
+                EmployeeProfile emp = employees.get(i);
+                if (emp.getEmpID().equals(ep.getEmpID())) {
+                    JsonElement jsonElement= gson.toJsonTree(ep);
+
+                    //add timeout sa json file
+                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().addProperty("timeOut", format1.format(d));
+
+                    String updatedEmployee = jsonElement.toString();
+                    // get sa json as EmployeeProfile object
+                    emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
+                    employees.remove(i);
+                    employees.add(i, emp);
+
+                    //write to json file
+                    try (FileWriter writer = new FileWriter("employees.json")) {
+                        gson.toJson(employees, writer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+
+            }
+
+
+        } catch (Exception e) {
+            System.err.println("FILE NOT FOUND");
+            e.printStackTrace();
+        }
+
     }
 
     private static void addToFile() {

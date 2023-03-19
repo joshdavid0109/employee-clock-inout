@@ -18,13 +18,13 @@ public class Register {
 
             //hardcode lng
             Date d = new Date();
-            Registry registry = LocateRegistry.getRegistry(2001);
+            Registry registry = LocateRegistry.getRegistry(2345);
             Attendance stub = (Attendance) registry.lookup("sayhi");
             EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
             EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
             ep.setPersonalDetails(ed);
-           /* ep.setEmployeeDailyReport(new EmployeeDailyReport(d));
-            ep.setTotalDates(new EmployeeDailyReport(d));*/
+            ep.setEmployeeDailyReport(new EmployeeDailyReport());
+            ep.getEmployeeDailyReport().setTimeIn(d);
 
 
             EmployeeDetails ed1 = new EmployeeDetails("Jason", "Todd", 24, "Male");

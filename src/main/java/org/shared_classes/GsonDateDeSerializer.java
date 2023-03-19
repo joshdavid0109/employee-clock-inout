@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class GsonDateDeSerializer implements JsonDeserializer<Date> {
 
-    private SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MMMM-dd,hh:mm:ss a");
+    private SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
     private SimpleDateFormat format2 = new SimpleDateFormat("HH:mm:ss");
 
     @Override
