@@ -33,6 +33,9 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public void TimeIn(EmployeeProfile employee) throws RemoteException {
+
+        System.out.println(employee.getFullName()+" HAS TIMED IN");
+
         Date date = new Date();
         System.out.println("Date : "  + this.dateFormat.format(date));
         for (EmployeeProfile employeeProfile : empList) {
@@ -42,12 +45,24 @@ public class AttendanceServant implements Attendance {
                 employeeProfile.setEmployeeDailyReport(dailyReport);
             }
         }
-        //TODO
+    //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
     }
 
     @Override
-    public void TimeOut() throws RemoteException {
-        //TODO
+    public void TimeOut(EmployeeProfile employee) throws RemoteException {
+
+        System.out.println(employee.getFullName()+" HAS TIMED OUT");
+
+        Date date = new Date();
+        System.out.println("Date : "  + this.dateFormat.format(date));
+        for (EmployeeProfile employeeProfile : empList) {
+            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
+                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
+                dailyReport.setTimeOut(date);
+                employeeProfile.setEmployeeDailyReport(dailyReport);
+            }
+        }
+        //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
     }
 
     @Override

@@ -20,6 +20,9 @@ import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -28,9 +31,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
-
-
-
     private Attendance stub;
     private EmployeeProfile employee;
 
@@ -100,10 +100,6 @@ public class EmployeeController implements Initializable {
     @FXML
     void addTimeIn(MouseEvent event) {
 
-        System.out.println("EMPLOYEE KASJAY");
-
-        System.out.println(employee.toString());
-
         statusLabel.setText("TIMED IN");
         Date date = new Date();
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
@@ -111,22 +107,34 @@ public class EmployeeController implements Initializable {
             employeeDailyReport.setStatus("Working");
             employeeDailyReport.setTimeIn(date);
             tableData.add(employeeDailyReport);
-
-            tableView.setItems(tableData);
+        try {
+            stub.TimeIn(employee);
+        } catch (RemoteException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        tableView.setItems(tableData);
             tableView.refresh();
     }
 
     @FXML
     void addTimeOut(MouseEvent event) {
+
         statusLabel.setText("TIMED OUT");
         Date date = new Date();
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
-        employeeDailyReport.setStatus("Break");
+        employeeDailyReport.setStatus("On break");
         employeeDailyReport.setTimeOut(date);
         tableData.add(employeeDailyReport);
         tableView.setItems(tableData);
         tableView.refresh();
+        try {
+            stub.TimeOut(employee);
+        } catch (RemoteException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -184,6 +192,13 @@ public class EmployeeController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        try {
+            Registry registry = LocateRegistry.getRegistry(2001);
+            stub = (Attendance) registry.lookup("sayhi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Timer Animation
         AnimationTimer timer = new AnimationTimer() {
