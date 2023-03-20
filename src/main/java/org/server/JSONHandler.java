@@ -19,6 +19,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JSONHandler {
 
@@ -30,9 +32,8 @@ public class JSONHandler {
     static private final String employeesJSONPath = "employees.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
-        try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
+        try {
+            List<EmployeeProfile> employees = getFromFile();
             for (EmployeeProfile employee : employees) {
                 if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
                     employee.setLoggedIn(true);
@@ -53,8 +54,7 @@ public class JSONHandler {
     //true = logged in, false logged out
     public static void setEmployeeStatus(EmployeeProfile employee, boolean loggedIn) {
         try {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = gson.fromJson(new FileReader(employeesJSONPath), dataType);
+            List<EmployeeProfile> employees = getFromFile();
 
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(employee.getEmpID())) {
@@ -72,8 +72,52 @@ public class JSONHandler {
         }
     }
 
+    public static EmployeeProfile checkIfValidRegistration(String username, String password, String verifyPassword) {
+        try {
+            List<EmployeeProfile> employees = getFromFile();
+
+//            System.out.println(employees);
+
+            for (EmployeeProfile emp : employees) {
+                if (emp.getUserName().equals(username) || !checkValidPassword(password) || !password.equals(verifyPassword)) {
+//                    System.out.println(emp);
+                    System.out.println("username taken or password invalid or passwords aint the saem lol try again noob");
+                    return null;
+                } else {
+                    System.out.println(emp);
+                    System.out.println("Successful login.");
+//                    addEmployee(employees, username, password); //TODO for some reason nabubura yung employees.json if this runs idk why
+                    return new EmployeeProfile(username, password);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static void addEmployee(List<EmployeeProfile> employees, String username, String password) {
+        try (FileWriter writer = new FileWriter(employeesJSONPath)) {
+//            System.out.println(employees);
+//            employees.add(new EmployeeProfile(username, password));
+//            gson.toJson(employees, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean checkValidPassword(String password) {
+        String PASSWORD_PATTERN =
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
     public static void addTimeIn(EmployeeProfile ep, Date d) {
-        try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
 
@@ -117,7 +161,7 @@ public class JSONHandler {
 
     public static void addTimeOut(EmployeeProfile ep, Date d) {
 //        SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
-        try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
 
@@ -175,7 +219,7 @@ public class JSONHandler {
     }
 
     static List<EmployeeProfile> getFromFile() {
-        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
+        try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
             Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             return gson.fromJson(reader, dataType);
         } catch (Exception e) {
@@ -186,7 +230,7 @@ public class JSONHandler {
     }
 
     static void addToFile(List<EmployeeProfile> employeesList) {
-        try (FileWriter writer = new FileWriter("employees.json")) {
+        try (FileWriter writer = new FileWriter(employeesJSONPath)) {
             gson.toJson(employeesList, writer);
         } catch (Exception e) {
             e.printStackTrace();

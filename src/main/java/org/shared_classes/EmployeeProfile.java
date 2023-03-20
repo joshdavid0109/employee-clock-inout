@@ -1,10 +1,7 @@
 package org.shared_classes;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EmployeeProfile implements Serializable {
@@ -21,6 +18,15 @@ public class EmployeeProfile implements Serializable {
 
 
     public EmployeeProfile() {}
+
+    public EmployeeProfile(String un) {
+        this.userName = un;
+    }
+
+    public EmployeeProfile(String un, String pw) {
+        this.userName = un;
+        this.passWord = pw;
+    }
 
     public EmployeeProfile(String ei, String un, String pw) {
 

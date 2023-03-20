@@ -95,8 +95,6 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) logInButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-
-
         }
     }
 }

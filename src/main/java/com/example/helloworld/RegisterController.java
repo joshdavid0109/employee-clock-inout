@@ -4,35 +4,60 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.shared_classes.Attendance;
+import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
-
+    private Attendance stub;
     @FXML
     private Button loadLoginGUIbtn;
-
     @FXML
     private AnchorPane registerAnchorPane;
-
     @FXML
     private StackPane parentContainer;
+    @FXML
+    private Button regButton;
+    @FXML
+    private Label questionMark;
+    @FXML
+    private Label questionMark1;
+    @FXML
+    private TextField regPassword;
+    @FXML
+    private TextField regVerifyPassword;
+    @FXML
+    private TextField regUsername;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        try {
+            Registry registry = LocateRegistry.getRegistry(2345);
+            stub = (Attendance) registry.lookup("sayhi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -50,5 +75,21 @@ public class RegisterController implements Initializable {
         timeline.getKeyFrames().add(keyFrame);
         timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(registerAnchorPane));
         timeline.play();
+    }
+
+    public void registerNa(ActionEvent actionEvent) throws IOException {
+        String username = regUsername.getText();
+        String password = regPassword.getText();
+        String verify = regVerifyPassword.getText();
+
+        regButton.getScene().getWindow().hide();
+
+        EmployeeProfile employee = stub.SignUp(username, password, verify);
+
+        if (employee == null) {
+            System.out.println("rong");
+        } else {
+            LoadLoginGUI();
+        }
     }
 }

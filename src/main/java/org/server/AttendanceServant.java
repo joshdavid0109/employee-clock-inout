@@ -21,14 +21,12 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public EmployeeProfile LogIn(String username, String password) throws RemoteException {
-        EmployeeProfile a = JSONHandler.checkIfValidLogIn(username, password);
-        return a;
+        return JSONHandler.checkIfValidLogIn(username, password);
     }
 
     @Override
-    public EmployeeProfile SignUp() throws RemoteException {
-        //TODO
-        return null;
+    public EmployeeProfile SignUp(String username, String password, String verify) throws RemoteException {
+        return JSONHandler.checkIfValidRegistration(username, password, verify);
     }
 
     @Override
@@ -55,7 +53,7 @@ public class AttendanceServant implements Attendance {
 //        }
 
 
-    //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
+        JSONHandler.addTimeIn(employee, date);
     }
 
     @Override
