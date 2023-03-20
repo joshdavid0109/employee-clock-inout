@@ -17,6 +17,7 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,6 +31,7 @@ public class JSONHandler {
     private static final Gson gson = gsonBuilder
             .create();
     static private final String employeesJSONPath = "employees.json";
+    static private final String pendingRegistersList = "registers.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
@@ -86,7 +88,7 @@ public class JSONHandler {
                 } else {
                     System.out.println(emp);
                     System.out.println("Successful login.");
-//                    addEmployee(employees, username, password); //TODO for some reason nabubura yung employees.json if this runs idk why
+                    registerEmployee(username, password); //TODO for some reason nabubura yung employees.json if this runs idk why
                     return new EmployeeProfile(username, password);
                 }
             }
@@ -98,11 +100,17 @@ public class JSONHandler {
         return null;
     }
 
-    private static void addEmployee(List<EmployeeProfile> employees, String username, String password) {
-        try (FileWriter writer = new FileWriter(employeesJSONPath)) {
-//            System.out.println(employees);
-//            employees.add(new EmployeeProfile(username, password));
-//            gson.toJson(employees, writer);
+    private static void registerEmployee(String username, String password) {
+        try (FileWriter writer = new FileWriter(pendingRegistersList)) {
+            List<EmployeeProfile> pendingRegisters = getPendingRegistersFromFile();
+            if (pendingRegisters == null) {
+                pendingRegisters = new ArrayList<>();
+                pendingRegisters.add(new EmployeeProfile(username, password));
+                gson.toJson(pendingRegisters, writer);
+            } else {
+                pendingRegisters.add(new EmployeeProfile(username, password));
+                gson.toJson(pendingRegisters, writer);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,6 +234,22 @@ public class JSONHandler {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
         }
+        return null;
+    }
+
+    static List<EmployeeProfile> getPendingRegistersFromFile() {
+        try(Reader reader = Files.newBufferedReader(Paths.get(pendingRegistersList))) {
+            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+            List<EmployeeProfile> temp = gson.fromJson(reader, dataType);
+            if (temp == null) {
+                temp = new ArrayList<>();
+                return temp;
+            }
+            return temp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
