@@ -114,7 +114,7 @@ public class EmployeeController implements Initializable {
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
             employeeDailyReport.setStatus("Working");
-            employeeDailyReport.setTimeIn(date);
+            employeeDailyReport.setTimeIn(dateFormat.format(date));
             tableData.add(employeeDailyReport);
         try {
             stub.TimeIn(employee);
@@ -139,7 +139,7 @@ public class EmployeeController implements Initializable {
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
         employeeDailyReport.setStatus("On break");
-        employeeDailyReport.setTimeOut(date);
+        employeeDailyReport.setTimeOut(dateFormat.format(date));
         tableData.add(employeeDailyReport);
         tableView.setItems(tableData);
         tableView.refresh();

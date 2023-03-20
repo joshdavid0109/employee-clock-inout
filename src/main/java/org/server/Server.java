@@ -77,7 +77,7 @@ public class Server extends AttendanceServant {
                 System.out.println("EMPLOYEE LIST ADDED TO .JSON FILE SUCCESSFULLY!");
             }
             case 3 -> {
-                addtimeOut();
+//                addtimeOut();
             }
             case 4 -> {
                 System.out.println("Ending server...");
@@ -92,66 +92,66 @@ public class Server extends AttendanceServant {
      * @throws IOException
      * @throws ParseException
      */
-    private static void addtimeOut() throws IOException, ParseException {
-
-         SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
-        Date d = new Date();
-
-        // Sample existing employee laang
-        EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
-        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
-        ep.setPersonalDetails(ed);
-            ep.setEmployeeDailyReport(new EmployeeDailyReport());
-            ep.setTotalDates(new EmployeeDailyReport());
-
-        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
-
-            for (int i =0; i < employees.size();i++) {
-                EmployeeProfile emp = employees.get(i);
-                if (emp.getEmpID().equals(ep.getEmpID())) {
-                    JsonElement jsonElement= gson.toJsonTree(ep);
-
-
-                    //add timeout
-                    emp.getEmployeeDailyReport().setTimeOut(d);
-
-                    List<Date> timeIs = emp.getEmployeeDailyReport().getListofTimeIns(); // list of time ins in the whole day
-                    List<Date> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts(); // list of time ins in the whole day
-
-                    JsonElement timeIns = gson.toJsonTree(timeIs);
-                    JsonElement timeOuts = gson.toJsonTree(timeOs);
-
-                    //add timeout sa json file
-
-                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
-
-
-                    String updatedEmployee = jsonElement.toString();
-                    // get sa json as EmployeeProfile object
-                    emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
-                    employees.remove(i);
-                    employees.add(i, emp);
-
-                    //write to json file
-                    try (FileWriter writer = new FileWriter("employees.json")) {
-                        gson.toJson(employees, writer);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
-
-            }
-
-
-        } catch (Exception e) {
-            System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
-        }
-
-    }
+//    private static void addtimeOut() throws IOException, ParseException {
+//
+//         SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
+//        Date d = new Date();
+//
+//        // Sample existing employee laang
+//        EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
+//        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
+//        ep.setPersonalDetails(ed);
+//            ep.setEmployeeDailyReport(new EmployeeDailyReport());
+//            ep.setTotalDates(new EmployeeDailyReport());
+//
+//        try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
+//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+//            List<EmployeeProfile> employees = gson.fromJson(reader, dataType);
+//
+//            for (int i =0; i < employees.size();i++) {
+//                EmployeeProfile emp = employees.get(i);
+//                if (emp.getEmpID().equals(ep.getEmpID())) {
+//                    JsonElement jsonElement= gson.toJsonTree(ep);
+//
+//
+//                    //add timeout
+//                    emp.getEmployeeDailyReport().setTimeOut(form);
+//
+//                    List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns(); // list of time ins in the whole day
+//                    List<String> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts(); // list of time ins in the whole day
+//
+//                    JsonElement timeIns = gson.toJsonTree(timeIs);
+//                    JsonElement timeOuts = gson.toJsonTree(timeOs);
+//
+//                    //add timeout sa json file
+//
+//                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
+//
+//
+//                    String updatedEmployee = jsonElement.toString();
+//                    // get sa json as EmployeeProfile object
+//                    emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
+//                    employees.remove(i);
+//                    employees.add(i, emp);
+//
+//                    //write to json file
+//                    try (FileWriter writer = new FileWriter("employees.json")) {
+//                        gson.toJson(employees, writer);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                }
+//
+//            }
+//
+//
+//        } catch (Exception e) {
+//            System.err.println("FILE NOT FOUND");
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 //    private static void addToFile() {
 //        try (FileWriter writer = new FileWriter("employees.json")) {

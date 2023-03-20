@@ -2,13 +2,12 @@ package org.server;
 
 //dapat server lang nakakagamit nitong class na ito
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.GsonDateDeSerializer;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,8 +16,8 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +29,8 @@ public class JSONHandler {
     private static final Gson gson = gsonBuilder
             .create();
     static private final String employeesJSONPath = "employees.json";
+    static private final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
+
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
@@ -120,6 +121,10 @@ public class JSONHandler {
         try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
+            for (EmployeeProfile emp :
+                    employees) {
+                System.out.println(emp);
+            }
 
             for (int i =0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
@@ -127,9 +132,9 @@ public class JSONHandler {
                     JsonElement jsonElement= gson.toJsonTree(ep);
 
                     //add timeout
-                    emp.getEmployeeDailyReport().setTimeIn(d);
+                    emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
 
-                    List<Date> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
+                    List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
                     System.out.println(timeIs);
 //                    if (timeIs.get(timeIs.size()-1).getDay()!= d.getDate())
                     JsonElement timeIns = gson.toJsonTree(timeIs);
@@ -164,18 +169,24 @@ public class JSONHandler {
         try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
+            for (EmployeeProfile emp :
+                    employees) {
+                System.out.println(emp);
+            }
 
-            for (int i =0; i < employees.size(); i++) {
+            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(ep.getEmpID())) {
                     JsonElement jsonElement= gson.toJsonTree(ep);
                     //add timeout
-                    emp.getEmployeeDailyReport().setTimeOut(d);
+                    d = new Date();
 
-                    List<Date> timeOs = ep.getEmployeeDailyReport().getListofTimeOuts();
-//                    System.out.println(timeOs);
+                    emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
+
+                    List<String> timeOs = ep.getEmployeeDailyReport().getListofTimeOuts();
 //                    if (timeOs.get(timeOs.size()-1).getDay()!= d.getDate())
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
+
 
                     //add timeout sa json file
                     jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
@@ -193,10 +204,7 @@ public class JSONHandler {
                     }
                     break;
                 }
-
             }
-
-
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
@@ -211,6 +219,7 @@ public class JSONHandler {
         EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
         ep.setPersonalDetails(ed);
         ep.setEmployeeDailyReport(new EmployeeDailyReport());
+
         ep.setTotalDates(new EmployeeDailyReport());
         System.out.println(date);
         System.out.println(date1);
@@ -220,14 +229,27 @@ public class JSONHandler {
 
     static List<EmployeeProfile> getFromFile() {
         try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            return gson.fromJson(reader, dataType);
+            List<EmployeeProfile> employeeProfiles = new ArrayList<>();
+//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+            JsonParser parser = new JsonParser();
+            JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
+            EmployeeDailyReport employeeDailyReport;
+            for (int i = 0; i< rootoObj.size();i++) {
+                JsonElement element = rootoObj.get(i);
+                JsonElement listofTimeouts = element.getAsJsonObject().get("employeeDailyReport");
+                employeeProfiles.add(gson.fromJson(element, EmployeeProfile.class));
+                employeeDailyReport = gson.fromJson(listofTimeouts, EmployeeDailyReport.class);
+                employeeProfiles.get(i).setEmployeeDailyReport(employeeDailyReport);
+            }
+            return employeeProfiles;
+//            JsonElement jsonElement = gson.toJsonTree(new EmployeeProfile());
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
         }
         return null;
     }
+
 
     static void addToFile(List<EmployeeProfile> employeesList) {
         try (FileWriter writer = new FileWriter(employeesJSONPath)) {
@@ -236,4 +258,6 @@ public class JSONHandler {
             e.printStackTrace();
         }
     }
+
+
 }

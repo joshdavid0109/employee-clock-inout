@@ -19,7 +19,7 @@ public class WorkingDays {
 
     public WorkingDays() {
     }
-/*
+
     public static void computeWorkingHours(EmployeeDailyReport edr) throws ParseException {
         for (int i = 0; i < edr.getListofTimeIns().size(); i++) {
             Date d = format2.parse(String.valueOf(edr.getListofTimeIns().get(i)));
@@ -33,7 +33,7 @@ public class WorkingDays {
             int t2 = Integer.parseInt(format2.format(1).split(":")[0]);
             int workingHours = t2 - t1;
         }
-    }*/
+    }
 }
 
   /*  @Override

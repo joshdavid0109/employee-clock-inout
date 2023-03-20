@@ -7,46 +7,50 @@ import java.util.Date;
 import java.util.List;
 
 public class EmployeeDailyReport implements Serializable {
-    private Date timeIn;
-    private Date timeOut;
+    private String timeIn;
+    private String timeOut;
     private String status;
 
 
-    private List<Date> listofTimeIns;
-    private List<Date> listofTimeOuts;
+    private List<String> listofTimeIns;
+    private final List<String> listofTimeOuts;
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
 
-    public EmployeeDailyReport() {;
+    public EmployeeDailyReport() {
         listofTimeIns = new ArrayList<>();
         listofTimeOuts= new ArrayList<>();
     }
 
-    public Date getTimeIn() {
+    public String getTimeIn() {
         return timeIn;
     }
 
-    public void setTimeIn(Date timeIn) {
+    public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
         listofTimeIns.add(timeIn);
 
     }
 
-    public Date getTimeOut() {
+    public String getTimeOut() {
         return timeOut;
     }
 
-    public void setTimeOut(Date timeOutFromServer) {
+    public void setTimeOut(String timeOutFromServer) {
         this.timeOut = timeOutFromServer;
         listofTimeOuts.add(timeOutFromServer);
 
     }
 
-    public List<Date> getListofTimeIns() {
+    public void setListofTimeIns(List<String> listofTimeIns) {
+        this.listofTimeIns = listofTimeIns;
+    }
+
+    public List<String> getListofTimeIns() {
         return this.listofTimeIns;
     }
 
-    public List<Date> getListofTimeOuts() {
+    public List<String> getListofTimeOuts() {
         return this.listofTimeOuts;
     }
 
