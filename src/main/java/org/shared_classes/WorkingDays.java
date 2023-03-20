@@ -12,12 +12,14 @@ import java.util.Map;
 public class WorkingDays {
     //    HashMap<Date, Integer> workingDays; // Date - Working hours
     static SimpleDateFormat format2 = new SimpleDateFormat("HH:mm:ss");
-    String workingDays;
-    int working;
+    public static HashMap<String, Integer> workingHoursPerDay;
+    private String day;
+    private int hours;
     EmployeeDailyReport employeeDailyReport;
-    private SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
+    public static SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
 
     public WorkingDays() {
+        workingHoursPerDay = new HashMap<>();
     }
 
     public static void computeWorkingHours(EmployeeDailyReport edr) throws ParseException {
@@ -27,10 +29,12 @@ public class WorkingDays {
 
             long diff = d1.getTime() - d.getTime();
 
-            int t1 = Integer.parseInt(format2.format(d).split(":")[0]);
-            int t2 = Integer.parseInt(format2.format(1).split(":")[0]);
-            int workingHours = t2 - t1;
+//            int minutes =
         }
+    }
+
+    public static void main(String[] args) {
+//        computeWorkingHours();
     }
 }
 

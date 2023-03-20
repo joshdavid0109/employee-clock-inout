@@ -34,7 +34,6 @@ public class Server extends AttendanceServant {
             .create();
 
 
-
     private static final EmployeeProfile employeeProfile = new EmployeeProfile();
     private static final AttendanceServant ers = new AttendanceServant();
     private static final List<EmployeeProfile> employeesList = ers.getEmpList(); // this updates in real time

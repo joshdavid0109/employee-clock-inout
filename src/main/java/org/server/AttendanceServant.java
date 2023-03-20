@@ -84,7 +84,7 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public void getSummary() throws RemoteException {
-        //TODO
+
     }
 
     @Override
@@ -108,6 +108,7 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public Date getDateAndTime() throws RemoteException {
+        serverDate = new Date();
         System.out.println("A "+serverDate);
         return serverDate;
     }

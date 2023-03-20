@@ -1,7 +1,9 @@
 package org.shared_classes;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeProfile implements Serializable {
@@ -14,7 +16,7 @@ public class EmployeeProfile implements Serializable {
     static String note;
 
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
-    private final List<WorkingDays> totalDates = new ArrayList<>();
+    private static HashMap<String, Integer> totalDates = new HashMap<>();
 
 
     public EmployeeProfile() {}
@@ -35,6 +37,10 @@ public class EmployeeProfile implements Serializable {
         this.passWord = pw;
     }
 
+    public void computeWorkingHours() throws ParseException {
+//        WorkingDays.computeWorkingHours(employeeDailyReport);
+    }
+
     public void setEmpID(String empID) {
         this.empID = empID;
     }
@@ -49,10 +55,6 @@ public class EmployeeProfile implements Serializable {
 
     public void setPersonalDetails(EmployeeDetails personalDetails) {
         this.personalDetails = personalDetails;
-    }
-
-    public void setTotalDates(WorkingDays totalDates) {
-        this.totalDates.add(totalDates);
     }
 
     public void setLoggedIn(boolean loggedIn) {
@@ -73,10 +75,6 @@ public class EmployeeProfile implements Serializable {
 
     public EmployeeDetails getPersonalDetails() {
         return personalDetails;
-    }
-
-    public List<WorkingDays> getTotalDates() {
-        return totalDates;
     }
 
     public boolean isLoggedIn() {

@@ -6,7 +6,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,11 +17,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.server.JSONHandler;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -71,9 +77,6 @@ public class EmployeeController implements Initializable {
     private TableColumn<EmployeeDailyReport, String> column3;
 
     @FXML
-    private TableColumn<?, ?> column4;
-
-    @FXML
     private TableView<EmployeeDailyReport> tableView;
 
     @FXML
@@ -114,7 +117,7 @@ public class EmployeeController implements Initializable {
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
             employeeDailyReport.setStatus("Working");
-            employeeDailyReport.setTimeIn(dateFormat.format(date));
+            employeeDailyReport.setTimeIn(timeFormat.format(date));
             tableData.add(employeeDailyReport);
         try {
             stub.TimeIn(employee);
@@ -129,7 +132,7 @@ public class EmployeeController implements Initializable {
     @FXML
     void addTimeOut(MouseEvent event) {
 
-        statusLabel.setText("TIMED OUT");
+        statusLabel.setText("TIMED IN");
         Date date = new Date();
         try {
             date = stub.getDateAndTime();
@@ -138,17 +141,17 @@ public class EmployeeController implements Initializable {
         }
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
-        employeeDailyReport.setStatus("On break");
-        employeeDailyReport.setTimeOut(dateFormat.format(date));
+        employeeDailyReport.setStatus("On Break");
+        employeeDailyReport.setTimeOut(timeFormat.format(date));
         tableData.add(employeeDailyReport);
-        tableView.setItems(tableData);
-        tableView.refresh();
         try {
             stub.TimeOut(employee);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 
     @FXML
@@ -157,11 +160,23 @@ public class EmployeeController implements Initializable {
     }
 
     @FXML
-    void logOut(MouseEvent event) {
+    void logOut(MouseEvent event) throws IOException {
+
+        logOutButton.getScene().getWindow().hide();
+
+        JSONHandler.setEmployeeStatus(employee, false);
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
+        Parent root = loader.load();
+        LoginController loginController = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) logOutButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
-
-
 
     public Text getTimeLabel() {
         return timeLabel;
@@ -233,7 +248,7 @@ public class EmployeeController implements Initializable {
 
         if(employee!= null){
             System.out.println(employee.toString());
-            dateLabel.setText(dateFormat.format(date));
+            dateLabel.setText(timeFormat.format(date));
         }
 
         column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));

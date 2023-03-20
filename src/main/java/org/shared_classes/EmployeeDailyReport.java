@@ -12,14 +12,12 @@ public class EmployeeDailyReport implements Serializable {
     private String status;
 
 
-    private List<String> listofTimeIns;
-    private final List<String> listofTimeOuts;
+    private List<String> listofTimeIns = new ArrayList<>();;
+    private final List<String> listofTimeOuts= new ArrayList<>();;
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
 
     public EmployeeDailyReport() {
-        listofTimeIns = new ArrayList<>();
-        listofTimeOuts= new ArrayList<>();
     }
 
     public String getTimeIn() {

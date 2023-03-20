@@ -10,14 +10,14 @@
         <content>
           <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <TableView layoutX="-9.0" layoutY="-1.0" prefWidth="562.0">
+                  <TableView fx:id="tableView" layoutX="-9.0" layoutY="-1.0" prefHeight="189.0" prefWidth="562.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID" />
-                      <TableColumn prefWidth="75.0" text="Last Name" />
-                        <TableColumn prefWidth="75.0" text="First Name" />
-                        <TableColumn prefWidth="75.0" text="Date" />
-                        <TableColumn prefWidth="112.7999267578125" text="Status" />
-                        <TableColumn prefWidth="98.39996337890625" text="Work Hours" />
+                      <TableColumn fx:id="columnId" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="lnColumn" prefWidth="75.0" text="Last Name" />
+                        <TableColumn fx:id="fnColumn" prefWidth="75.0" text="First Name" />
+                        <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="statusColumn" prefWidth="112.7999267578125" text="Status" />
+                        <TableColumn fx:id="workHoursColumn" prefWidth="98.39996337890625" text="Work Hours" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -27,17 +27,17 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <TextField layoutX="22.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
-      <TextField layoutX="110.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
-      <TextField layoutX="195.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
-      <Button layoutX="366.0" layoutY="150.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Print" />
+      <TextField fx:id="fromTF" layoutX="22.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
+      <TextField fx:id="toTF" layoutX="110.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
+      <TextField fx:id="searchTF" layoutX="195.0" layoutY="150.0" prefHeight="26.0" prefWidth="71.0" />
+      <Button fx:id="printBtn" layoutX="366.0" layoutY="150.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Print" />
       <Button layoutX="441.0" layoutY="151.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="514.0" layoutY="151.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="refreshButton" layoutX="514.0" layoutY="151.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
       <Text layoutX="22.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
       <Text layoutX="110.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
       <Text layoutX="195.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
-      <Text layoutX="23.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Name" />
-      <Text layoutX="23.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" />
-      <Button layoutX="514.0" layoutY="17.0" mnemonicParsing="false" text="LogOut" />
+      <Text fx:id="adminNameLabel" layoutX="23.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Name" />
+      <Text fx:id="companyNameLabel" layoutX="23.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" />
+      <Button fx:id="logOutButton" layoutX="514.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOut" text="LogOut" />
    </children>
 </AnchorPane>

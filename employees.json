@@ -11,28 +11,27 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeIn": "Mar 20 2023, 16:06:07",
-      "timeOut": "Mar 20 2023, 16:06:07",
+      "timeIn": "Mar 20 2023, 17:54:53",
+      "timeOut": "Mar 20 2023, 17:54:53",
       "listofTimeIns": [
-        "Mar 20 2023, 16:05:58",
-        "Mar 20 2023, 16:06:07"
+        "Mar 20 2023, 16:34:38",
+        "Mar 20 2023, 16:37:49",
+        "Mar 20 2023, 16:38:07",
+        "Mar 20 2023, 16:40:22",
+        "Mar 20 2023, 16:40:44",
+        "Mar 20 2023, 16:41:41",
+        "Mar 20 2023, 17:49:10"
       ],
       "listofTimeOuts": [
-        "Mar 20 2023, 14:30:00",
-        "Mar 20 2023, 14:45:59",
-        "Mar 20 2023, 14:46:18",
-        "Mar 20 2023, 14:51:25",
-        "Mar 20 2023, 16:03:50",
-        "Mar 20 2023, 16:03:56",
-        "Mar 20 2023, 16:05:58",
-        "Mar 20 2023, 16:06:07"
+        "Mar 20 2023, 16:34:38",
+        "Mar 20 2023, 16:37:49",
+        "Mar 20 2023, 16:38:07",
+        "Mar 20 2023, 16:40:22",
+        "Mar 20 2023, 16:40:44",
+        "Mar 20 2023, 16:41:41",
+        "Mar 20 2023, 17:49:11"
       ]
-    },
-    "totalDates": [
-      {
-
-      }
-    ]
+    }
   },
   {
     "empID": "c123c",
@@ -46,19 +45,17 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeIn": "Jan 01 2023, 09:39:09",
+      "timeIn": "Mar 20 2023, 17:04:13",
       "timeOut": "Jan 01 2023, 09:16:54",
-      "listofTimeIns": [],
+      "listofTimeIns": [
+        "Mar 20 2023, 17:03:57",
+        "Mar 20 2023, 17:04:12",
+        "Mar 20 2023, 17:04:13",
+        "Mar 20 2023, 17:04:13",
+        "Mar 20 2023, 17:04:13"
+      ],
       "listofTimeOuts": []
-    },
-    "totalDates": [
-      {
-        "timeIn": "Jan 01 2023, 09:39:09",
-        "timeOut": "Jan 01 2023, 09:39:09",
-        "listofTimeIns": [],
-        "listofTimeOuts": []
-      }
-    ]
+    }
   },
   {
     "empID": "ushensga82",
@@ -71,7 +68,15 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "totalDates": []
+    "employeeDailyReport": {
+      "timeIn": "Mar 20 2023, 17:53:05",
+      "listofTimeIns": [
+        "Mar 20 2023, 17:52:21",
+        "Mar 20 2023, 17:52:29",
+        "Mar 20 2023, 17:53:05"
+      ],
+      "listofTimeOuts": []
+    }
   },
   {
     "empID": "amuu291",
@@ -84,6 +89,31 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "totalDates": []
+    "employeeDailyReport": {
+      "listofTimeIns": [],
+      "listofTimeOuts": []
+    }
+  },
+  {
+    "empID": "asd",
+    "userName": "asweq",
+    "passWord": "asdcasxd",
+    "personalDetails": {
+      "firstName": "as",
+      "lastName": "asd",
+      "age": 18,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "timeIn": "Mar 20 2023, 17:09:27",
+      "timeOut": "Mar 20 2023, 17:09:26",
+      "listofTimeIns": [
+        "Mar 20 2023, 17:09:27"
+      ],
+      "listofTimeOuts": [
+        "Mar 20 2023, 17:09:26"
+      ]
+    }
   }
 ]
