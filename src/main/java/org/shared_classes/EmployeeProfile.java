@@ -2,9 +2,12 @@ package org.shared_classes;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class EmployeeProfile implements Serializable {
     private String empID;
@@ -15,6 +18,8 @@ public class EmployeeProfile implements Serializable {
     static String status; // working or break
     static String note;
 
+    public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
     private static HashMap<String, Integer> totalDates = new HashMap<>();
 
@@ -37,7 +42,29 @@ public class EmployeeProfile implements Serializable {
         this.passWord = pw;
     }
 
+    /**
+     * Computes total working hours for each day
+     * @throws ParseException
+     */
     public void computeWorkingHours() throws ParseException {
+        String day;
+        for (int i =0 ;i< employeeDailyReport.getListofTimeOuts().size();i++) {
+            day = employeeDailyReport.getListofTimeOuts().get(employeeDailyReport.getListofTimeOuts().size()-1).split(", ")[1];
+            String timeIn = employeeDailyReport.getListofTimeIns().get(i).split(", ")[1];
+            String timeOut = employeeDailyReport.getListofTimeOuts().get(i).split(", ")[1];
+
+            Date d = timeFormat.parse(timeIn);
+            Date d2 = timeFormat.parse(timeOut);
+
+            long diff = d2.getTime() - d.getTime();
+
+            int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(diff);
+
+            if (minutes<0)
+                minutes+=1440;
+
+
+        }
 //        WorkingDays.computeWorkingHours(employeeDailyReport);
     }
 

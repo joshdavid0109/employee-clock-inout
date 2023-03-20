@@ -131,7 +131,7 @@ public class EmployeeController implements Initializable {
     @FXML
     void addTimeOut(MouseEvent event) {
 
-        statusLabel.setText("TIMED IN");
+        statusLabel.setText("TIMED OUT");
         Date date = new Date();
         try {
             date = stub.getDateAndTime();
