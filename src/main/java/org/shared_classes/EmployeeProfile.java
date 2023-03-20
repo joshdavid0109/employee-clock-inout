@@ -36,7 +36,6 @@ public class EmployeeProfile implements Serializable {
     }
 
     public EmployeeProfile(String ei, String un, String pw) {
-
         this.empID = ei;
         this.userName = un;
         this.passWord = pw;
