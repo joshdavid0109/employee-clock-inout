@@ -6,7 +6,7 @@ import java.util.Date;
 
 public interface Attendance extends Remote {
     EmployeeProfile LogIn(String username, String password) throws RemoteException;
-    EmployeeProfile SignUp(String username, String password, String verify) throws RemoteException;
+    void SignUp(EmployeeProfile employeeProfile) throws RemoteException;
     void TimeIn(EmployeeProfile employeeProfile) throws RemoteException;
     void TimeOut(EmployeeProfile employeeProfile) throws RemoteException;
     void getSummary() throws RemoteException;

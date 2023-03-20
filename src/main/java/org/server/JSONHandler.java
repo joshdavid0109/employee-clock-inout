@@ -9,10 +9,7 @@ import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.GsonDateDeSerializer;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,7 +30,6 @@ public class JSONHandler {
             .create();
     static private final String employeesJSONPath = "employees.json";
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
-
     static private final String pendingRegistersList = "registers.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
@@ -42,7 +38,7 @@ public class JSONHandler {
             for (EmployeeProfile employee : employees) {
                 if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
                     employee.setLoggedIn(true);
-                    System.out.println("EMPLOYEE "+employee.getUserName()+" HAS LOGGED IN");
+                    System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
                     System.out.println("kasjay");
                     setEmployeeStatus(employee, true);
                     return employee;
@@ -132,12 +128,12 @@ public class JSONHandler {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
 
-            for (int i =0; i < employees.size(); i++) {
+            for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(ep.getEmpID())) {
-                    JsonElement jsonElement= gson.toJsonTree(ep);
+                    JsonElement jsonElement = gson.toJsonTree(ep);
 
-                    if (emp.getEmployeeDailyReport() == null){
+                    if (emp.getEmployeeDailyReport() == null) {
                         emp.setEmployeeDailyReport(new EmployeeDailyReport());
                     }
 
@@ -153,7 +149,7 @@ public class JSONHandler {
 
                     String updatedEmployee = jsonElement.toString();
                     // get sa json as EmployeeProfile object
-                    emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
+                    emp = gson.fromJson(updatedEmployee, EmployeeProfile.class);
                     employees.add(i, emp);
                     employees.remove(i);
                     //write to json file
@@ -183,11 +179,11 @@ public class JSONHandler {
             for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(ep.getEmpID())) {
-                    JsonElement jsonElement= gson.toJsonTree(ep);
+                    JsonElement jsonElement = gson.toJsonTree(ep);
                     //add timeout
                     d = new Date();
 
-                    if (emp.getEmployeeDailyReport() == null){
+                    if (emp.getEmployeeDailyReport() == null) {
                         emp.setEmployeeDailyReport(new EmployeeDailyReport());
                     }
 
@@ -212,7 +208,7 @@ public class JSONHandler {
 
                     String updatedEmployee = jsonElement.toString();
                     // get sa json as EmployeeProfile object
-                    emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
+                    emp = gson.fromJson(updatedEmployee, EmployeeProfile.class);
                     employees.add(i, emp);
                     employees.remove(i);
                     break;
@@ -243,13 +239,13 @@ public class JSONHandler {
     }
 
     public static List<EmployeeProfile> getFromFile() {
-        try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             JsonParser parser = new JsonParser();
             JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
             EmployeeDailyReport employeeDailyReport;
-            for (int i = 0; i< rootoObj.size();i++) {
+            for (int i = 0; i < rootoObj.size(); i++) {
                 JsonElement element = rootoObj.get(i);
                 JsonElement listofTimeouts = element.getAsJsonObject().get("employeeDailyReport");
                 employeeProfiles.add(gson.fromJson(element, EmployeeProfile.class));
@@ -269,8 +265,9 @@ public class JSONHandler {
     }
 
     static List<EmployeeProfile> getPendingRegistersFromFile() {
-        try(Reader reader = Files.newBufferedReader(Paths.get(pendingRegistersList))) {
-            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+        try (Reader reader = Files.newBufferedReader(Paths.get(pendingRegistersList))) {
+            Type dataType = new TypeToken<List<EmployeeProfile>>() {
+            }.getType();
             List<EmployeeProfile> temp = gson.fromJson(reader, dataType);
             if (temp == null) {
                 temp = new ArrayList<>();
@@ -295,13 +292,13 @@ public class JSONHandler {
 
 
     public static List<EmployeeProfile> populateTable() {
-        try(Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             JsonParser parser = new JsonParser();
             JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
             EmployeeProfile employeeProfile;
-            for (int i = 0; i< rootoObj.size();i++) {
+            for (int i = 0; i < rootoObj.size(); i++) {
                 JsonElement employee = rootoObj.get(i);
 //                JsonElement eID = employee.getAsJsonObject().get("empID");
 //                JsonElement dailyReport = employee.getAsJsonObject().get("employeeDailyReport");
@@ -315,5 +312,26 @@ public class JSONHandler {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * lalagay yung employee sa register.json, para iaccept or reject
+     *
+     * @param profile The profile to be added to the register.
+     */
+    public static void appendToRegister(EmployeeProfile profile) {
+        List<EmployeeProfile> pendingEmployees = getPendingRegistersFromFile();
+        pendingEmployees.add(profile);
+
+        /*System.out.println("A "+profile);
+        System.out.println("B "+pendingEmployees);*/
+
+        try (Writer writer = new FileWriter(pendingRegistersList)) {
+            gson.toJson(pendingEmployees, writer);
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

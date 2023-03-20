@@ -89,13 +89,17 @@ public class RegisterController implements Initializable {
 
         regButton.getScene().getWindow().hide();
 
-        EmployeeProfile employee = stub.SignUp(username, password, verify);
+        EmployeeProfile emp = new EmployeeProfile(username, password);
 
-        if (employee == null) {
+        stub.SignUp(emp);
+
+        System.out.println();
+
+        /*if (employee == null) {
             System.out.println("wrong");
         } else {
             LoadLoginGUI();
-        }
+        }*/
     }
 
     @FXML
