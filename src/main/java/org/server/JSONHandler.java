@@ -73,30 +73,28 @@ public class JSONHandler {
         }
     }
 
-    public static EmployeeProfile checkIfValidRegistration(String username, String password, String verifyPassword) {
+    public static void checkIfValidRegistration(EmployeeProfile employeeProfile) {
         try {
             List<EmployeeProfile> employees = getFromFile();
 
 //            System.out.println(employees);
 
             for (EmployeeProfile emp : employees) {
-                if (emp.getUserName().equals(username) || !checkValidPassword(password) || !password.equals(verifyPassword)) {
-//                    System.out.println(emp);
+                // *|MARCADOR_CURSOR|*
+                if (emp.getUserName().equals(employeeProfile.getUserName()) || !checkValidPassword(employeeProfile.getPassWord()) ) {
+//                    System.out.println(emsp);
                     System.out.println("username taken or password invalid or passwords aint the saem lol try again noob");
-                    return null;
                 } else {
                     System.out.println(emp);
                     System.out.println("Successful login.");
-                    registerEmployee(username, password); //TODO for some reason nabubura yung employees.json if this runs idk why
-                    return new EmployeeProfile(username, password);
+                    registerEmployee(employeeProfile.getFullName(), employeeProfile.getPassWord()); //TODO for some reason nabubura yung employees.json if this runs idk why
                 }
+                break;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return null;
     }
 
     private static void registerEmployee(String username, String password) {
