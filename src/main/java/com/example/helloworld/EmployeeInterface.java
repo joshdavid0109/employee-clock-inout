@@ -19,7 +19,8 @@ public class EmployeeInterface extends Application {
         Image image = new Image("SLU_LOGO.jpg");
 
         FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/EmployeeInterface.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());primaryStage.setTitle("EMPLOYEE");
+        Scene scene = new Scene(fxmlLoader.load());
+        primaryStage.setTitle("EMPLOYEE");
         primaryStage.getIcons().add(image);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
