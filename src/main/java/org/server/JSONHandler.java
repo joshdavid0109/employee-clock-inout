@@ -74,7 +74,7 @@ public class JSONHandler {
         }
     }
 
-    static void addTimeOut(EmployeeProfile ep, Date d) {
+    public static void addTimeOut(EmployeeProfile ep, Date d) {
         SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
         try(Reader reader = Files.newBufferedReader(Paths.get("employees.json"))) {
             Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
@@ -88,7 +88,8 @@ public class JSONHandler {
                     //add timeout
                     emp.getEmployeeDailyReport().setTimeOut(d);
 
-                    List<Date> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts(); // list of time ins in the whole day
+                    List<Date> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts();
+//                    if (timeOs.get(timeOs.size()-1).getDay()!= d.getDate())
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
 
                     //add timeout sa json file
@@ -97,9 +98,8 @@ public class JSONHandler {
                     String updatedEmployee = jsonElement.toString();
                     // get sa json as EmployeeProfile object
                     emp  = gson.fromJson(updatedEmployee, EmployeeProfile.class);
-                    employees.remove(i);
                     employees.add(i, emp);
-
+                    employees.remove(i);
                     //write to json file
                     try (FileWriter writer = new FileWriter("employees.json")) {
                         gson.toJson(employees, writer);
@@ -117,6 +117,16 @@ public class JSONHandler {
             e.printStackTrace();
         }
 
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
+        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser");
+        ep.setPersonalDetails(ed);
+        ep.setEmployeeDailyReport(new EmployeeDailyReport());
+        ep.setTotalDates(new EmployeeDailyReport());
+        addTimeOut(ep, date);
     }
 
     static List<EmployeeProfile> getFromFile() {

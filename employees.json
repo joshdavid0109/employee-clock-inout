@@ -9,15 +9,45 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "employeeDailyReport": {
-      "listofTimeIns": [
-        "Jan 01 2023, 19:18:59"
-      ],
+      "timeOut": "Mar 20 2023, 09:56:38",
+      "listofTimeIns": [],
+      "listofTimeOuts": [
+        "Mar 20 2023, 09:56:38",
+        "Mar 20 2023, 09:56:38"
+      ]
+    },
+    "totalDates": [
+      {
+        "timeIn": "Jan 01 2023, 09:40:58",
+        "timeOut": "Jan 01 2023, 09:40:58",
+        "listofTimeIns": [],
+        "listofTimeOuts": []
+      }
+    ]
+  },
+  {
+    "empID": "c123c",
+    "userName": "testuser",
+    "passWord": "testuser",
+    "personalDetails": {
+      "firstName": "Test",
+      "lastName": "asd",
+      "age": 14,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "timeIn": "Jan 01 2023, 09:39:09",
+      "timeOut": "Jan 01 2023, 09:16:54",
+      "listofTimeIns": [],
       "listofTimeOuts": []
     },
     "totalDates": [
       {
+        "timeIn": "Jan 01 2023, 09:39:09",
+        "timeOut": "Jan 01 2023, 09:39:09",
         "listofTimeIns": [],
         "listofTimeOuts": []
       }
@@ -43,19 +73,6 @@
     "personalDetails": {
       "firstName": "Stephanie",
       "lastName": "Brown",
-      "age": 18,
-      "gender": "Female"
-    },
-    "isLoggedIn": false,
-    "totalDates": []
-  },
-  {
-    "empID": "asd",
-    "userName": "asweq",
-    "passWord": "asdcasxd",
-    "personalDetails": {
-      "firstName": "as",
-      "lastName": "asd",
       "age": 18,
       "gender": "Female"
     },

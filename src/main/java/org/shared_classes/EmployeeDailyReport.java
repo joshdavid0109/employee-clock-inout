@@ -12,12 +12,14 @@ public class EmployeeDailyReport implements Serializable {
     private String status;
 
 
-    private List<Date> listofTimeIns = new ArrayList<>();
-    private List<Date> listofTimeOuts = new ArrayList<>();
+    private List<Date> listofTimeIns;
+    private List<Date> listofTimeOuts;
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
 
     public EmployeeDailyReport() {;
+        listofTimeIns = new ArrayList<>();
+        listofTimeOuts= new ArrayList<>();
     }
 
     public Date getTimeIn() {
@@ -25,17 +27,20 @@ public class EmployeeDailyReport implements Serializable {
     }
 
     public void setTimeIn(Date timeIn) {
-        listofTimeIns.add(timeIn);
         this.timeIn = timeIn;
+        listofTimeIns.add(timeIn);
+
     }
 
     public Date getTimeOut() {
         return timeOut;
     }
 
-    public void setTimeOut(Date timeOut) {
-        listofTimeOuts.add(timeOut);
-        this.timeOut = timeOut;
+    public void setTimeOut(Date timeOutFromServer) {
+        this.timeOut = timeOutFromServer;
+        listofTimeOuts.add(timeOutFromServer);
+        listofTimeOuts.add(timeOutFromServer);
+
     }
 
     public List<Date> getListofTimeIns() {
