@@ -13,7 +13,7 @@ public class WorkingDays {
     //    HashMap<Date, Integer> workingDays; // Date - Working hours
     static SimpleDateFormat format2 = new SimpleDateFormat("HH:mm:ss");
     String workingDays;
-
+    int working;
     EmployeeDailyReport employeeDailyReport;
     private SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
 
@@ -26,8 +26,6 @@ public class WorkingDays {
             Date d1 = format2.parse(String.valueOf(edr.getListofTimeOuts().get(i)));
 
             long diff = d1.getTime() - d.getTime();
-
-
 
             int t1 = Integer.parseInt(format2.format(d).split(":")[0]);
             int t2 = Integer.parseInt(format2.format(1).split(":")[0]);

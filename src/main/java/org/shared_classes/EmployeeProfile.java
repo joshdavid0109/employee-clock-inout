@@ -14,7 +14,7 @@ public class EmployeeProfile implements Serializable {
     static String note;
 
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
-    private final List<EmployeeDailyReport> totalDates = new ArrayList<>();
+    private final List<WorkingDays> totalDates = new ArrayList<>();
 
 
     public EmployeeProfile() {}
@@ -51,7 +51,7 @@ public class EmployeeProfile implements Serializable {
         this.personalDetails = personalDetails;
     }
 
-    public void setTotalDates(EmployeeDailyReport totalDates) {
+    public void setTotalDates(WorkingDays totalDates) {
         this.totalDates.add(totalDates);
     }
 
@@ -75,7 +75,7 @@ public class EmployeeProfile implements Serializable {
         return personalDetails;
     }
 
-    public List<EmployeeDailyReport> getTotalDates() {
+    public List<WorkingDays> getTotalDates() {
         return totalDates;
     }
 
