@@ -79,11 +79,10 @@ public class EmployeeController implements Initializable {
     @FXML
     private Text statusLabel;
 
-    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
-    public EmployeeController(){
-    }
+    public EmployeeController(){}
 
     public EmployeeController(EmployeeProfile employee){
         this.employee = employee;
@@ -226,7 +225,7 @@ public class EmployeeController implements Initializable {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                timeLabel.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                timeLabel.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH : mm : ss")));
             }
         };
         timer.start();
@@ -236,9 +235,9 @@ public class EmployeeController implements Initializable {
             dateLabel.setText(dateFormat.format(date));
         }
 
-        column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
+/*        column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
         column2.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeOut"));
-        column3.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
+        column3.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));*/
     }
 
 }
