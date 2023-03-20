@@ -10,6 +10,7 @@ public class EmployeeDailyReport implements Serializable {
     private String timeIn;
     private String timeOut;
     private String status;
+    private String date;
 
 
     private List<String> listofTimeIns = new ArrayList<>();;
@@ -17,7 +18,8 @@ public class EmployeeDailyReport implements Serializable {
 //    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 //    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
 
-    public EmployeeDailyReport() {
+    public EmployeeDailyReport(String date) {
+        this.date = date;
     }
 
     public String getTimeIn() {

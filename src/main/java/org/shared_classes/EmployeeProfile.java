@@ -21,7 +21,7 @@ public class EmployeeProfile implements Serializable {
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
-    private static HashMap<String, Integer> totalDates = new HashMap<>();
+    private static List<EmployeeDailyReport> totalDates = new ArrayList<>();
 
 
     public EmployeeProfile() {}
@@ -84,9 +84,6 @@ public class EmployeeProfile implements Serializable {
         this.personalDetails = personalDetails;
     }
 
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
-    }
 
     public String getEmpID() {
         return empID;
@@ -104,9 +101,7 @@ public class EmployeeProfile implements Serializable {
         return personalDetails;
     }
 
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
+
 
     public String getFullName() {
         return this.personalDetails.firstName + " " + this.personalDetails.getLastName();
@@ -128,5 +123,21 @@ public class EmployeeProfile implements Serializable {
 
     public void setEmployeeDailyReport(EmployeeDailyReport employeeDailyReport) {
         this.employeeDailyReport = employeeDailyReport;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    //for table value only
+    public String getIsLoggedIn() {
+        if (isLoggedIn)
+            return "online";
+        else
+            return "offline";
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 }

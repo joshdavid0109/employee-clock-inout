@@ -138,7 +138,7 @@ public class JSONHandler {
                     JsonElement jsonElement= gson.toJsonTree(ep);
 
                     if (emp.getEmployeeDailyReport() == null){
-                        emp.setEmployeeDailyReport(new EmployeeDailyReport());
+                        emp.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(d.getDate())));
                     }
 
                     //add timein
@@ -188,7 +188,7 @@ public class JSONHandler {
                     d = new Date();
 
                     if (emp.getEmployeeDailyReport() == null){
-                        emp.setEmployeeDailyReport(new EmployeeDailyReport());
+                        emp.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(d.getDate())));
                     }
 
                     emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
@@ -237,7 +237,7 @@ public class JSONHandler {
         EmployeeDetails ed = new EmployeeDetails("Test", "asd", 14, "Male");
         EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
         ep.setPersonalDetails(ed);
-        ep.setEmployeeDailyReport(new EmployeeDailyReport());
+        ep.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(date.getDate())));
 //        getSummary(ep);
 
     }
@@ -255,7 +255,8 @@ public class JSONHandler {
                 employeeProfiles.add(gson.fromJson(element, EmployeeProfile.class));
                 employeeDailyReport = gson.fromJson(listofTimeouts, EmployeeDailyReport.class);
                 if (employeeDailyReport == null) {
-                    employeeDailyReport = new EmployeeDailyReport();
+                    Date d  = new Date();
+                    employeeDailyReport = new EmployeeDailyReport(String.valueOf(d.getDate()));
                 }
                 employeeProfiles.get(i).setEmployeeDailyReport(employeeDailyReport);
             }

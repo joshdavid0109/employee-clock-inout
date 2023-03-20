@@ -114,7 +114,7 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
-            EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
+            EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
             employeeDailyReport.setStatus("Working");
             employeeDailyReport.setTimeIn(timeFormat.format(date));
             tableData.add(employeeDailyReport);
@@ -125,7 +125,7 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
         tableView.setItems(tableData);
-            tableView.refresh();
+        tableView.refresh();
     }
 
     @FXML
@@ -139,7 +139,7 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
-        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport();
+        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
         employeeDailyReport.setStatus("On Break");
         employeeDailyReport.setTimeOut(timeFormat.format(date));
         tableData.add(employeeDailyReport);

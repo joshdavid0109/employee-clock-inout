@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,13 +57,13 @@ public class ServerController implements Initializable {
     private TableColumn<EmployeeProfile, String> lnColumn;
 
     @FXML
-    private TableColumn<EmployeeProfile, String> statusColumn;
+    private TableColumn<EmployeeProfile, String > statusColumn;
 
     @FXML
     private TableColumn<EmployeeProfile, String> workHoursColumn;
 
     @FXML
-    private TableView<EmployeeDailyReport> tableView;
+    private TableView<EmployeeProfile> tableView;
 
     @FXML
     private Button logOutButton;
@@ -111,9 +112,24 @@ public class ServerController implements Initializable {
 
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
+//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
 
+
         columnId.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>("empID"));
+        lnColumn.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue().getPersonalDetails(), "lastName"));
+        fnColumn.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue().getPersonalDetails(), "firstName"));
+        statusColumn.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue(), "isLoggedIn"));
+        //        workHoursColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>("totalDates"));
+
+
+        tableView.setItems(tableData);
+        tableView.refresh();
+
+
 //        dateColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>(s));
     }
 }
