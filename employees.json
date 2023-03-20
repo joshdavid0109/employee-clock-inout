@@ -1,6 +1,6 @@
 [
   {
-    "empID": "c123c",
+    "empID": "c123b",
     "userName": "testuser",
     "passWord": "testuser",
     "personalDetails": {
@@ -11,17 +11,19 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeOut": "Mar 20 2023, 09:56:38",
-      "listofTimeIns": [],
+      "timeIn": "Jan 01 2023, 11:29:25",
+      "timeOut": "Mar 20 2023, 11:29:25",
+      "listofTimeIns": [
+        "Jan 01 2023, 11:28:22",
+        "Jan 01 2023, 11:29:25"
+      ],
       "listofTimeOuts": [
-        "Mar 20 2023, 09:56:38",
-        "Mar 20 2023, 09:56:38"
+        "Jan 01 2023, 11:29:10",
+        "Mar 20 2023, 11:29:25"
       ]
     },
     "totalDates": [
       {
-        "timeIn": "Jan 01 2023, 09:40:58",
-        "timeOut": "Jan 01 2023, 09:40:58",
         "listofTimeIns": [],
         "listofTimeOuts": []
       }

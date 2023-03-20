@@ -39,7 +39,6 @@ public class EmployeeDailyReport implements Serializable {
     public void setTimeOut(Date timeOutFromServer) {
         this.timeOut = timeOutFromServer;
         listofTimeOuts.add(timeOutFromServer);
-        listofTimeOuts.add(timeOutFromServer);
 
     }
 
@@ -60,7 +59,10 @@ public class EmployeeDailyReport implements Serializable {
 
     @Override
     public String toString() {
-        return listofTimeIns + "\n" + listofTimeOuts;
+        return timeIn + "\n" +
+                timeOut + "\n" +
+                listofTimeIns + "\n" +
+                listofTimeOuts;
     }
 
     public String getStatus() {

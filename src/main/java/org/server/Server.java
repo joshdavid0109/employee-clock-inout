@@ -69,7 +69,7 @@ public class Server extends AttendanceServant {
     private static void options(int choice) throws IOException, ParseException {
         switch (choice) {
             case 1 -> {
-                System.out.println(JSONHandler.getFromFile());
+                System.out.println(empList); //TODO WHY IS IT PRINTING Sun Jan 01 FOR THE DATES, CHECK JSON FILE
                 System.out.println("EMPLOYEE LIST READ FROM .JSON FILE SUCCESSFULLY");
             }
             case 2 -> {

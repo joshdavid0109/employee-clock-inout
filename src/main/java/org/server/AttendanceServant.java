@@ -8,6 +8,8 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Objects;
 
 public class AttendanceServant implements Attendance {
     static Date serverDate = new Date();
@@ -36,13 +38,21 @@ public class AttendanceServant implements Attendance {
 
         Date date = new Date();
         System.out.println("Date : "  + this.dateFormat.format(date));
-        for (EmployeeProfile employeeProfile : empList) {
-            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
-                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
-                dailyReport.setTimeIn(date);
-                employeeProfile.setEmployeeDailyReport(dailyReport);
-            }
-        }
+//        for (EmployeeProfile employeeProfile : empList) {
+//            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
+//                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
+//                dailyReport.setTimeIn(date);
+//                employeeProfile.setEmployeeDailyReport(dailyReport);
+//            }
+//        }
+//        ListIterator<EmployeeProfile> iterator = empList.listIterator();
+//        while (iterator.hasNext()) {
+//            EmployeeProfile temp = iterator.next();
+//            if (Objects.equals(temp.getEmpID(), employee.getEmpID())) {
+//                temp.getEmployeeDailyReport().setTimeIn(date);
+//                iterator.set(temp);
+//            }
+//        }
 
 
     //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
@@ -55,14 +65,23 @@ public class AttendanceServant implements Attendance {
 
         Date date = new Date();
         System.out.println("Date : "  + this.dateFormat.format(date));
-        for (EmployeeProfile employeeProfile : empList) {
-            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
-                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
-                dailyReport.setTimeOut(date);
-                employeeProfile.setEmployeeDailyReport(dailyReport);
-            }
-        }
-        //TODO rey pagawa 'to hindi ko alam kung paano yung sa dates HAHAH
+//        for (EmployeeProfile employeeProfile : empList) {
+//            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
+//                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
+//                dailyReport.setTimeOut(date);
+//                employeeProfile.setEmployeeDailyReport(dailyReport);
+//            }
+//        }
+//        ListIterator<EmployeeProfile> iterator = empList.listIterator();
+//        while (iterator.hasNext()) {
+//            EmployeeProfile temp = iterator.next();
+//            if (Objects.equals(temp.getEmpID(), employee.getEmpID())) {
+//                temp.getEmployeeDailyReport().setTimeOut(date);
+//                iterator.set(temp);
+//            }
+//        }
+
+        JSONHandler.addTimeOut(employee, date);
     }
 
     @Override

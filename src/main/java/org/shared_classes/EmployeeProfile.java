@@ -83,16 +83,12 @@ public class EmployeeProfile implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("EMPLOYEE ID: ").append(empID).append("\n");
-        sb.append("USERNAME: ").append(userName).append("\n");
-        sb.append("PASSWORD: ").append(passWord).append("\n");
-        sb.append("PROFILE: \n").append(personalDetails).append("\n");
-        sb.append("DATES: \n");
-        for (EmployeeDailyReport d : totalDates) {
-            sb.append(d).append("\n");
-        }
-        return sb.toString();
+        return "EMPLOYEE ID: " + empID + "\n" +
+                "USERNAME: " + userName + "\n" +
+                "PASSWORD: " + passWord + "\n" +
+                "PROFILE: \n" + personalDetails + "\n" +
+                "DATES: \n" +
+                employeeDailyReport + "\n";
     }
 
     public EmployeeDailyReport getEmployeeDailyReport() {
