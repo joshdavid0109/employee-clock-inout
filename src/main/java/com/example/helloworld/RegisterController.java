@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -43,6 +40,14 @@ public class RegisterController implements Initializable {
     private Label questionMark;
     @FXML
     private Label questionMark1;
+    @FXML
+    private PasswordField regPasswordHide;
+    @FXML
+    private PasswordField regVerifyPasswordHide;
+    @FXML
+    private CheckBox regShowPassword;
+    @FXML
+    private CheckBox regVerifyShowPassword;
     @FXML
     private TextField regPassword;
     @FXML
@@ -77,7 +82,7 @@ public class RegisterController implements Initializable {
         timeline.play();
     }
 
-    public void registerNa(ActionEvent actionEvent) throws IOException {
+    public void registerNa() throws IOException {
         String username = regUsername.getText();
         String password = regPassword.getText();
         String verify = regVerifyPassword.getText();
@@ -87,9 +92,35 @@ public class RegisterController implements Initializable {
         EmployeeProfile employee = stub.SignUp(username, password, verify);
 
         if (employee == null) {
-            System.out.println("rong");
+            System.out.println("wrong");
         } else {
             LoadLoginGUI();
+        }
+    }
+
+    @FXML
+    public void regShowPassword() {
+        if(regShowPassword.isSelected()) {
+            regPassword.setText(regPasswordHide.getText());
+            regPassword.setVisible(true);
+            regPasswordHide.setVisible(false);
+        } else {
+            regPasswordHide.setText(regPassword.getText());
+            regPasswordHide.setVisible(true);
+            regPassword.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void regVerifyShowPassword() {
+        if(regVerifyShowPassword.isSelected()) {
+            regVerifyPassword.setText(regVerifyPasswordHide.getText());
+            regVerifyPassword.setVisible(true);
+            regVerifyPasswordHide.setVisible(false);
+        } else {
+            regVerifyPasswordHide.setText(regVerifyPassword.getText());
+            regVerifyPasswordHide.setVisible(true);
+            regVerifyPassword.setVisible(false);
         }
     }
 }

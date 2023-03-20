@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,19 +32,25 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
+    public Attendance stub;
+    @FXML
     public TextField logInUsername;
+    @FXML
     public TextField logInPassword;
+    @FXML
+    private PasswordField logInPasswordHide;
+    @FXML
+    private CheckBox showPassword;
+    @FXML
     public Button logInButton;
+    @FXML
     public ImageView samcisLogo;
     @FXML
     private Button loadRegisterGUIbtn;
-
     @FXML
     private AnchorPane loginAnchorPane;
-
     @FXML
     private StackPane parentContainer;
-    public Attendance stub;
 
     @FXML
     public void LoadRegisterGUI() throws IOException {
@@ -59,6 +67,19 @@ public class LoginController implements Initializable {
         timeline.getKeyFrames().add(keyFrame);
         timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(loginAnchorPane));
         timeline.play();
+    }
+
+    @FXML
+    public void showPassword() {
+        if(showPassword.isSelected()) {
+            logInPassword.setText(logInPasswordHide.getText());
+            logInPassword.setVisible(true);
+            logInPasswordHide.setVisible(false);
+        } else {
+            logInPasswordHide.setText(logInPassword.getText());
+            logInPasswordHide.setVisible(true);
+            logInPassword.setVisible(false);
+        }
     }
 
     @Override
