@@ -45,25 +45,10 @@ public class EmployeeController implements Initializable {
     private Button summaryButton;
 
     @FXML
-    private Text companyName;
+    private Text companyName, dateLabel, employeeName, timeLabel, statusLabel;
 
     @FXML
-    private Text dateLabel;
-
-    @FXML
-    private Text employeeName;
-
-    @FXML
-    private Button logOutButton;
-
-    @FXML
-    private Button timeInButton;
-
-    @FXML
-    private Text timeLabel;
-
-    @FXML
-    private Button timeOutButton;
+    private Button logOutButton, timeInButton, timeOutButton;
 
     // Column Employee ID
     @FXML
@@ -78,9 +63,6 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private TableView<EmployeeDailyReport> tableView;
-
-    @FXML
-    private Text statusLabel;
 
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
