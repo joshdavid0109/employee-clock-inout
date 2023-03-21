@@ -38,7 +38,7 @@ import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
     private Attendance stub;
-    private EmployeeProfile employee;
+    private static EmployeeProfile employee;
     private Date date;
 
     @FXML
@@ -116,6 +116,7 @@ public class EmployeeController implements Initializable {
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
             employeeDailyReport.setStatus("Working");
+            employee.setStatus("Working");
             employeeDailyReport.setTimeIn(timeFormat.format(date));
             tableData.add(employeeDailyReport);
         try {
@@ -141,6 +142,7 @@ public class EmployeeController implements Initializable {
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
         employeeDailyReport.setStatus("On Break");
+        employee.setStatus("On Break");
         employeeDailyReport.setTimeOut(timeFormat.format(date));
         tableData.add(employeeDailyReport);
         try {
@@ -250,7 +252,7 @@ public class EmployeeController implements Initializable {
             dateLabel.setText(timeFormat.format(date));
         }
 
-/*        column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
+    /*    column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
         column2.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeOut"));
         column3.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));*/
     }

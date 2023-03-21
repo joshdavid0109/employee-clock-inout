@@ -3,15 +3,15 @@
     "empID": "c123b",
     "userName": "testuser",
     "passWord": "testuser",
-    "isLoggedIn": false,
     "personalDetails": {
       "firstName": "Test",
       "lastName": "asd",
       "age": 14,
       "gender": "Male"
     },
+    "isLoggedIn": true,
     "employeeDailyReport": {
-      "timeIn": "Mar 20 2023, 17:54:53",
+      "timeIn": "Mar 21 2023, 07:51:11",
       "timeOut": "Mar 20 2023, 17:54:53",
       "listofTimeIns": [
         "Mar 20 2023, 16:34:38",
@@ -20,7 +20,8 @@
         "Mar 20 2023, 16:40:22",
         "Mar 20 2023, 16:40:44",
         "Mar 20 2023, 16:41:41",
-        "Mar 20 2023, 17:49:10"
+        "Mar 20 2023, 17:49:10",
+        "Mar 21 2023, 07:51:11"
       ],
       "listofTimeOuts": [
         "Mar 20 2023, 16:34:38",
@@ -31,20 +32,19 @@
         "Mar 20 2023, 16:41:41",
         "Mar 20 2023, 17:49:11"
       ]
-    },
-    "totalDates": []
+    }
   },
   {
     "empID": "c123c",
     "userName": "testuser",
     "passWord": "testuser",
-    "isLoggedIn": false,
     "personalDetails": {
       "firstName": "Test",
       "lastName": "asd",
       "age": 14,
       "gender": "Male"
     },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "timeIn": "Mar 20 2023, 17:04:13",
       "timeOut": "Jan 01 2023, 09:16:54",
@@ -62,13 +62,13 @@
     "empID": "ushensga82",
     "userName": "redhood",
     "passWord": "edgyboi",
-    "isLoggedIn": false,
     "personalDetails": {
       "firstName": "Jason",
       "lastName": "Todd",
       "age": 24,
       "gender": "Male"
     },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "timeIn": "Mar 20 2023, 17:53:05",
       "listofTimeIns": [
@@ -83,13 +83,13 @@
     "empID": "amuu291",
     "userName": "spoiler",
     "passWord": "spoiler",
-    "isLoggedIn": false,
     "personalDetails": {
       "firstName": "Stephanie",
       "lastName": "Brown",
       "age": 18,
       "gender": "Female"
     },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "listofTimeIns": [],
       "listofTimeOuts": []
@@ -99,13 +99,13 @@
     "empID": "asd",
     "userName": "asweq",
     "passWord": "asdcasxd",
-    "isLoggedIn": false,
     "personalDetails": {
       "firstName": "as",
       "lastName": "asd",
       "age": 18,
       "gender": "Female"
     },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "timeIn": "Mar 20 2023, 17:09:27",
       "timeOut": "Mar 20 2023, 17:09:26",
