@@ -76,8 +76,8 @@ public class ServerController implements Initializable {
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
-    String jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
-    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
+//    String jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
+//    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
     private static final AttendanceServant ers = new AttendanceServant();
 
     public ServerController() throws IOException {
@@ -93,28 +93,28 @@ public class ServerController implements Initializable {
 
     }
 
-    //zephhhhhhhhhhhhhhhhhhh
-    public void generateReport (ActionEvent actionEvent) throws IOException {
-        genReport.setText("Generate Report");
-        //var fromTF = fromTF.getText();
-        //var toTF = toTF.getText();
-
-        LocalDate startDate = LocalDate.parse("2023-03-19");
-        LocalDate endDate = LocalDate.parse("2023-03-20");
-
-        JsonArray dataArray = jsonObject.getAsJsonArray("listofTimeIns");
-        for(JsonElement dataElement : dataArray) {
-            JsonObject dataObject = dataElement.getAsJsonObject();
-            String dateString = dataObject.get("date").getAsString();
-            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
-            if (date.isAfter(startDate) && date.isBefore(endDate)) {
-                String value = dataObject.get("listofTimeIns").getAsString();
-                // extract the data you need from the data object
-                // e.g., String value = dataObject.get("key").getAsString();
-                // recommit
-            }
-        }
-    }
+//    //zephhhhhhhhhhhhhhhhhhh
+//    public void generateReport (ActionEvent actionEvent) throws IOException {
+//        genReport.setText("Generate Report");
+//        //var fromTF = fromTF.getText();
+//        //var toTF = toTF.getText();
+//
+//        LocalDate startDate = LocalDate.parse("2023-03-19");
+//        LocalDate endDate = LocalDate.parse("2023-03-20");
+//
+//        JsonArray dataArray = jsonObject.getAsJsonArray("listofTimeIns");
+//        for(JsonElement dataElement : dataArray) {
+//            JsonObject dataObject = dataElement.getAsJsonObject();
+//            String dateString = dataObject.get("date").getAsString();
+//            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
+//            if (date.isAfter(startDate) && date.isBefore(endDate)) {
+//                String value = dataObject.get("listofTimeIns").getAsString();
+//                // extract the data you need from the data object
+//                // e.g., String value = dataObject.get("key").getAsString();
+//                // recommit
+//            }
+//        }
+//    }
 
 
     /**

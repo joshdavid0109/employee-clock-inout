@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
 
         logInButton.getScene().getWindow().hide();
 
-        EmployeeProfile employee = stub.LogIn(userName, passWord);
+        EmployeeProfile employee = stub.logIn(userName, passWord);
 
         if(employee == null) {
             System.out.println("mali");

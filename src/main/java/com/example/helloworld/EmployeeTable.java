@@ -26,7 +26,7 @@ public class EmployeeTable implements Initializable {
     private TableColumn<EmployeeDailyReport, String> columnTO;
 
     @FXML
-    private TableView<EmployeeDailyReport> tableView;
+    private TableView<EmployeeDailyReport> tableView = new TableView<>();
 
     private EmployeeDailyReport employeeDailyReport;
 
@@ -34,15 +34,7 @@ public class EmployeeTable implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Date date = new Date();
-        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
 
-        columnTI.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeIn"));
-        columnTO.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeOut"));
-        columnStatus.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
-    }
-
-    public void setTableView(TableView<EmployeeDailyReport> tV) {
-        this.tableView = tV;
     }
 
     public EmployeeDailyReport getEmployeeDailyReport() {
@@ -51,5 +43,15 @@ public class EmployeeTable implements Initializable {
 
     public void setEmployeeDailyReport(EmployeeDailyReport employeeDailyReport) {
         this.employeeDailyReport = employeeDailyReport;
+
+        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
+        tableData.add(employeeDailyReport);
+
+        columnTI.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeIn"));
+        columnTO.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeOut"));
+        columnStatus.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
+
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 }

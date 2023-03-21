@@ -190,14 +190,14 @@ public class JSONHandler {
 
                     List<String> timeOs = ep.getEmployeeDailyReport().getListofTimeOuts();
 
-                    if (!timeOs.get(i).contains(String.valueOf(d.getDate()))) {
-                        emp.computeWorkingHours();
-                        emp.getEmployeeDailyReport().getListofTimeIns().clear();
-                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
-                        employees.add(i, emp);
-                        employees.remove(i);
-                        break;
-                    }
+//                    if (!timeOs.get(i).contains(String.valueOf(d.getDate()))) {
+//                        emp.computeWorkingHours();
+//                        emp.getEmployeeDailyReport().getListofTimeIns().clear();
+//                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
+//                        employees.add(i, emp);
+//                        employees.remove(i);
+//                        break;
+//                    }
 
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
 

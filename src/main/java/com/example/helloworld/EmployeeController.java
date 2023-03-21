@@ -5,19 +5,19 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.server.JSONHandler;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
@@ -70,16 +70,20 @@ public class EmployeeController implements Initializable {
     public EmployeeController(){}
 
     public EmployeeController(EmployeeProfile employee){
-        this.employee = employee;
+        EmployeeController.employee = employee;
     }
 
     public void setStub(Attendance stub) {
         this.stub = stub;
     }
 
-    public void setEmployee(EmployeeProfile employee) {
+    public void setEmployee(EmployeeProfile employee) throws RemoteException {
 
-        this.employee = employee;
+        if (employee.getEmployeeDailyReport() == null) {
+            employee.setEmployeeDailyReport(new EmployeeDailyReport(dateFormat.format(date)));
+        }
+
+        EmployeeController.employee = employee;
         System.out.println("WORKING");
         employeeName.setText(employee.getFullName());
 
@@ -91,25 +95,15 @@ public class EmployeeController implements Initializable {
         statusLabel.setText("TIMED IN");
         Date date = new Date();
         try {
-            date = stub.getDateAndTime();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-            EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
-            employeeDailyReport.setStatus("Working");
-            employee.setStatus("Working");
-            employeeDailyReport.setTimeIn(timeFormat.format(date));
-
-            EmployeeTable employeeTable = new EmployeeTable();
-            employeeTable.setEmployeeDailyReport(employeeDailyReport);
-        try {
-            stub.TimeIn(employee);
+            date = stub.timeIn(employee);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-
+        employee.getEmployeeDailyReport().setStatus("Working");
+        EmployeeProfile.setStatus("Working");
+        employee.getEmployeeDailyReport().setTimeIn(timeFormat.format(date));
     }
 
     @FXML
@@ -118,30 +112,41 @@ public class EmployeeController implements Initializable {
         statusLabel.setText("TIMED OUT");
         Date date = new Date();
         try {
-            date = stub.getDateAndTime();
+            date = stub.timeOut(employee);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
-        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
-        employeeDailyReport.setStatus("On Break");
-        employee.setStatus("On Break");
-        employeeDailyReport.setTimeOut(timeFormat.format(date));
-        EmployeeTable employeeTable = new EmployeeTable();
-        employeeTable.setEmployeeDailyReport(employeeDailyReport);
+        employee.getEmployeeDailyReport().setStatus("On Break");
+        EmployeeProfile.setStatus("On Break");
+        employee.getEmployeeDailyReport().setTimeOut(timeFormat.format(date));
 
-        try {
-            stub.TimeOut(employee);
-        } catch (RemoteException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
 
     }
 
     @FXML
     void showSummary(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/EmployeeTable.fxml"));
+            Pane employeeTable = fxmlLoader.load();
 
+            EmployeeTable empTable = new EmployeeTable();
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane((DialogPane) employeeTable);
+            dialog.setTitle("Summary");
+
+            empTable.setEmployeeDailyReport(employee.getEmployeeDailyReport());
+
+
+            //close button
+            Window window = dialog.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event1 -> window.hide());
+            dialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -214,13 +219,10 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
 
-        try {
-            date = stub.getDateAndTime();
+            date = new Date();
             System.out.println("B  "+date);
             dateLabel.setText(dateFormat.format(date));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
 
         // Timer Animation
         AnimationTimer timer = new AnimationTimer() {
@@ -232,7 +234,7 @@ public class EmployeeController implements Initializable {
         timer.start();
 
         if(employee!= null){
-            System.out.println(employee.toString());
+            System.out.println(employee);
             dateLabel.setText(timeFormat.format(date));
         }
 

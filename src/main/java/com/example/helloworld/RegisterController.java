@@ -91,7 +91,7 @@ public class RegisterController implements Initializable {
 
         EmployeeProfile emp = new EmployeeProfile(username, password);
 
-        stub.SignUp(emp);
+        stub.signUp(emp);
 
         System.out.println();
 
