@@ -26,7 +26,7 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public void SignUp(EmployeeProfile employeeProfile) throws RemoteException {
-        JSONHandler.checkIfValidRegistration(employeeProfile);
+        JSONHandler.appendToRegister(employeeProfile);
     }
 
     @Override
