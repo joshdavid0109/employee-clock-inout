@@ -26,19 +26,30 @@ public class EmployeeTable implements Initializable {
     private TableColumn<EmployeeDailyReport, String> columnTO;
 
     @FXML
-    public static TableView<EmployeeDailyReport> tableView;
+    private TableView<EmployeeDailyReport> tableView;
+
+    private EmployeeDailyReport employeeDailyReport;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Date date = new Date();
         ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
-        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
-        employeeDailyReport.setStatus("");
-
 
         columnTI.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeIn"));
         columnTO.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("timeOut"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
+    }
+
+    public void setTableView(TableView<EmployeeDailyReport> tV) {
+        this.tableView = tV;
+    }
+
+    public EmployeeDailyReport getEmployeeDailyReport() {
+        return employeeDailyReport;
+    }
+
+    public void setEmployeeDailyReport(EmployeeDailyReport employeeDailyReport) {
+        this.employeeDailyReport = employeeDailyReport;
     }
 }

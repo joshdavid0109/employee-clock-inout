@@ -113,20 +113,21 @@ public class EmployeeController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
             EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
             employeeDailyReport.setStatus("Working");
             employee.setStatus("Working");
             employeeDailyReport.setTimeIn(timeFormat.format(date));
-            tableData.add(employeeDailyReport);
+
+            EmployeeTable employeeTable = new EmployeeTable();
+            employeeTable.setEmployeeDailyReport(employeeDailyReport);
         try {
             stub.TimeIn(employee);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        EmployeeTable.tableView.setItems(tableData);
-        EmployeeTable.tableView.refresh();
+
+
     }
 
     @FXML
@@ -139,12 +140,14 @@ public class EmployeeController implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
+
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(String.valueOf(date.getDate()));
         employeeDailyReport.setStatus("On Break");
         employee.setStatus("On Break");
         employeeDailyReport.setTimeOut(timeFormat.format(date));
-        tableData.add(employeeDailyReport);
+        EmployeeTable employeeTable = new EmployeeTable();
+        employeeTable.setEmployeeDailyReport(employeeDailyReport);
+
         try {
             stub.TimeOut(employee);
         } catch (RemoteException e) {
@@ -152,9 +155,6 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
 
-
-        EmployeeTable.tableView.setItems(tableData);
-        EmployeeTable.tableView.refresh();
     }
 
     @FXML
