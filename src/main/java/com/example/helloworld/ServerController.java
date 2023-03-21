@@ -1,5 +1,10 @@
 package com.example.helloworld;
 
+import com.google.gson.Gson;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,32 +22,33 @@ import org.server.JSONHandler;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
+import org.w3c.dom.events.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
 public class ServerController implements Initializable {
 
     @FXML
-    private Text adminNameLabel;
+    private Text adminNameLabel, companyNameLabel, genReport;
 
     @FXML
-    private Text companyNameLabel;
-
-    @FXML
-    private TextField fromTF;
-
-    @FXML
-    private TextField searchTF;
-
-    @FXML
-    private TextField toTF;
+    private TextField fromTF, searchTF, toTF;
 
     @FXML
     private TableColumn<EmployeeProfile, String> columnId;
@@ -66,15 +72,16 @@ public class ServerController implements Initializable {
     private TableView<EmployeeProfile> tableView;
 
     @FXML
-    private Button logOutButton;
+    private Button logOutButton, printBtn, refreshButton;
 
-    @FXML
-    private Button printBtn;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
-    @FXML
-    private Button refreshButton;
-
+    String jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
+    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
     private static final AttendanceServant ers = new AttendanceServant();
+
+    public ServerController() throws IOException {
+    }
 
     @FXML
     void logOut(ActionEvent event) {
@@ -84,6 +91,28 @@ public class ServerController implements Initializable {
     @FXML
     void refresh(ActionEvent event) {
 
+    }
+
+    //zephhhhhhhhhhhhhhhhhhh
+    public void generateReport (ActionEvent actionEvent) throws IOException {
+        genReport.setText("Generate Report");
+        //var fromTF = fromTF.getText();
+        //var toTF = toTF.getText();
+
+        LocalDate startDate = LocalDate.parse("2023-03-19");
+        LocalDate endDate = LocalDate.parse("2023-03-20");
+
+        JsonArray dataArray = jsonObject.getAsJsonArray("listofTimeIns");
+        for(JsonElement dataElement : dataArray) {
+            JsonObject dataObject = dataElement.getAsJsonObject();
+            String dateString = dataObject.get("date").getAsString();
+            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
+            if (date.isAfter(startDate) && date.isBefore(endDate)) {
+                String value = dataObject.get("listofTimeIns").getAsString();
+                // extract the data you need from the data object
+                // e.g., String value = dataObject.get("key").getAsString();
+            }
+        }
     }
 
 
@@ -132,4 +161,5 @@ public class ServerController implements Initializable {
 
 //        dateColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>(s));
     }
+
 }
