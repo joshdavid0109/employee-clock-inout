@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.EmployeeTable">
+   <children>
+      <TableView fx:id="tableView" prefHeight="339.0" prefWidth="498.0">
+        <columns>
+          <TableColumn fx:id="columnTI" prefWidth="170.0" text="Time In" />
+          <TableColumn fx:id="columnTO" prefWidth="166.0" text="Time out" />
+            <TableColumn fx:id="columnStatus" prefWidth="160.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

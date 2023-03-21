@@ -15,8 +15,8 @@ public class EmployeeProfile implements Serializable {
     private String passWord;
     private EmployeeDetails personalDetails;
     private boolean isLoggedIn;
-    static String status; // working or break
-    static String note;
+    public static String status; // working or break
+    private static String note;
 
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
@@ -39,6 +39,14 @@ public class EmployeeProfile implements Serializable {
         this.empID = ei;
         this.userName = un;
         this.passWord = pw;
+    }
+
+    public static String getStatus() {
+        return status;
+    }
+
+    public static void setStatus(String status) {
+
     }
 
     /**

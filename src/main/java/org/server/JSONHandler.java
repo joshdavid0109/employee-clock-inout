@@ -232,8 +232,8 @@ public class JSONHandler {
         EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
         ep.setPersonalDetails(ed);
         ep.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(date.getDate())));
-//        getSummary(ep);
-
+        ep.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
+        addTimeIn(ep, date);
     }
 
     public static List<EmployeeProfile> getFromFile() {

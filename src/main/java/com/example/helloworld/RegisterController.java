@@ -84,8 +84,8 @@ public class RegisterController implements Initializable {
 
     public void registerNa() throws IOException {
         String username = regUsername.getText();
-        String password = regPassword.getText();
-        String verify = regVerifyPassword.getText();
+        String password = regPasswordHide.getText();
+        String verify = regVerifyPasswordHide.getText();
 
         regButton.getScene().getWindow().hide();
 
