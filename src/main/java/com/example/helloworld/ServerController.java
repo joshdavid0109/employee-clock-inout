@@ -111,6 +111,7 @@ public class ServerController implements Initializable {
                 String value = dataObject.get("listofTimeIns").getAsString();
                 // extract the data you need from the data object
                 // e.g., String value = dataObject.get("key").getAsString();
+                // recommit
             }
         }
     }
