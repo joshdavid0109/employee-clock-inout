@@ -125,8 +125,8 @@ public class EmployeeController implements Initializable {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        tableView.setItems(tableData);
-        tableView.refresh();
+        EmployeeTable.tableView.setItems(tableData);
+        EmployeeTable.tableView.refresh();
     }
 
     @FXML
@@ -151,8 +151,10 @@ public class EmployeeController implements Initializable {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-        tableView.setItems(tableData);
-        tableView.refresh();
+
+
+        EmployeeTable.tableView.setItems(tableData);
+        EmployeeTable.tableView.refresh();
     }
 
     @FXML
