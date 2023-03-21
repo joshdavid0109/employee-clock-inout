@@ -4,14 +4,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<DialogPane prefHeight="336.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.example.helloworld.EmployeeTable">
+<DialogPane prefHeight="336.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helloworld.EmployeeTable">
    <header>
       <TableView fx:id="tableView" prefHeight="339.0" prefWidth="498.0">
          <columns>
-            <TableColumn fx:id="columnTI" prefWidth="170.0" text="Time In" />
-            <TableColumn fx:id="columnTO" prefWidth="166.0" text="Time out" />
-            <TableColumn fx:id="columnStatus" prefWidth="160.0" text="Status" />
+            <TableColumn fx:id="columnTI" prefWidth="249.0" text="Time In" />
+            <TableColumn fx:id="columnTO" prefWidth="248.0" text="Time out" />
          </columns>
       </TableView>
    </header>

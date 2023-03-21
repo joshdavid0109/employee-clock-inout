@@ -19,10 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.server.JSONHandler;
-import org.shared_classes.Attendance;
-import org.shared_classes.EmployeeDailyReport;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
+import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +30,9 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
@@ -129,15 +128,24 @@ public class EmployeeController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/EmployeeTable.fxml"));
+
+            List<EmployeeReport> reports = new ArrayList<>();
+
+
+            for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
+                String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
+                String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                EmployeeReport employeeReport = new EmployeeReport(timeIn, timeOut);
+                reports.add(employeeReport);
+            }
+            EmployeeTable.employeeDailyReport = reports;
+
             Pane employeeTable = fxmlLoader.load();
-
-            EmployeeTable empTable = new EmployeeTable();
-
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane((DialogPane) employeeTable);
             dialog.setTitle("Summary");
 
-            empTable.setEmployeeDailyReport(employee.getEmployeeDailyReport());
+
 
 
             //close button
@@ -238,9 +246,6 @@ public class EmployeeController implements Initializable {
             dateLabel.setText(timeFormat.format(date));
         }
 
-    /*    column1.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeIn"));
-        column2.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, Date>("timeOut"));
-        column3.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));*/
     }
 
 }

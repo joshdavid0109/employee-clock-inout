@@ -90,7 +90,11 @@ public class ServerController implements Initializable {
 
     @FXML
     void refresh(ActionEvent event) {
-
+        List<EmployeeProfile> list = JSONHandler.populateTable();
+//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 
 //    //zephhhhhhhhhhhhhhhhhhh

@@ -3,6 +3,7 @@ package com.example.helloworld;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,47 +12,42 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.EmployeeReport;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class EmployeeTable implements Initializable {
 
     @FXML
-    private TableColumn<EmployeeDailyReport, String> columnStatus = new TableColumn<>();
+    private TableColumn<EmployeeReport, String> columnTI = new TableColumn<>();
 
     @FXML
-    private TableColumn<EmployeeDailyReport, String> columnTI = new TableColumn<>();
+    private TableColumn<EmployeeReport, String> columnTO = new TableColumn<>();
 
     @FXML
-    private TableColumn<EmployeeDailyReport, String> columnTO = new TableColumn<>();
+    private TableView<EmployeeReport> tableView = new TableView<>();
 
-    @FXML
-    private TableView<EmployeeDailyReport> tableView = new TableView<>();
-
-    private EmployeeDailyReport employeeDailyReport;
+    static List<EmployeeReport> employeeDailyReport;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Date date = new Date();
 
+
+        ObservableList<EmployeeReport> tableData = FXCollections.observableList(employeeDailyReport);
+
+        columnTI.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue(), "timeIn"));
+        columnTO.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue(), "timeOut"));
+
+
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
-
-    public EmployeeDailyReport getEmployeeDailyReport() {
-        return employeeDailyReport;
-    }
-
-    public void setEmployeeDailyReport(EmployeeDailyReport employeeDailyReport) {
-        this.employeeDailyReport = employeeDailyReport;
-
-        ObservableList<EmployeeDailyReport> tableData = tableView.getItems();
-        tableData.add(employeeDailyReport);
 
        /* for (int i = 0; i < employeeDailyReport.getListofTimeOuts().size(); i++) {
             int finalI = i;
@@ -65,7 +61,7 @@ public class EmployeeTable implements Initializable {
             tableView.getColumns().add(columnStatus);
         }*/
 
-        columnTI.setCellValueFactory((TableColumn.CellDataFeatures<EmployeeDailyReport, String> p ) -> {
+        /*columnTI.setCellValueFactory((TableColumn.CellDataFeatures<EmployeeDailyReport, String> p ) -> {
             List<String> timeins = p.getValue().getListofTimeIns();
             String val = String.join(", ", timeins);
             return new ReadOnlyStringWrapper(val);
@@ -75,9 +71,10 @@ public class EmployeeTable implements Initializable {
             List<String> timouts = p.getValue().getListofTimeOuts();
             String val = String.join(", ", timouts);
             return new ReadOnlyStringWrapper(val);
-        });
+        });*/
 
-        tableView.setItems(tableData);
-        tableView.refresh();
-    }
+
+//        tableView.setItems(tableData);
+//        tableView.refresh();
+
 }
