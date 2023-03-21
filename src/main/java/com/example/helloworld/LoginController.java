@@ -94,13 +94,13 @@ public class LoginController implements Initializable {
 
     public void logInNa(ActionEvent actionEvent) throws IOException {
         String userName = logInUsername.getText();
-        String passWord = logInPassword.getText();
+        String passWord = logInPasswordHide.getText();
 
         logInButton.getScene().getWindow().hide();
 
         EmployeeProfile employee = stub.LogIn(userName, passWord);
 
-        if(employee == null){
+        if(employee == null) {
             System.out.println("mali");
         }
         else{
