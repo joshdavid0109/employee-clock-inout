@@ -121,15 +121,15 @@ public class JSONHandler {
         return matcher.matches();
     }
 
-    public static void addTimeIn(EmployeeProfile ep, Date d) {
+    public static void addTimeIn(String employeeID, Date d) {
+
         try {
-//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getFromFile();
 
             for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
-                if (emp.getEmpID().equals(ep.getEmpID())) {
-                    JsonElement jsonElement = gson.toJsonTree(ep);
+                if (emp.getEmpID().equals(employeeID)) {
+                    JsonElement jsonElement = gson.toJsonTree(emp);
 
                     if (emp.getEmployeeDailyReport() == null) {
                         emp.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(d.getDate())));
@@ -158,7 +158,6 @@ public class JSONHandler {
                     }
                     break;
                 }
-
             }
 
         } catch (Exception e) {
@@ -167,7 +166,7 @@ public class JSONHandler {
         }
     }
 
-    public static void addTimeOut(EmployeeProfile ep, Date d) {
+    public static void addTimeOut(String employeeID, Date d) {
 //        SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
         try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
@@ -176,8 +175,8 @@ public class JSONHandler {
 
             for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
                 EmployeeProfile emp = employees.get(i);
-                if (emp.getEmpID().equals(ep.getEmpID())) {
-                    JsonElement jsonElement = gson.toJsonTree(ep);
+                if (emp.getEmpID().equals(employeeID)) {
+                    JsonElement jsonElement = gson.toJsonTree(emp);
                     //add timeout
                     d = new Date();
 
@@ -188,7 +187,7 @@ public class JSONHandler {
                     emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
 
 
-                    List<String> timeOs = ep.getEmployeeDailyReport().getListofTimeOuts();
+                    List<String> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts();
 
 //                    if (!timeOs.get(i).contains(String.valueOf(d.getDate()))) {
 //                        emp.computeWorkingHours();
@@ -233,7 +232,7 @@ public class JSONHandler {
         ep.setPersonalDetails(ed);
         ep.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(date.getDate())));
         ep.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
-        addTimeIn(ep, date);
+        addTimeIn(ep.getEmpID(), date);
     }
 
     public static List<EmployeeProfile> getFromFile() {
