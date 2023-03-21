@@ -85,7 +85,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Registry registry = LocateRegistry.getRegistry(2345);
+            Registry registry = LocateRegistry.getRegistry(8888);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
             e.printStackTrace();
