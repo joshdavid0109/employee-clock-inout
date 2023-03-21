@@ -30,33 +30,15 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
-    public Date timeIn(EmployeeProfile employee) throws RemoteException {
-
-//        System.out.println(employee.getFullName()+ " HAS TIMED IN");
-
+    public Date timeIn(String employeeId) throws RemoteException {
         Date date = getDateAndTime();
         System.out.println("Date : "  + this.dateFormat.format(date));
-//        for (EmployeeProfile employeeProfile : empList) {
-//            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
-//                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
-//                dailyReport.setTimeIn(date);
-//                employeeProfile.setEmployeeDailyReport(dailyReport);
-//            }
-//        }
-//        ListIterator<EmployeeProfile> iterator = empList.listIterator();
-//        while (iterator.hasNext()) {
-//            EmployeeProfile temp = iterator.next();
-//            if (Objects.equals(temp.getEmpID(), employee.getEmpID())) {
-//                temp.getEmployeeDailyReport().setTimeIn(date);
-//                iterator.set(temp);
-//            }
-//        }
-        JSONHandler.addTimeIn(employee, date);
+        JSONHandler.addTimeIn(employeeId, date);
         return date;
     }
 
     @Override
-    public Date timeOut(EmployeeProfile employee) throws RemoteException {
+    public Date timeOut(String employeeId) throws RemoteException {
 
 //        System.out.println(employee.getFullName()+" HAS TIMED OUT");
 
@@ -78,7 +60,7 @@ public class AttendanceServant implements Attendance {
 //            }
 //        }
 
-        JSONHandler.addTimeOut(employee, date);
+        JSONHandler.addTimeOut(employeeId, date);
         return date;
     }
 

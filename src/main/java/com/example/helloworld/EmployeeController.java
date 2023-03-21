@@ -95,7 +95,7 @@ public class EmployeeController implements Initializable {
         statusLabel.setText("TIMED IN");
         Date date = new Date();
         try {
-            date = stub.timeIn(employee);
+            date = stub.timeIn(employee.getEmpID());
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class EmployeeController implements Initializable {
         statusLabel.setText("TIMED OUT");
         Date date = new Date();
         try {
-            date = stub.timeOut(employee);
+            date = stub.timeOut(employee.getEmpID());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
