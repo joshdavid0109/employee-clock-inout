@@ -53,7 +53,7 @@ public class JSONHandler {
         }
 //        //awan the log in credentials
 //        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(JSONHandler.class.getResource("/fxml/ExceptionDialog.fxml"));
+//        loader.setLocation(JSONHandler.class.getResource("/fxml/TreeTableView.fxml"));
 //        Pane pane = loader.load();
 //        Dialog<ButtonType> dialog = new Dialog<>();
 //        dialog.setContentText(throw new Exception("Please input a values on the textfield"));
