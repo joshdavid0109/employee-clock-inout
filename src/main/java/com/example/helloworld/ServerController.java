@@ -136,7 +136,7 @@ public class ServerController implements Initializable {
         try {
             stub = (Attendance) UnicastRemoteObject.exportObject(ers, 0);
             Registry registry = null;
-            registry = LocateRegistry.createRegistry(8888);
+            registry = LocateRegistry.createRegistry(2345);
             registry.rebind("sayhi", stub);
 
         } catch (RemoteException e) {

@@ -83,7 +83,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Registry registry = LocateRegistry.getRegistry(8888);
+            Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,19 +96,18 @@ public class LoginController implements Initializable {
 
         EmployeeProfile employee = stub.logIn(userName, passWord);
 
-<<<<<<< HEAD
-        if(employee == null) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
-            dialog.show();
-        }
-        else{
-=======
+//        if(employee == null) {
+//            Alert dialog = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
+//            dialog.show();
+//        }
+//        else
         if (employee == null) {
-            throw new CredentialsErrorException("haha oopsie!");
+            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(new CredentialsErrorException()), ButtonType.OK);
+            dialog.show();
+//            throw new CredentialsErrorException("haha oopsie!");
         } else {
 
             logInButton.getScene().getWindow().hide();
->>>>>>> 92fe036b7edbc1dde3c91bde5ab48f67223b27a9
             System.out.println("log in OK");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));

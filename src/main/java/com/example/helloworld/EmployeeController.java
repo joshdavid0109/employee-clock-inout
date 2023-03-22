@@ -95,6 +95,8 @@ public class EmployeeController implements Initializable {
         Date date = new Date();
         try {
             date = stub.timeIn(employee.getEmpID());
+            timeInButton.setDisable(true);
+            timeOutButton.setDisable(false);
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -112,6 +114,8 @@ public class EmployeeController implements Initializable {
         Date date = new Date();
         try {
             date = stub.timeOut(employee.getEmpID());
+            timeInButton.setDisable(false);
+            timeOutButton.setDisable(true);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -227,9 +231,12 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
 
-            date = new Date();
-            System.out.println("B  "+date);
-            dateLabel.setText(dateFormat.format(date));
+        date = new Date();
+        System.out.println("B  "+date);
+        dateLabel.setText(dateFormat.format(date));
+
+        timeInButton.setDisable(false);
+        timeOutButton.setDisable(true);
 
 
         // Timer Animation

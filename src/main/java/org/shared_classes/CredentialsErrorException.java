@@ -1,7 +1,9 @@
 package org.shared_classes;
 
 public class CredentialsErrorException extends RuntimeException {
-    public CredentialsErrorException(){}
+    public CredentialsErrorException(){
+        super("Invalid username/password.");
+    }
     public CredentialsErrorException(String errorMessage) {
         super(errorMessage);
     }

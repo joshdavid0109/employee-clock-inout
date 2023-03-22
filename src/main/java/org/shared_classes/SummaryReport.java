@@ -1,16 +1,15 @@
 package org.shared_classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SummaryReport {
+public class SummaryReport implements Serializable {
     private List<String> timeIns;
     private List<String> timeOuts ;
     private String date;
 
-    public SummaryReport(List<String> ins, List<String> outs, String date) {
-        this.timeIns = ins;
-        this.timeOuts = outs;
+    public SummaryReport(String date) {
         this.date = date;
     }
 

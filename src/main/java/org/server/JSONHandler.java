@@ -47,7 +47,6 @@ public class JSONHandler {
                     return employee;
                 }
             }
-
             throw new CredentialsErrorException("OOPSIES");
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,17 +146,18 @@ public class JSONHandler {
                     }
 
                     //add timein
-
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
 
                     if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
                         List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                         List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
-                        emp.setSummaryReport(new SummaryReport(ins, outs,
-                                emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]));
 
-                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
+                        emp.setSummaryReport(new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]));
+                        emp.getSummaryReport().setTimeIns(ins);
+                        emp.getSummaryReport().setTimeOuts(outs);
+
                         emp.getEmployeeDailyReport().getListofTimeIns().clear();
+                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
                         emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                         employees.add(i, emp);
                         employees.remove(i);
@@ -210,21 +210,6 @@ public class JSONHandler {
 
                     List<String> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts();
 
-                    if (!timeOs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
-//                        emp.computeWorkingHours();
-                        List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
-                        List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
-                        emp.setSummaryReport(new SummaryReport(ins, outs,
-                                emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]));
-
-                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
-                        emp.getEmployeeDailyReport().getListofTimeIns().clear();
-                        emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
-                        employees.add(i, emp);
-                        employees.remove(i);
-                        break;
-                    }
-
                     emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
 
@@ -260,6 +245,7 @@ public class JSONHandler {
         ep.setEmployeeDailyReport(new EmployeeDailyReport(dateFormat.format(date).split(", ")[0]));
         ep.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
         addTimeIn(ep.getEmpID(), date);
+        addTimeOut(ep.getEmpID(), date);
     }
 
     public static List<EmployeeProfile> getFromFile() {
