@@ -76,14 +76,6 @@ public class LoginController implements Initializable {
 
     @FXML
     public void showPassword() {
-//        showPassword.selectedProperty().addListener(new ChangeListener<Boolean>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//                if (newValue)
-//                    showPassword.setEchoChar('\u0000');
-//                login
-//            }
-//        });
         if(showPassword.isSelected()) {
             logInPassword.setText(logInPasswordHide.getText());
             logInPassword.toFront();
