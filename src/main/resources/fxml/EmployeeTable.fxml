@@ -8,8 +8,9 @@
    <header>
       <TableView fx:id="tableView" prefHeight="339.0" prefWidth="498.0">
          <columns>
-            <TableColumn fx:id="columnTI" prefWidth="249.0" text="Time In" />
-            <TableColumn fx:id="columnTO" prefWidth="248.0" text="Time out" />
+            <TableColumn fx:id="columnDate" prefWidth="174.0" text="Date" />
+            <TableColumn fx:id="columnTI" prefWidth="158.0" text="Time In" />
+            <TableColumn fx:id="columnTO" prefWidth="164.0" text="Time out" />
          </columns>
       </TableView>
    </header>

@@ -150,8 +150,6 @@ public class EmployeeController implements Initializable {
             dialog.setTitle("Summary");
 
 
-
-
             //close button
             Window window = dialog.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 -> window.hide());

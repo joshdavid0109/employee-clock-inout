@@ -9,10 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.EmployeeReport;
+import org.shared_classes.SummaryReport;
 
 import java.net.URL;
 import java.util.*;
@@ -20,6 +23,24 @@ import java.util.stream.Collectors;
 
 
 public class EmployeeTable implements Initializable {
+//    public TreeTableColumn<SummaryReport, String> dateTTColumn;
+//    public TreeTableColumn<SummaryReport, String> timeInTTColumn;
+//    public TreeTableColumn<SummaryReport, String> timeOutTTColumn;
+//    public TreeTableView<SummaryReport> treeTableView;
+//
+//    /**
+//     * Called to initialize a controller after its root element has been
+//     * completely processed.
+//     *
+//     * @param location  The location used to resolve relative paths for the root object, or
+//     *                  {@code null} if the location is not known.
+//     * @param resources The resources used to localize the root object, or {@code null} if
+//     *                  the root object was not localized.
+//     */
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+//    }
 
     @FXML
     private TableColumn<EmployeeReport, String> columnTI = new TableColumn<>();
@@ -48,33 +69,5 @@ public class EmployeeTable implements Initializable {
         tableView.setItems(tableData);
         tableView.refresh();
     }
-
-       /* for (int i = 0; i < employeeDailyReport.getListofTimeOuts().size(); i++) {
-            int finalI = i;
-            columnTI.setText(employeeDailyReport.getListofTimeIns().get(i));
-            columnTI.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue()[finalI]));
-            columnTO.setText(employeeDailyReport.getListofTimeOuts().get(i));
-            columnTO.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue()[finalI]));
-            columnStatus.setCellValueFactory(new PropertyValueFactory<EmployeeDailyReport, String>("status"));
-            tableView.getColumns().add(columnTI);
-            tableView.getColumns().add(columnTO);
-            tableView.getColumns().add(columnStatus);
-        }*/
-
-        /*columnTI.setCellValueFactory((TableColumn.CellDataFeatures<EmployeeDailyReport, String> p ) -> {
-            List<String> timeins = p.getValue().getListofTimeIns();
-            String val = String.join(", ", timeins);
-            return new ReadOnlyStringWrapper(val);
-        });
-
-        columnTO.setCellValueFactory((TableColumn.CellDataFeatures<EmployeeDailyReport, String> p ) -> {
-            List<String> timouts = p.getValue().getListofTimeOuts();
-            String val = String.join(", ", timouts);
-            return new ReadOnlyStringWrapper(val);
-        });*/
-
-
-//        tableView.setItems(tableData);
-//        tableView.refresh();
 
 }
