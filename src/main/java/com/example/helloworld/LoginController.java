@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.shared_classes.Attendance;
+import org.shared_classes.CredentialsErrorException;
 import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
@@ -96,14 +97,13 @@ public class LoginController implements Initializable {
         String userName = logInUsername.getText();
         String passWord = logInPasswordHide.getText();
 
-        logInButton.getScene().getWindow().hide();
-
         EmployeeProfile employee = stub.logIn(userName, passWord);
 
-        if(employee == null) {
-            System.out.println("mali");
-        }
-        else{
+        if (employee == null) {
+            throw new CredentialsErrorException("haha oopsie!");
+        } else {
+
+            logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));

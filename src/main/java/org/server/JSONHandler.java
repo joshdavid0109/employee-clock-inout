@@ -4,10 +4,7 @@ package org.server;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import org.shared_classes.EmployeeDailyReport;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
-import org.shared_classes.GsonDateDeSerializer;
+import org.shared_classes.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -44,6 +41,8 @@ public class JSONHandler {
                     return employee;
                 }
             }
+
+            throw new CredentialsErrorException("OOPSIES");
         } catch (Exception e) {
             e.printStackTrace();
         }

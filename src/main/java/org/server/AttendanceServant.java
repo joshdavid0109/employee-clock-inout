@@ -1,6 +1,7 @@
 package org.server;
 
 import org.shared_classes.Attendance;
+import org.shared_classes.CredentialsErrorException;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 
@@ -20,7 +21,7 @@ public class AttendanceServant implements Attendance {
     
 
     @Override
-    public EmployeeProfile logIn(String username, String password) throws RemoteException {
+    public EmployeeProfile logIn(String username, String password) throws RemoteException, CredentialsErrorException {
         return JSONHandler.checkIfValidLogIn(username, password);
     }
 
