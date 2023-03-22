@@ -20,6 +20,7 @@
                <children>
                   <Button fx:id="loadRegisterGUIbtn" layoutX="233.0" layoutY="395.0" mnemonicParsing="false" onAction="#LoadRegisterGUI" style="-fx-background-color: white;" text="CREATE ACCOUNT" underline="true" />
                   <TextField fx:id="logInUsername" layoutX="91.0" layoutY="153.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Username" style="-fx-background-radius: 15;" />
+                  <TextField fx:id="logInPassword" layoutX="91.0" layoutY="243.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
                   <Text layoutX="91.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                      <font>
                         <Font name="Arial" size="12.0" />

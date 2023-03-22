@@ -4,6 +4,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -68,15 +71,25 @@ public class LoginController implements Initializable {
     }
 
     @FXML
+    void showPass(MouseEvent event) {
+    }
+
+    @FXML
     public void showPassword() {
+//        showPassword.selectedProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                if (newValue)
+//                    showPassword.setEchoChar('\u0000');
+//                login
+//            }
+//        });
         if(showPassword.isSelected()) {
             logInPassword.setText(logInPasswordHide.getText());
-            logInPassword.setVisible(true);
-            logInPasswordHide.setVisible(false);
+            logInPassword.toFront();
         } else {
             logInPasswordHide.setText(logInPassword.getText());
-            logInPasswordHide.setVisible(true);
-            logInPassword.setVisible(false);
+            logInPasswordHide.toFront();
         }
     }
 
@@ -92,7 +105,7 @@ public class LoginController implements Initializable {
 
     public void logInNa(ActionEvent actionEvent) throws Exception {
         String userName = logInUsername.getText();
-        String passWord = logInPasswordHide.getText();
+        String passWord = (logInPassword.getText() == null ? logInPassword.getText() : logInPasswordHide.getText());
 
         EmployeeProfile employee = stub.logIn(userName, passWord);
 
