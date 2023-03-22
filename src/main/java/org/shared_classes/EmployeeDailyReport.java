@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 public class EmployeeDailyReport implements Serializable {
-     static String timeIn;
-     static String timeOut;
-     static String status;
+    private String timeIn;
+    private String timeOut;
+    private String status;
     private String date;
 
 
@@ -75,5 +75,13 @@ public class EmployeeDailyReport implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -92,7 +89,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void logInNa(ActionEvent actionEvent) throws IOException {
+    public void logInNa(ActionEvent actionEvent) throws Exception {
         String userName = logInUsername.getText();
         String passWord = logInPasswordHide.getText();
 
@@ -101,7 +98,8 @@ public class LoginController implements Initializable {
         EmployeeProfile employee = stub.logIn(userName, passWord);
 
         if(employee == null) {
-            System.out.println("mali");
+            Alert dialog = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
+            dialog.show();
         }
         else{
             System.out.println("log in OK");

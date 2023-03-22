@@ -93,12 +93,20 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
+      "timeIn": "Mar 22 2023, 19:25:59",
       "listofTimeIns": [
-        "Mar 20 2023, 17:09:27"
+        "Mar 22 2023, 19:25:59"
       ],
-      "listofTimeOuts": [
-        "Mar 20 2023, 17:09:26"
-      ]
+      "listofTimeOuts": []
+    },
+    "summaryReport": {
+      "timeIns": [
+        "Mar 20 2023, 17:30:21"
+      ],
+      "timeOuts": [
+        "Mar 20 2023, 17:52:21"
+      ],
+      "date": "Mar 20 2023"
     }
   }
 ]

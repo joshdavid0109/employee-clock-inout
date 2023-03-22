@@ -101,7 +101,7 @@ public class EmployeeController implements Initializable {
         }
 
         employee.getEmployeeDailyReport().setStatus("Working");
-        EmployeeProfile.setStatus("Working");
+        employee.setStatus("Working");
         employee.getEmployeeDailyReport().setTimeIn(timeFormat.format(date));
     }
 
@@ -117,7 +117,7 @@ public class EmployeeController implements Initializable {
         }
 
         employee.getEmployeeDailyReport().setStatus("On Break");
-        EmployeeProfile.setStatus("On Break");
+        employee.setStatus("On Break");
         employee.getEmployeeDailyReport().setTimeOut(timeFormat.format(date));
 
 

@@ -15,14 +15,13 @@ public class EmployeeProfile implements Serializable {
     private String passWord;
     private EmployeeDetails personalDetails;
     private boolean isLoggedIn;
-    public static String status; // working or break
+    public String status; // working or break
     private static String note;
 
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
-    private static List<EmployeeDailyReport> totalDates = new ArrayList<>();
-
+    public SummaryReport summaryReport;
 
     public EmployeeProfile() {}
 
@@ -41,12 +40,20 @@ public class EmployeeProfile implements Serializable {
         this.passWord = pw;
     }
 
-    public static String getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public static void setStatus(String status) {
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
+    public SummaryReport getSummaryReport() {
+        return summaryReport;
+    }
+
+    public void setSummaryReport(SummaryReport summaryReport) {
+        this.summaryReport = summaryReport;
     }
 
     /**

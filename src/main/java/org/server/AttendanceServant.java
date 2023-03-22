@@ -20,7 +20,7 @@ public class AttendanceServant implements Attendance {
     
 
     @Override
-    public EmployeeProfile logIn(String username, String password) throws RemoteException {
+    public EmployeeProfile logIn(String username, String password) throws Exception {
         return JSONHandler.checkIfValidLogIn(username, password);
     }
 
