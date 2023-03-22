@@ -35,7 +35,7 @@ public class JSONHandler {
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
     static private final String pendingRegistersList = "registers.json";
 
-    public static EmployeeProfile checkIfValidLogIn(String username, String password) throws Exception {
+    public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
             List<EmployeeProfile> employees = getFromFile();
             for (EmployeeProfile employee : employees) {
@@ -46,10 +46,9 @@ public class JSONHandler {
                     setEmployeeStatus(employee, true);
                     return employee;
                 }
-                else
-                    throw new Exception();
-
             }
+
+            throw new CredentialsErrorException("OOPSIES");
         } catch (Exception e) {
             e.printStackTrace();
         }
