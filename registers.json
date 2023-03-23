@@ -5,16 +5,6 @@
     "isLoggedIn": false
   },
   {
-    "userName": "franz",
-    "passWord": "",
-    "isLoggedIn": false
-  },
-  {
-    "userName": "testuser2",
-    "passWord": "testuser2",
-    "isLoggedIn": false
-  },
-  {
     "userName": "Maervin",
     "passWord": "Maervin",
     "isLoggedIn": false

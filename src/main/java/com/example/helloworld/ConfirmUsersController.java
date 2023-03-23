@@ -43,7 +43,34 @@ public class ConfirmUsersController implements Initializable {
     @FXML
     void acceptUser(ActionEvent event) {
         EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
-        //TODO
+        if (employeeProfile != null) {
+            Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
+                    " accept " + employeeProfile.getUserName() + "?");
+            ButtonType yes = new ButtonType("Yes");
+            ButtonType no = new ButtonType("No");
+            dialog.getButtonTypes().setAll(yes, no);
+
+            Optional<ButtonType> input = dialog.showAndWait();
+            if (input.get() == yes) {
+                for (EmployeeProfile e : pendingEmployees) {
+                    if (e.equals(employeeProfile)) {
+                        pendingEmployees.remove(e);
+
+                        List<EmployeeProfile> empi = JSONHandler.getFromFile();
+                        empi.add(e);
+                        JSONHandler.addToFile(empi);
+                        break;
+                    }
+                }
+                JSONHandler.writeGSon(pendingEmployees);
+                updateTable();
+            } else
+                dialog.close();
+
+        } else {
+            Alert x = new Alert(Alert.AlertType.WARNING, "Choose an employee");
+            x.show();
+        }
     }
 
     @FXML
@@ -59,8 +86,7 @@ public class ConfirmUsersController implements Initializable {
 
             Optional<ButtonType> input = dialog.showAndWait();
             if (input.get() == yes) {
-                for (EmployeeProfile e :
-                        pendingEmployees) {
+                for (EmployeeProfile e : pendingEmployees) {
                     if (e.equals(employeeProfile)) {
                         pendingEmployees.remove(e);
                         break;
@@ -73,7 +99,8 @@ public class ConfirmUsersController implements Initializable {
                 dialog.close();
 
         } else {
-            //TODO dialog na dapat mamili admin ng user
+            Alert x = new Alert(Alert.AlertType.WARNING, "Choose an employee");
+            x.show();
         }
 
     }

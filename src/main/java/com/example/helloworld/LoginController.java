@@ -96,19 +96,26 @@ public class LoginController implements Initializable {
 
         if (object instanceof EmployeeProfile employeeProfile) {
             employee = employeeProfile;
-            logInButton.getScene().getWindow().hide();
-            System.out.println("log in OK");
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-            Parent root = loader.load();
-            EmployeeController employeeController = loader.getController();
-            employeeController.setEmployee(employee);
-            employeeController.setStub(stub);
 
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) logInButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            if (employee.getPersonalDetails()==null){
+                //TODO setup userdetails for newly accepted employees:)
+                System.out.println("welcome to slu");
+            }
+            else{
+                logInButton.getScene().getWindow().hide();
+                System.out.println("log in OK");
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+                Parent root = loader.load();
+                EmployeeController employeeController = loader.getController();
+                employeeController.setEmployee(employee);
+                employeeController.setStub(stub);
+
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) logInButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }
         }
         else if (object instanceof CredentialsErrorException credentialsErrorException) {
             Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(credentialsErrorException), ButtonType.OK);

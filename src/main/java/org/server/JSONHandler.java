@@ -243,18 +243,11 @@ public class JSONHandler {
         }
     }
 
-
-    public static void main(String[] args) {
-        Date date = new Date();
-        EmployeeDetails ed = new EmployeeDetails("as", "asd", 18, "Female");
-        EmployeeProfile ep = new EmployeeProfile("asd", "asweq", "asdcasxd");
-        ep.setPersonalDetails(ed);
-        ep.setEmployeeDailyReport(new EmployeeDailyReport(dateFormat.format(date).split(", ")[0]));
-        ep.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
-        addTimeIn(ep.getEmpID(), date);
-        addTimeOut(ep.getEmpID(), date);
-    }
-
+    /**
+     * It reads the JSON file, parses it, and returns a list of EmployeeProfile objects
+     *
+     * @return A list of EmployeeProfile objects.
+     */
     public static List<EmployeeProfile> getFromFile() {
         try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
@@ -300,7 +293,7 @@ public class JSONHandler {
     }
 
 
-    static void addToFile(List<EmployeeProfile> employeesList) {
+    public static void addToFile(List<EmployeeProfile> employeesList) {
         try (FileWriter writer = new FileWriter(employeesJSONPath)) {
             gson.toJson(employeesList, writer);
         } catch (Exception e) {
