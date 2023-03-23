@@ -21,7 +21,7 @@ public class AttendanceServant implements Attendance {
     
 
     @Override
-    public EmployeeProfile logIn(String username, String password) throws RemoteException, CredentialsErrorException {
+    public int logIn(String username, String password) throws RemoteException, CredentialsErrorException {
         return JSONHandler.checkIfValidLogIn(username, password);
     }
 
@@ -87,6 +87,11 @@ public class AttendanceServant implements Attendance {
         }
         if (!employeeExists)
             empList.add(emp);
+    }
+
+    @Override
+    public EmployeeProfile getEmployeeProfileFromUserName(String username) throws RemoteException {
+        return JSONHandler.getEmployeeProfile(username);
     }
 
 

@@ -35,14 +35,35 @@ public class JSONHandler {
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
     static private final String pendingRegistersList = "registers.json";
 
-    public static EmployeeProfile checkIfValidLogIn(String username, String password) {
+    public static int checkIfValidLogIn(String username, String password) {
+        try {
+            List<EmployeeProfile> employees = getFromFile();
+            for (EmployeeProfile employee : employees) {
+                if (employee.getUserName().equals(username)) {
+                    if (employee.getPassWord().equals(password)) {
+                        employee.setLoggedIn(true);
+                        System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
+                        setEmployeeStatus(employee, true);
+                        return 0;//login successful:)
+                    } else {
+                        return 1;// wrong password
+                    }
+                }
+            }
+            return 2;//no account exists
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;//?bro how?
+    }
+
+    /*public static int checkIfValidLogIn(String username, String password) {
         try {
             List<EmployeeProfile> employees = getFromFile();
             for (EmployeeProfile employee : employees) {
                 if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
                     employee.setLoggedIn(true);
                     System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
-                    System.out.println("kasjay");
                     setEmployeeStatus(employee, true);
                     return employee;
                 }
@@ -51,16 +72,8 @@ public class JSONHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        //awan the log in credentials
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(JSONHandler.class.getResource("/fxml/TreeTableView.fxml"));
-//        Pane pane = loader.load();
-//        Dialog<ButtonType> dialog = new Dialog<>();
-//        dialog.setContentText(throw new Exception("Please input a values on the textfield"));
-//        dialog.setDialogPane((DialogPane) pane);
-//        dialog.show();
         return null;
-    }
+    }*/
 
     //true = logged in, false logged out
     public static void setEmployeeStatus(EmployeeProfile employee, boolean loggedIn) {
@@ -91,7 +104,7 @@ public class JSONHandler {
 
             for (EmployeeProfile emp : employees) {
                 // *|MARCADOR_CURSOR|*
-                if (emp.getUserName().equals(employeeProfile.getUserName()) || !checkValidPassword(employeeProfile.getPassWord()) ) {
+                if (emp.getUserName().equals(employeeProfile.getUserName()) || !checkValidPassword(employeeProfile.getPassWord())) {
 //                    System.out.println(emsp);
                     System.out.println("username taken or password invalid or passwords aint the saem lol try again noob");
                 } else {
@@ -261,7 +274,7 @@ public class JSONHandler {
                 employeeProfiles.add(gson.fromJson(element, EmployeeProfile.class));
                 employeeDailyReport = gson.fromJson(listofTimeouts, EmployeeDailyReport.class);
                 if (employeeDailyReport == null) {
-                    Date d  = new Date();
+                    Date d = new Date();
                     employeeDailyReport = new EmployeeDailyReport(String.valueOf(d.getDate()));
                 }
                 employeeProfiles.get(i).setEmployeeDailyReport(employeeDailyReport);
@@ -339,10 +352,24 @@ public class JSONHandler {
 
         try (Writer writer = new FileWriter(pendingRegistersList)) {
             gson.toJson(pendingEmployees, writer);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public static EmployeeProfile getEmployeeProfile(String username) {
+        try {
+            List<EmployeeProfile> employees = getFromFile();
+            for (EmployeeProfile emp : employees) {
+                if (emp.getUserName().equals(username))
+                    return emp;
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
     }
 }

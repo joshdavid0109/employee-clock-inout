@@ -23,6 +23,7 @@ import javafx.util.Duration;
 import org.shared_classes.Attendance;
 import org.shared_classes.CredentialsErrorException;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.WrongPasswordException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -95,19 +96,50 @@ public class LoginController implements Initializable {
         String userName = logInUsername.getText();
         String passWord = (logInPassword.getText() == null ? logInPassword.getText() : logInPasswordHide.getText());
 
-        EmployeeProfile employee = stub.logIn(userName, passWord);
+        int loginStatus;//0 - log in okay, 1  - wrong pass, 2 - account does not exist
 
-//        if(employee == null) {
-//            Alert dialog = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
-//            dialog.show();
-//        }
-//        else
-        if (employee == null) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(new CredentialsErrorException()), ButtonType.OK);
+        loginStatus = stub.logIn(userName, passWord);
+
+
+        switch (loginStatus){
+
+            case 0://login okay :)
+                EmployeeProfile employee = stub.getEmployeeProfileFromUserName(userName);
+                logInButton.getScene().getWindow().hide();
+                System.out.println("log in OK");
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+                Parent root = loader.load();
+                EmployeeController employeeController = loader.getController();
+                employeeController.setEmployee(employee);
+                employeeController.setStub(stub);
+
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) logInButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+                break;
+
+            case 1://wrong password :|
+                Alert passwordAlert = new Alert(Alert.AlertType.WARNING, String.valueOf(new WrongPasswordException().getMessage()), ButtonType.OK);
+                passwordAlert.show();
+                break;
+
+            case 2://account does not exist :(
+                Alert noAccAlert = new Alert(Alert.AlertType.WARNING, String.valueOf(new CredentialsErrorException().getMessage()), ButtonType.OK);
+                noAccAlert.show();
+                break;
+
+            case-1://this error occurs if stub.login returns -1, idk how
+                Alert how = new Alert(Alert.AlertType.WARNING, "idk how this error occurs, you win", ButtonType.OK);
+                how.show();
+                break;
+        }
+
+        /*if (employee == null) {
+            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(new CredentialsErrorException().getMessage()), ButtonType.OK);
             dialog.show();
-//            throw new CredentialsErrorException("haha oopsie!");
         } else {
-
             logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");
             FXMLLoader loader = new FXMLLoader();
@@ -121,6 +153,6 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) logInButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-        }
+        }*/
     }
 }
