@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

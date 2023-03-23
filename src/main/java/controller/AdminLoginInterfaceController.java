@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package controller;
 
 public class AdminLoginInterfaceController {
 }

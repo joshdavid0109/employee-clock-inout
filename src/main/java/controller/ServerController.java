@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package controller;
 
 import com.google.gson.Gson;
 

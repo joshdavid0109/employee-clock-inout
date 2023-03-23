@@ -12,9 +12,13 @@ module com.example.helloworld {
     requires com.google.gson;
     requires java.base;
 
-    opens com.example.helloworld to javafx.fxml;
+    opens controller to javafx.fxml;
     opens org.server to com.google.gson;
     opens org.shared_classes;
-    exports com.example.helloworld;
+    exports controller;
     exports org.shared_classes;
+    exports org.server.gui;
+    opens org.server.gui to javafx.fxml;
+    exports org.client.gui;
+    opens org.client.gui to javafx.fxml;
 }

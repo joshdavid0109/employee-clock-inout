@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
 
-<DialogPane prefHeight="394.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.helloworld.EmployeeTable">
+<DialogPane prefHeight="394.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeTable">
    <header>
       <TreeTableView fx:id="treeTableView" prefHeight="400.0" prefWidth="600.0">
          <columns>

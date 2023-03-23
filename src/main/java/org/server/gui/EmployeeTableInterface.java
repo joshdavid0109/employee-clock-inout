@@ -1,5 +1,6 @@
-package com.example.helloworld;
+package org.server.gui;
 
+import org.client.gui.EmployeeInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

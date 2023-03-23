@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package controller;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

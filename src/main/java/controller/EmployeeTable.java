@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package controller;
 
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
