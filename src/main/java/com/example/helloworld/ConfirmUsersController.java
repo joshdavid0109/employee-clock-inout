@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shared_classes.Attendance;
+import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 import org.server.*;
 import org.shared_classes.EmployeeReport;
@@ -15,10 +16,7 @@ import org.shared_classes.EmployeeReport;
 import java.net.URL;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ConfirmUsersController implements Initializable {
 
@@ -52,13 +50,17 @@ public class ConfirmUsersController implements Initializable {
 
             Optional<ButtonType> input = dialog.showAndWait();
             if (input.get() == yes) {
-                for (EmployeeProfile e : pendingEmployees) {
-                    if (e.equals(employeeProfile)) {
-                        pendingEmployees.remove(e);
-
+                for (EmployeeProfile pendingEmp : pendingEmployees) {
+                    if (pendingEmp.equals(employeeProfile)) {
+                        pendingEmployees.remove(pendingEmp);
+                        String employeeID = "EMP"+UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
+                        pendingEmp.setEmpID(employeeID);
                         List<EmployeeProfile> empi = JSONHandler.getFromFile();
-                        empi.add(e);
+                        empi.add(pendingEmp);
                         JSONHandler.addToFile(empi);
+                        Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +
+                                "ID: "+employeeID);
+                        accepted.show();
                         break;
                     }
                 }

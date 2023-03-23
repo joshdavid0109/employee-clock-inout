@@ -10,13 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.server.AttendanceServant;
 import org.server.JSONHandler;
 import org.shared_classes.Attendance;
@@ -72,7 +76,7 @@ public class ServerController implements Initializable {
     private TableView<EmployeeProfile> tableView;
 
     @FXML
-    private Button logOutButton, printBtn, refreshButton;
+    private Button logOutButton, printBtn, refreshButton, addEmployeeButton;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
@@ -165,4 +169,14 @@ public class ServerController implements Initializable {
 
     }
 
+    public void addEmployee(ActionEvent actionEvent) throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/ConfirmUsersTable.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage addEmployeeWindow = new Stage();
+        addEmployeeWindow.setScene(scene);
+        addEmployeeWindow.show();
+    }
 }

@@ -46,6 +46,7 @@
       <DatePicker layoutX="28.0" layoutY="102.0" />
       <DatePicker layoutX="218.0" layoutY="102.0" />
       <Button layoutX="410.0" layoutY="101.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="68.0" style="-fx-background-radius: 15;" text="SEARCH" />
+      <Button fx:id="addEmployeeButton" layoutX="499.0" layoutY="101.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="28.0" prefWidth="114.0" style="-fx-background-radius: 15;" text="ADD EMPLOYEES" />
       <Button fx:id="refreshButton" layoutX="724.0" layoutY="101.0" mnemonicParsing="false" onAction="#refresh" prefHeight="28.0" prefWidth="68.0" style="-fx-background-radius: 15;">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
