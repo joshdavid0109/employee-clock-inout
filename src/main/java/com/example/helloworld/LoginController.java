@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    public Attendance stub;
+    public static Attendance stub;
     @FXML
     public TextField logInUsername;
     @FXML
@@ -83,12 +83,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Registry registry = LocateRegistry.getRegistry(2345);
-            stub = (Attendance) registry.lookup("sayhi");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
     }
 
     public void logInNa(ActionEvent actionEvent) throws Exception {
@@ -118,5 +114,9 @@ public class LoginController implements Initializable {
             Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(credentialsErrorException), ButtonType.OK);
             dialog.show();
         }
+    }
+
+    public void setStub(Attendance stub) {
+        this.stub = stub;
     }
 }
