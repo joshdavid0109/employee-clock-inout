@@ -43,34 +43,38 @@ public class ConfirmUsersController implements Initializable {
     @FXML
     void acceptUser(ActionEvent event) {
         EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
-
+        //TODO
     }
 
     @FXML
     void rejectUser(ActionEvent event) {
         EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
 
-        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
-                " reject " + employeeProfile.getUserName() + "?");
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType no = new ButtonType("No");
-        dialog.getButtonTypes().setAll(yes, no);
+        if (employeeProfile != null) {
+            Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
+                    " reject " + employeeProfile.getUserName() + "?");
+            ButtonType yes = new ButtonType("Yes");
+            ButtonType no = new ButtonType("No");
+            dialog.getButtonTypes().setAll(yes, no);
 
-        Optional<ButtonType> input = dialog.showAndWait();
-        if (input.get() == yes)  {
-            for (EmployeeProfile e :
-                    pendingEmployees) {
-                if (e.equals(employeeProfile)) {
-                    pendingEmployees.remove(e);
-                    break;
+            Optional<ButtonType> input = dialog.showAndWait();
+            if (input.get() == yes) {
+                for (EmployeeProfile e :
+                        pendingEmployees) {
+                    if (e.equals(employeeProfile)) {
+                        pendingEmployees.remove(e);
+                        break;
+                    }
                 }
-            }
 
-            JSONHandler.writeGSon(pendingEmployees);
-            updateTable();
-        } else
-            dialog.close();
+                JSONHandler.writeGSon(pendingEmployees);
+                updateTable();
+            } else
+                dialog.close();
 
+        } else {
+            //TODO dialog na dapat mamili admin ng user
+        }
 
     }
 
