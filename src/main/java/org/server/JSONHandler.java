@@ -274,7 +274,7 @@ public class JSONHandler {
         return null;
     }
 
-    static List<EmployeeProfile> getPendingRegistersFromFile() {
+    public static List<EmployeeProfile> getPendingRegistersFromFile() {
         try (Reader reader = Files.newBufferedReader(Paths.get(pendingRegistersList))) {
             Type dataType = new TypeToken<List<EmployeeProfile>>() {
             }.getType();
