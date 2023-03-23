@@ -8,6 +8,7 @@ public class EmployeeDetails implements Serializable {
     String lastName;
     int age;
     String gender;
+    private String fn;
 
     public String getFirstName() {
         return firstName;
@@ -41,7 +42,11 @@ public class EmployeeDetails implements Serializable {
         this.gender = gender;
     }
 
-    public EmployeeDetails() {}
+    public EmployeeDetails() {
+        this.firstName = "N/A";
+        this.lastName = "N/A";
+    }
+
 
     public EmployeeDetails(String fn, String ln, int a, String g) {
         this.firstName = fn;

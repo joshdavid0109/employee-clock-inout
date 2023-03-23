@@ -55,6 +55,7 @@ public class ConfirmUsersController implements Initializable {
                         pendingEmployees.remove(pendingEmp);
                         String employeeID = "EMP"+UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
                         pendingEmp.setEmpID(employeeID);
+                        pendingEmp.setPersonalDetails(new EmployeeDetails());
                         List<EmployeeProfile> empi = JSONHandler.getFromFile();
                         empi.add(pendingEmp);
                         JSONHandler.addToFile(empi);

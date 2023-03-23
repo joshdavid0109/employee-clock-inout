@@ -57,6 +57,8 @@ public class EmployeeTable implements Initializable {
             root.getChildren().add(employeeReportTreeItem);
         }
 
+        System.out.println("test commit");
+
         dateTTColumn.setCellValueFactory(
                 (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getDate()));
         timeInTTColumn.setCellValueFactory(
