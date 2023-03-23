@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
         Object object = stub.logIn(userName, passWord);
         EmployeeProfile employee = null;
 
-            if (object instanceof EmployeeProfile employeeProfile) {
+        if (object instanceof EmployeeProfile employeeProfile) {
             employee = employeeProfile;
             logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");
