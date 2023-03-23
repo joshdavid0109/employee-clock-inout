@@ -11,6 +11,12 @@ public class EmployeeReport {
         this.timeOut = timeOut;
     }
 
+    public EmployeeReport( String timeIn, String timeOut, String date) {
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.date = date;
+    }
+
     public String getTimeOut() {
         return timeOut;
     }

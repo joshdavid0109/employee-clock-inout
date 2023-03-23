@@ -131,7 +131,7 @@ public class EmployeeController implements Initializable {
     void showSummary(MouseEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/EmployeeTable.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
 
             List<EmployeeReport> reports = new ArrayList<>();
 
@@ -140,7 +140,9 @@ public class EmployeeController implements Initializable {
                 String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
                 String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
                 EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                employeeReport.setDate(timeOut.split(", ")[0]);
+                if (i == 0) {
+                    employeeReport.setDate(timeOut.split(", ")[0]);
+                }
                 reports.add(employeeReport);
             }
             EmployeeTable.employeeDailyReport = reports;

@@ -1,17 +1,17 @@
 package com.example.helloworld;
 
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.EmployeeReport;
@@ -23,30 +23,70 @@ import java.util.stream.Collectors;
 
 
 public class EmployeeTable implements Initializable {
-//    public TreeTableColumn<SummaryReport, String> dateTTColumn;
-//    public TreeTableColumn<SummaryReport, String> timeInTTColumn;
-//    public TreeTableColumn<SummaryReport, String> timeOutTTColumn;
-//    public TreeTableView<SummaryReport> treeTableView;
-//
-//    /**
-//     * Called to initialize a controller after its root element has been
-//     * completely processed.
-//     *
-//     * @param location  The location used to resolve relative paths for the root object, or
-//     *                  {@code null} if the location is not known.
-//     * @param resources The resources used to localize the root object, or {@code null} if
-//     *                  the root object was not localized.
-//     */
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//
-//    }
 
+    @FXML
+    public TreeTableColumn<EmployeeReport, String> dateTTColumn;
+    @FXML
+    public TreeTableColumn<EmployeeReport, String> timeInTTColumn;
+    @FXML
+    public TreeTableColumn<EmployeeReport, String> timeOutTTColumn;
+
+    @FXML
+    public TreeTableView<EmployeeReport> treeTableView;
+
+    static List<EmployeeReport> employeeDailyReport;
+
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  {@code null} if the location is not known.
+     * @param resources The resources used to localize the root object, or {@code null} if
+     *                  the root object was not localized.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        TreeItem<EmployeeReport> root = new TreeItem<>(new EmployeeReport("Time In", "Time out",
+                employeeDailyReport.get(0).getDate()));
+
+        for (EmployeeReport e:
+             employeeDailyReport) {
+            e.setDate("");
+            TreeItem<EmployeeReport> employeeReportTreeItem = new TreeItem<>(e);
+            root.getChildren().add(employeeReportTreeItem);
+        }
+
+        dateTTColumn.setCellValueFactory(
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
+                return new SimpleStringProperty(param.getValue().getValue().getDate());
+        });
+        timeInTTColumn.setCellValueFactory(
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
+                return new SimpleStringProperty(param.getValue().getValue().getTimeIn());
+        });
+
+        timeOutTTColumn.setCellValueFactory(
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
+                    return new SimpleStringProperty(param.getValue().getValue().getTimeOut());
+                });
+//        timeInTTColumn.setCellValueFactory(cell ->
+//                Bindings.selectString(cell.getValue(), "timeIn"));
+//        timeOutTTColumn.setCellValueFactory(cell ->
+//                Bindings.selectString(cell.getValue(), "timeOut"));
+        treeTableView.setRoot(root);
+//        treeTableView.setShowRoot(false);
+    }
+
+/*
     @FXML
     private TableColumn<EmployeeReport, String> columnTI = new TableColumn<>();
 
     @FXML
     private TableColumn<EmployeeReport, String> columnTO = new TableColumn<>();
+
+    @FXML
+    public TableColumn<EmployeeReport, String> columnDate;
 
     @FXML
     private TableView<EmployeeReport> tableView = new TableView<>();
@@ -64,10 +104,13 @@ public class EmployeeTable implements Initializable {
                 Bindings.selectString(cell.getValue(), "timeIn"));
         columnTO.setCellValueFactory(cell ->
                 Bindings.selectString(cell.getValue(), "timeOut"));
+        columnDate.setCellValueFactory(cell ->
+                Bindings.selectString(cell.getValue(), "date"));
 
 
         tableView.setItems(tableData);
         tableView.refresh();
     }
+*/
 
 }
