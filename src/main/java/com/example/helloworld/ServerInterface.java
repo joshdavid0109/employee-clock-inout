@@ -3,6 +3,7 @@ package com.example.helloworld;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,9 +12,12 @@ public class ServerInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Image image = new Image("SLU_LOGO.jpg");
+
         FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/ServerInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("Hello!");
+        primaryStage.setTitle("ADMIN");
+        primaryStage.getIcons().add(image);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();

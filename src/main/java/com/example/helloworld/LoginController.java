@@ -71,10 +71,6 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void showPass(MouseEvent event) {
-    }
-
-    @FXML
     public void showPassword() {
         if(showPassword.isSelected()) {
             logInPassword.setText(logInPasswordHide.getText());

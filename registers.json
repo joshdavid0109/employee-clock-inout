@@ -23,5 +23,10 @@
     "userName": "testuser3",
     "passWord": "testuser3",
     "isLoggedIn": false
+  },
+  {
+    "userName": "Maervin",
+    "passWord": "Maervin",
+    "isLoggedIn": false
   }
 ]

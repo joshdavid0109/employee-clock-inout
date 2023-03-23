@@ -11,8 +11,6 @@ import org.shared_classes.EmployeeProfile;
 import java.io.IOException;
 
 public class EmployeeInterface extends Application {
-    private EmployeeProfile employeeProfile;
-    private Text text;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
