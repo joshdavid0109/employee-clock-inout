@@ -153,10 +153,5 @@
       ],
       "date": "Mar 22 2023"
     }
-  },
-  {
-    "userName": "testuser2",
-    "passWord": "testuser2",
-    "isLoggedIn": false
   }
 ]

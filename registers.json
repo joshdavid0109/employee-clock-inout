@@ -3,10 +3,5 @@
     "userName": "sssss",
     "passWord": "Hello world$123",
     "isLoggedIn": false
-  },
-  {
-    "userName": "Maervin",
-    "passWord": "Maervin",
-    "isLoggedIn": false
   }
 ]

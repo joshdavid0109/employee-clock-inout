@@ -14,7 +14,7 @@ public class ServerInterface extends Application {
     public void start(Stage primaryStage) throws IOException {
         Image image = new Image("SLU_LOGO.jpg");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/ServerInterface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ServerInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("ADMIN");
         primaryStage.getIcons().add(image);
