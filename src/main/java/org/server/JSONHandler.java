@@ -35,30 +35,29 @@ public class JSONHandler {
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
     static private final String pendingRegistersList = "registers.json";
 
-    public static EmployeeProfile checkIfValidLogIn(String username, String password) {
+    public static Object checkIfValidLogIn(String username, String password) {
         try {
             List<EmployeeProfile> employees = getFromFile();
             for (EmployeeProfile employee : employees) {
                 if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
-                    employee.setLoggedIn(true);
-                    System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
-                    System.out.println("kasjay");
-                    setEmployeeStatus(employee, true);
-                    return employee;
+                    if (!employee.isLoggedIn()) {
+                        employee.setLoggedIn(true);
+                        System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
+                        System.out.println("kasjay");
+                        setEmployeeStatus(employee, true);
+                        return employee;
+                    } else {
+                        System.out.println("currently logged in");
+                        return new CredentialsErrorException("User is currently logged in from another device.");
+                    }
                 }
+                else
+                    return new CredentialsErrorException("Invalid username/password");
             }
-            throw new CredentialsErrorException("OOPSIES");
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        //awan the log in credentials
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(JSONHandler.class.getResource("/fxml/TreeTableView.fxml"));
-//        Pane pane = loader.load();
-//        Dialog<ButtonType> dialog = new Dialog<>();
-//        dialog.setContentText(throw new Exception("Please input a values on the textfield"));
-//        dialog.setDialogPane((DialogPane) pane);
-//        dialog.show();
+
         return null;
     }
 

@@ -139,7 +139,8 @@ public class EmployeeController implements Initializable {
             for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
                 String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
                 String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                EmployeeReport employeeReport = new EmployeeReport(timeIn, timeOut);
+                EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                employeeReport.setDate(timeOut.split(", ")[0]);
                 reports.add(employeeReport);
             }
             EmployeeTable.employeeDailyReport = reports;

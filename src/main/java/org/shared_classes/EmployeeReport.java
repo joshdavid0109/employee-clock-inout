@@ -3,6 +3,7 @@ package org.shared_classes;
 public class EmployeeReport {
     private String timeIn;
     private String timeOut;
+    private String date;
 
 
     public EmployeeReport( String timeIn, String timeOut) {
@@ -26,4 +27,11 @@ public class EmployeeReport {
         this.timeIn = timeIn;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

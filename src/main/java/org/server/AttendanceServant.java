@@ -21,7 +21,7 @@ public class AttendanceServant implements Attendance {
     
 
     @Override
-    public EmployeeProfile logIn(String username, String password) throws RemoteException, CredentialsErrorException {
+    public Object logIn(String username, String password) throws RemoteException, CredentialsErrorException {
         return JSONHandler.checkIfValidLogIn(username, password);
     }
 
@@ -40,27 +40,7 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public Date timeOut(String employeeId) throws RemoteException {
-
-//        System.out.println(employee.getFullName()+" HAS TIMED OUT");
-
         Date date = getDateAndTime();
-        System.out.println("Date : "  + this.dateFormat.format(date));
-//        for (EmployeeProfile employeeProfile : empList) {
-//            if (employeeProfile.getEmpID().equals(employee.getEmpID())) {
-//                EmployeeDailyReport dailyReport = new EmployeeDailyReport();
-//                dailyReport.setTimeOut(date);
-//                employeeProfile.setEmployeeDailyReport(dailyReport);
-//            }
-//        }
-//        ListIterator<EmployeeProfile> iterator = empList.listIterator();
-//        while (iterator.hasNext()) {
-//            EmployeeProfile temp = iterator.next();
-//            if (Objects.equals(temp.getEmpID(), employee.getEmpID())) {
-//                temp.getEmployeeDailyReport().setTimeOut(date);
-//                iterator.set(temp);
-//            }
-//        }
-
         JSONHandler.addTimeOut(employeeId, date);
         return date;
     }
@@ -77,12 +57,12 @@ public class AttendanceServant implements Attendance {
 
     @Override
     public synchronized void addEmployee(EmployeeProfile emp) throws RemoteException {
-        System.out.println("User \"" + emp.getUserName() + "\" has logged in!");
         boolean employeeExists = false;
         for (EmployeeProfile eP :
                 empList) {
             if (eP.getEmpID().equals(emp.getEmpID())) {
                 employeeExists = true;
+                break;
             }
         }
         if (!employeeExists)

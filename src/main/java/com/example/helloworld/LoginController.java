@@ -95,19 +95,11 @@ public class LoginController implements Initializable {
         String userName = logInUsername.getText();
         String passWord = (logInPassword.getText() == null ? logInPassword.getText() : logInPasswordHide.getText());
 
-        EmployeeProfile employee = stub.logIn(userName, passWord);
+        Object object = stub.logIn(userName, passWord);
+        EmployeeProfile employee = null;
 
-//        if(employee == null) {
-//            Alert dialog = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
-//            dialog.show();
-//        }
-//        else
-        if (employee == null) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(new CredentialsErrorException()), ButtonType.OK);
-            dialog.show();
-//            throw new CredentialsErrorException("haha oopsie!");
-        } else {
-
+            if (object instanceof EmployeeProfile employeeProfile) {
+            employee = employeeProfile;
             logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");
             FXMLLoader loader = new FXMLLoader();
@@ -121,6 +113,10 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) logInButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+        }
+        else if (object instanceof CredentialsErrorException credentialsErrorException) {
+            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(credentialsErrorException), ButtonType.OK);
+            dialog.show();
         }
     }
 }
