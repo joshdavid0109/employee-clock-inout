@@ -10,18 +10,8 @@
     "isLoggedIn": false
   },
   {
-    "userName": "z",
-    "passWord": "",
-    "isLoggedIn": false
-  },
-  {
     "userName": "testuser2",
     "passWord": "testuser2",
-    "isLoggedIn": false
-  },
-  {
-    "userName": "testuser3",
-    "passWord": "testuser3",
     "isLoggedIn": false
   },
   {

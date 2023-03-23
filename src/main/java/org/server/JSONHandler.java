@@ -235,6 +235,14 @@ public class JSONHandler {
         }
     }
 
+    public static void writeGSon(List<EmployeeProfile> list) {
+        try (FileWriter writer = new FileWriter(pendingRegistersList)) {
+            gson.toJson(list, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
         Date date = new Date();

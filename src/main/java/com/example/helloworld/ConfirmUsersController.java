@@ -2,11 +2,10 @@ package com.example.helloworld;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeProfile;
@@ -18,17 +17,16 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ConfirmUsersController implements Initializable {
 
+    public TableColumn<EmployeeProfile, String> usernameColumn;
     Attendance stub;
 
     @FXML
     private TableView<EmployeeProfile> employeeTable;
-
-    @FXML
-    private TableColumn<EmployeeProfile, String> columnUsername;
 
     @FXML
     private TableColumn<EmployeeProfile, String> columnDepartment;
@@ -41,14 +39,53 @@ public class ConfirmUsersController implements Initializable {
 
     static List<EmployeeProfile> pendingEmployees;
 
+
+    @FXML
+    void acceptUser(ActionEvent event) {
+        EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
+
+    }
+
+    @FXML
+    void rejectUser(ActionEvent event) {
+        EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
+
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
+                " reject " + employeeProfile.getUserName() + "?");
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+        dialog.getButtonTypes().setAll(yes, no);
+
+        Optional<ButtonType> input = dialog.showAndWait();
+        if (input.get() == yes)  {
+            for (EmployeeProfile e :
+                    pendingEmployees) {
+                if (e.equals(employeeProfile)) {
+                    pendingEmployees.remove(e);
+                    break;
+                }
+            }
+
+            JSONHandler.writeGSon(pendingEmployees);
+            updateTable();
+        } else
+            dialog.close();
+
+
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateTable();
+    }
 
+    public void updateTable(){
         pendingEmployees = JSONHandler.getPendingRegistersFromFile();
 
-        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(pendingEmployees);
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(Objects.requireNonNull(pendingEmployees));
 
-        System.out.println(tableData);
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>("userName"));
 
         employeeTable.setItems(tableData);
         employeeTable.refresh();

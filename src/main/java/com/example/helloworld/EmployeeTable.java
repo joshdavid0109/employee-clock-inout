@@ -58,59 +58,14 @@ public class EmployeeTable implements Initializable {
         }
 
         dateTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
-                return new SimpleStringProperty(param.getValue().getValue().getDate());
-        });
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getDate()));
         timeInTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
-                return new SimpleStringProperty(param.getValue().getValue().getTimeIn());
-        });
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getTimeIn()));
 
         timeOutTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> {
-                    return new SimpleStringProperty(param.getValue().getValue().getTimeOut());
-                });
-//        timeInTTColumn.setCellValueFactory(cell ->
-//                Bindings.selectString(cell.getValue(), "timeIn"));
-//        timeOutTTColumn.setCellValueFactory(cell ->
-//                Bindings.selectString(cell.getValue(), "timeOut"));
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getTimeOut()));
         treeTableView.setRoot(root);
-//        treeTableView.setShowRoot(false);
     }
 
-/*
-    @FXML
-    private TableColumn<EmployeeReport, String> columnTI = new TableColumn<>();
-
-    @FXML
-    private TableColumn<EmployeeReport, String> columnTO = new TableColumn<>();
-
-    @FXML
-    public TableColumn<EmployeeReport, String> columnDate;
-
-    @FXML
-    private TableView<EmployeeReport> tableView = new TableView<>();
-
-    static List<EmployeeReport> employeeDailyReport;
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-        ObservableList<EmployeeReport> tableData = FXCollections.observableList(employeeDailyReport);
-
-        columnTI.setCellValueFactory(cell ->
-                Bindings.selectString(cell.getValue(), "timeIn"));
-        columnTO.setCellValueFactory(cell ->
-                Bindings.selectString(cell.getValue(), "timeOut"));
-        columnDate.setCellValueFactory(cell ->
-                Bindings.selectString(cell.getValue(), "date"));
-
-
-        tableView.setItems(tableData);
-        tableView.refresh();
-    }
-*/
 
 }

@@ -97,7 +97,9 @@ public class ServerController implements Initializable {
         tableView.refresh();
     }
 
-//    //zephhhhhhhhhhhhhhhhhhh
+    /**
+     * zephhhhhhhhhhhhhhhhhhh
+     */
 //    public void generateReport (ActionEvent actionEvent) throws IOException {
 //        genReport.setText("Generate Report");
 //        //var fromTF = fromTF.getText();
@@ -146,7 +148,6 @@ public class ServerController implements Initializable {
 
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
-//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
 
 
@@ -157,14 +158,11 @@ public class ServerController implements Initializable {
                 Bindings.selectString(cell.getValue().getPersonalDetails(), "firstName"));
         statusColumn.setCellValueFactory(cell ->
                 Bindings.selectString(cell.getValue(), "isLoggedIn"));
-        //        workHoursColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>("totalDates"));
-
 
         tableView.setItems(tableData);
         tableView.refresh();
 
 
-//        dateColumn.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>(s));
     }
 
 }
