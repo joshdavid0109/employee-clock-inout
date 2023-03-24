@@ -9,7 +9,7 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "timeIn": "Mar 24 2023, 08:00:04",
       "timeOut": "Mar 24 2023, 08:00:01",
@@ -160,7 +160,8 @@
     "personalDetails": {
       "firstName": "N/A",
       "lastName": "N/A",
-      "age": 0
+      "age": 0,
+      "gender": "N/A"
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
@@ -176,9 +177,10 @@
     "personalDetails": {
       "firstName": "N/A",
       "lastName": "N/A",
-      "age": 0
+      "age": 0,
+      "gender": "N/A"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
     "employeeDailyReport": {
       "date": "24",
       "listofTimeIns": [],

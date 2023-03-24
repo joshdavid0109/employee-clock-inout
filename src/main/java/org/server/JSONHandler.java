@@ -51,9 +51,8 @@ public class JSONHandler {
                         return new CredentialsErrorException("User is currently logged in from another device.");
                     }
                 }
-                else
-                    return new CredentialsErrorException("Invalid username/password");
             }
+            return new CredentialsErrorException("Invalid username/password");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,10 +106,11 @@ public class JSONHandler {
     }
 
     public static void main(String[] args) {
-        Date date = new Date();
-        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
-        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
-        addTimeIn(ep.getEmpID(), date);
+//        Date date = new Date();
+//        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
+//        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
+        checkIfValidLogIn("asdcasdxasx", "asdcqwxewqx#");
+//        addTimeIn(ep.getEmpID(), date);
     }
 
     private static void registerEmployee(String username, String password) {

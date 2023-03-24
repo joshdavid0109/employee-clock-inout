@@ -45,6 +45,8 @@ public class EmployeeDetails implements Serializable {
     public EmployeeDetails() {
         this.firstName = "N/A";
         this.lastName = "N/A";
+        this.age = 0;
+        this.gender = "N/A";
     }
 
 
