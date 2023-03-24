@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable {
     private Attendance stub;
     @FXML
-    private Button loadLoginGUIbtn;
+    private Button loadLoginGUIbtn, returnRegisterInformation;
     @FXML
     private AnchorPane registerAnchorPane;
     @FXML
@@ -66,9 +66,26 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    public void LoadLoginGUI() throws IOException {
+    public void loadLoginGUI() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/LoginInterface.fxml")));
         Scene scene = loadLoginGUIbtn.getScene();
+
+        root.translateYProperty().set(scene.getHeight());
+        parentContainer.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(registerAnchorPane));
+        timeline.play();
+    }
+
+    @FXML
+    public void loadRegisterInformation() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/RegisterInterfacePersonalDetails.fxml")));
+        Scene scene = returnRegisterInformation.getScene();
 
         root.translateYProperty().set(scene.getHeight());
         parentContainer.getChildren().add(root);

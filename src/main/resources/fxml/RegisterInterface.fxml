@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -18,15 +20,15 @@
          <children>
             <Pane layoutX="233.0" prefHeight="450.0" prefWidth="370.0" style="-fx-background-color: WHITE;">
                <children>
-                  <Button fx:id="loadLoginGUIbtn" layoutX="262.0" layoutY="395.0" mnemonicParsing="false" onAction="#LoadLoginGUI" style="-fx-background-color: white;" text="SIGN IN" underline="true" />
-                  <TextField fx:id="regUsername" layoutX="92.0" layoutY="67.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Username" style="-fx-background-radius: 15;" />
-                  <TextField fx:id="regVerifyPassword" layoutX="91.0" layoutY="256.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
-                  <Text layoutX="91.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <Button fx:id="loadLoginGUIbtn" layoutX="262.0" layoutY="395.0" mnemonicParsing="false" onAction="#loadLoginGUI" style="-fx-background-color: white;" text="SIGN IN" underline="true" />
+                  <TextField fx:id="regUsername" layoutX="92.0" layoutY="77.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Username" style="-fx-background-radius: 15;" />
+                  <TextField fx:id="regVerifyPassword" layoutX="91.0" layoutY="266.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
+                  <Text layoutX="91.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Text>
-                  <Text layoutX="91.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verify Password">
+                  <Text layoutX="91.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verify Password">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
@@ -37,36 +39,48 @@
                      </font>
                   </Button>
                   <Text layoutX="33.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALREADY A MEMBER?" />
-                  <CheckBox fx:id="regVerifyShowPassword" layoutX="91.0" layoutY="290.0" mnemonicParsing="false" onAction="#regVerifyShowPassword" text="SHOW PASSWORD">
+                  <CheckBox fx:id="regVerifyShowPassword" layoutX="91.0" layoutY="300.0" mnemonicParsing="false" onAction="#regVerifyShowPassword" text="SHOW PASSWORD">
                      <font>
                         <Font size="8.0" />
                      </font>
                   </CheckBox>
-                  <Text layoutX="90.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password ">
+                  <Text layoutX="90.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password ">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Text>
-                  <Button id="questionMark" layoutX="135.0" layoutY="119.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: CLEAR;" text="(?)">
+                  <Button id="questionMark" layoutX="135.0" layoutY="129.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: CLEAR;" text="(?)">
                      <tooltip>
                         <Tooltip text="Password must contain one digit [0-9], one lowercase and uppercase letter, one special character, and must be at least 8 characters long. " /> </tooltip>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button id="questionMark2" graphicTextGap="1.0" layoutX="170.0" layoutY="226.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: CLEAR;" text="(?)">
+                  <Button id="questionMark2" graphicTextGap="1.0" layoutX="170.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: CLEAR;" text="(?)">
                      <tooltip>
                         <Tooltip text="Must be the same as the password previously entered." /> </tooltip>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <TextField fx:id="regPassword" layoutX="91.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
-                  <CheckBox fx:id="regShowPassword" layoutX="91.0" layoutY="184.0" mnemonicParsing="false" onAction="#regShowPassword" text="SHOW PASSWORD">
+                  <TextField fx:id="regPassword" layoutX="91.0" layoutY="160.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
+                  <CheckBox fx:id="regShowPassword" layoutX="91.0" layoutY="194.0" mnemonicParsing="false" onAction="#regShowPassword" text="SHOW PASSWORD">
                      <font>
                         <Font size="8.0" />
                      </font>
                   </CheckBox>
-                  <PasswordField fx:id="regPasswordHide" layoutX="91.0" layoutY="150.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
-                  <PasswordField fx:id="regVerifyPasswordHide" layoutX="91.0" layoutY="256.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
+                  <PasswordField fx:id="regPasswordHide" layoutX="91.0" layoutY="160.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
+                  <PasswordField fx:id="regVerifyPasswordHide" layoutX="91.0" layoutY="266.0" prefHeight="25.0" prefWidth="200.0" promptText="Enter Password" style="-fx-background-radius: 15;" />
+                  <Button fx:id="returnRegisterInformation" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadRegisterInformation" style="-fx-background-color: WHITE;" text="Return">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../RETURN_ICON.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Pane layoutX="21.0" layoutY="223.0" prefHeight="4.0" prefWidth="200.0" style="-fx-background-color: #AE8540; -fx-background-radius: 20;" />

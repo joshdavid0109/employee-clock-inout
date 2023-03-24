@@ -48,8 +48,8 @@ public class LoginController implements Initializable {
     private StackPane parentContainer;
 
     @FXML
-    public void LoadRegisterGUI() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/RegisterInterface.fxml")));
+    public void LoadRegisterInformationGUI() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/RegisterInterfacePersonalDetails.fxml")));
         Scene scene = loadRegisterGUIbtn.getScene();
 
         root.translateXProperty().set(scene.getWidth());
