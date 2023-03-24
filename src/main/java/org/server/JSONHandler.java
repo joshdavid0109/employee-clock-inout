@@ -39,17 +39,20 @@ public class JSONHandler {
         try {
             List<EmployeeProfile> employees = getFromFile();
             for (EmployeeProfile employee : employees) {
-                if (employee.getUserName().equals(username) && employee.getPassWord().equals(password)) {
-                    if (!employee.isLoggedIn()) {
-                        employee.setLoggedIn(true);
-                        System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
-                        System.out.println("kasjay");
-                        setEmployeeStatus(employee, true);
-                        return employee;
-                    } else {
-                        System.out.println("currently logged in");
-                        return new CredentialsErrorException("User is currently logged in from another device.");
+                if (employee.getUserName().equals(username)) {
+                    if(employee.getPassWord().equals(password)){
+                        if (!employee.isLoggedIn()) {
+                            employee.setLoggedIn(true);
+                            System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
+                            System.out.println("kasjay");
+                            setEmployeeStatus(employee, true);
+                            return employee;
+                        } else {
+                            System.out.println("currently logged in");
+                            return new CredentialsErrorException("User is currently logged in from another device.");
+                        }
                     }
+                    return new CredentialsErrorException("Invalid password");
                 }
             }
             return new CredentialsErrorException("Invalid username/password");
