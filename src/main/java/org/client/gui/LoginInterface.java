@@ -2,12 +2,14 @@ package org.client.gui;
 
 import controller.LoginController;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.shared_classes.Attendance;
 
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class LoginInterface extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/LoginInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        LoginController loginController = fxmlLoader.getController();
 
         try {
             Registry registry = LocateRegistry.getRegistry(2345);
@@ -35,7 +38,7 @@ public class LoginInterface extends Application {
             dialog.show();
         }
         if (stub != null) {
-            LoginController.stub = stub;
+            loginController.setStub(stub);
             primaryStage.setTitle("EMPLOYEE");
             primaryStage.getIcons().add(image);
             primaryStage.setResizable(false);

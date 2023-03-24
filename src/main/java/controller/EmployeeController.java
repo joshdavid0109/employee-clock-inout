@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -174,6 +175,10 @@ public class EmployeeController implements Initializable {
 
     }
 
+    public void shutdown() {
+        System.out.println("EXITING...");
+    }
+
     public Text getTimeLabel() {
         return timeLabel;
     }
@@ -217,7 +222,6 @@ public class EmployeeController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         try {
             Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");

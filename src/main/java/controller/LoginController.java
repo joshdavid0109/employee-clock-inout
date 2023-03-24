@@ -48,8 +48,8 @@ public class LoginController implements Initializable {
     private StackPane parentContainer;
 
     @FXML
-    public void LoadRegisterGUI() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/RegisterInterface.fxml")));
+    public void LoadRegisterInformationGUI() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/RegisterInterfacePersonalDetails.fxml")));
         Scene scene = loadRegisterGUIbtn.getScene();
 
         root.translateXProperty().set(scene.getWidth());
@@ -109,10 +109,13 @@ public class LoginController implements Initializable {
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+
+                stage.setOnHidden(windowEvent ->
+                        employeeController.shutdown());
             }
         }
         else if (object instanceof CredentialsErrorException credentialsErrorException) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(credentialsErrorException), ButtonType.OK);
+            Alert dialog = new Alert(Alert.AlertType.WARNING, credentialsErrorException.getMessage(), ButtonType.OK);
             dialog.show();
         }
     }
