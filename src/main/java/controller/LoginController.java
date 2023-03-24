@@ -109,6 +109,9 @@ public class LoginController implements Initializable {
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+
+                stage.setOnHidden(windowEvent ->
+                        employeeController.shutdown());
             }
         }
         else if (object instanceof CredentialsErrorException credentialsErrorException) {
