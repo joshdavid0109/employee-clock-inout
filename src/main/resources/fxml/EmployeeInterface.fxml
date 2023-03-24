@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="testPane" prefHeight="403.0" prefWidth="602.0" style="-fx-background-color: #13202F;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
+<AnchorPane fx:id="testPane" prefHeight="403.0" prefWidth="602.0" style="-fx-background-color: #13202F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
    <children>
       <Text id="employeeName" fx:id="employeeName" fill="WHITE" layoutX="42.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEE NAME" wrappingWidth="337.31170654296875">
          <font>
@@ -20,7 +20,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Text>
-      <Text id="dateLabel" fx:id="statusLabel" fill="WHITE" layoutX="42.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STATUS" wrappingWidth="168.51171875">
+      <Text id="dateLabel" fx:id="statusLabel" fill="WHITE" layoutX="42.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="168.51171875">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Text>

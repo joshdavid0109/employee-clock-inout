@@ -31,7 +31,7 @@ import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
     private Attendance stub;
-    private static EmployeeProfile employee;
+    public static EmployeeProfile employee;
     private Date date;
 
     @FXML
@@ -60,9 +60,10 @@ public class EmployeeController implements Initializable {
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
-    public EmployeeController(){}
+    public EmployeeController() {
+    }
 
-    public EmployeeController(EmployeeProfile employee){
+    public EmployeeController(EmployeeProfile employee) {
         EmployeeController.employee = employee;
     }
 
@@ -76,10 +77,7 @@ public class EmployeeController implements Initializable {
             employee.setEmployeeDailyReport(new EmployeeDailyReport(dateFormat.format(date)));
         }
 
-        EmployeeController.employee = employee;
-        System.out.println("WORKING");
-        employeeName.setText(employee.getFullName());
-
+        this.employee = employee;
     }
 
     @FXML
@@ -230,11 +228,11 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
 
+        employeeName.setText(employee.getFullName());
+
         date = new Date();
-        System.out.println("B  "+date);
+        System.out.println("B  " + date);
         dateLabel.setText(dateFormat.format(date));
-
-
 
 
         // Timer Animation
@@ -245,23 +243,14 @@ public class EmployeeController implements Initializable {
             }
         };
         timer.start();
-/*        System.out.println(employee.getEmployeeDailyReport().getListofTimeIns().size());
-        System.out.println(employee.getEmployeeDailyReport().getListofTimeOuts().size());
 
         if (employee.getEmployeeDailyReport().getListofTimeIns().size() >
                 employee.getEmployeeDailyReport().getListofTimeOuts().size()) {
             timeInButton.setDisable(true);
             timeOutButton.setDisable(false);
-        } else {*/
+        } else {
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
-//        }
-
-        if(employee!= null){
-            System.out.println(employee);
-            dateLabel.setText(timeFormat.format(date));
         }
-
     }
-
 }

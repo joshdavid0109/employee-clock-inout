@@ -1,9 +1,6 @@
 package org.server;
 
-import org.shared_classes.Attendance;
-import org.shared_classes.CredentialsErrorException;
-import org.shared_classes.EmployeeDailyReport;
-import org.shared_classes.EmployeeProfile;
+import org.shared_classes.*;
 
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
@@ -25,8 +22,17 @@ public class AttendanceServant implements Attendance {
         EmployeeProfile employeeProfile = null;
         try {
             employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
-        } catch (CredentialsErrorException credentialsErrorException) {
-            throw new CredentialsErrorException();
+        } catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException |
+                 UserNotExistingException e) {
+            if (e instanceof UserCurrentlyLoggedInException) {
+                throw new UserCurrentlyLoggedInException();
+            } else if (e instanceof CredentialsErrorException) {
+                throw new CredentialsErrorException();
+            } else if (e instanceof EmptyFieldsException){
+                throw new EmptyFieldsException();
+            } else {
+                throw new UserNotExistingException();
+            }
         }
         return employeeProfile;
     }

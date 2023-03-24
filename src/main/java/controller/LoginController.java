@@ -97,10 +97,10 @@ public class LoginController implements Initializable {
             System.out.println("log in OK");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-            Parent root = loader.load();
-            EmployeeController employeeController = loader.getController();
+            EmployeeController employeeController = new EmployeeController();
             employeeController.setEmployee(employee);
             employeeController.setStub(stub);
+            Parent root = loader.load();
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) logInButton.getScene().getWindow();
