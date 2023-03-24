@@ -9,7 +9,7 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
     "employeeDailyReport": {
       "timeIn": "Mar 24 2023, 08:00:04",
       "timeOut": "Mar 24 2023, 08:00:01",
@@ -181,6 +181,23 @@
       "gender": "N/A"
     },
     "isLoggedIn": true,
+    "employeeDailyReport": {
+      "date": "24",
+      "listofTimeIns": [],
+      "listofTimeOuts": []
+    }
+  },
+  {
+    "empID": "EMP6e2b048d",
+    "userName": "asdcasdxascqwcqwe",
+    "passWord": "asdcsdxqwecwq$",
+    "personalDetails": {
+      "firstName": "N/A",
+      "lastName": "N/A",
+      "age": 0,
+      "gender": "N/A"
+    },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "date": "24",
       "listofTimeIns": [],

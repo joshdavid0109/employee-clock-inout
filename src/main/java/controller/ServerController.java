@@ -8,18 +8,19 @@ import com.google.gson.JsonObject;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.server.AttendanceServant;
@@ -41,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import java.time.LocalDate;
@@ -53,7 +55,7 @@ public class ServerController implements Initializable {
     private Text adminNameLabel, companyNameLabel, genReport;
 
     @FXML
-    private TextField fromTF, searchTF, toTF;
+    private TextField fromTF, searchField, toTF;
 
     @FXML
     private TableColumn<EmployeeProfile, String> columnId;
@@ -104,7 +106,34 @@ public class ServerController implements Initializable {
 
     @FXML
     void searchEmpID(InputMethodEvent event) {
+        String input = event.getCommitted();
 
+        searchField.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER))
+                System.out.println(input);
+        });
+
+
+       /* List<EmployeeProfile> list = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+        FilteredList<EmployeeProfile> filteredList = new FilteredList<>(tableData, p -> true);
+        tableView.setItems(filteredList);
+
+        ChoiceBox<String> choiceBox = new ChoiceBox<>();
+        choiceBox.getItems().addAll("empID");
+        choiceBox.setValue("empID");
+        searchField.textProperty().addListener((observableValue, s, t1) -> {
+            switch (choiceBox.getValue()) {
+                case "empID":
+                    filteredList.setPredicate(p -> p.getEmpID().toLowerCase(Locale.ROOT).contains(t1.toLowerCase().trim()));
+                    break;
+            }
+        });
+
+        choiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            if (t1 != null)
+                searchField.setText("");
+        });*/
     }
 
     /**
@@ -155,8 +184,6 @@ public class ServerController implements Initializable {
             throw new RuntimeException(e);
         }
 
-
-
         List<EmployeeProfile> list = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
 
@@ -184,5 +211,6 @@ public class ServerController implements Initializable {
         Stage addEmployeeWindow = new Stage();
         addEmployeeWindow.setScene(scene);
         addEmployeeWindow.show();
+
     }
 }

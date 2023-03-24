@@ -145,10 +145,10 @@ public class EmployeeController implements Initializable {
             dialog.setDialogPane((DialogPane) employeeTable);
             dialog.setTitle("Summary");
 
-
             //close button
             Window window = dialog.getDialogPane().getScene().getWindow();
-            window.setOnCloseRequest(event1 -> window.hide());
+            window.setOnCloseRequest(event1 ->
+                    window.hide());
             dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -229,8 +229,7 @@ public class EmployeeController implements Initializable {
         System.out.println("B  "+date);
         dateLabel.setText(dateFormat.format(date));
 
-        timeInButton.setDisable(false);
-        timeOutButton.setDisable(true);
+
 
 
         // Timer Animation
@@ -241,6 +240,17 @@ public class EmployeeController implements Initializable {
             }
         };
         timer.start();
+/*        System.out.println(employee.getEmployeeDailyReport().getListofTimeIns().size());
+        System.out.println(employee.getEmployeeDailyReport().getListofTimeOuts().size());
+
+        if (employee.getEmployeeDailyReport().getListofTimeIns().size() >
+                employee.getEmployeeDailyReport().getListofTimeOuts().size()) {
+            timeInButton.setDisable(true);
+            timeOutButton.setDisable(false);
+        } else {*/
+            timeInButton.setDisable(false);
+            timeOutButton.setDisable(true);
+//        }
 
         if(employee!= null){
             System.out.println(employee);
