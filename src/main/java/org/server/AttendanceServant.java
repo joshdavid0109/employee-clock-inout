@@ -50,6 +50,11 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
+    public void setStatus(String EmployeeID, boolean loggedIn) throws RemoteException {
+        JSONHandler.setEmployeeStatus(EmployeeID, loggedIn);
+    }
+
+    @Override
     public void getSummary() throws RemoteException {
 
     }
@@ -59,7 +64,6 @@ public class AttendanceServant implements Attendance {
         //TODO
     }
 
-    @Override
     public synchronized void addEmployee(EmployeeProfile emp) throws RemoteException {
         boolean employeeExists = false;
         for (EmployeeProfile eP :

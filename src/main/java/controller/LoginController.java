@@ -22,6 +22,7 @@ import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -111,7 +112,13 @@ public class LoginController implements Initializable {
                 stage.show();
 
                 stage.setOnHidden(windowEvent ->
-                        employeeController.shutdown());
+                {
+                    try {
+                        employeeController.shutdown();
+                    } catch (RemoteException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
         }
         else if (object instanceof CredentialsErrorException credentialsErrorException) {

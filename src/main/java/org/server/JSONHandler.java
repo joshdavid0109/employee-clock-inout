@@ -45,7 +45,7 @@ public class JSONHandler {
                             employee.setLoggedIn(true);
                             System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
                             System.out.println("kasjay");
-                            setEmployeeStatus(employee, true);
+                            setEmployeeStatus(employee.getEmpID(), true);
                             return employee;
                         } else {
                             System.out.println("currently logged in");
@@ -64,12 +64,12 @@ public class JSONHandler {
     }
 
     //true = logged in, false logged out
-    public static void setEmployeeStatus(EmployeeProfile employee, boolean loggedIn) {
+    public static void setEmployeeStatus(String EmployeeID, boolean loggedIn) {
         try {
             List<EmployeeProfile> employees = getFromFile();
 
             for (EmployeeProfile emp : employees) {
-                if (emp.getEmpID().equals(employee.getEmpID())) {
+                if (emp.getEmpID().equals(EmployeeID)) {
                     emp.setLoggedIn(loggedIn);
                     break;
                 }

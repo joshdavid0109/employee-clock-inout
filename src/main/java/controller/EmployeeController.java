@@ -161,7 +161,7 @@ public class EmployeeController implements Initializable {
 
         logOutButton.getScene().getWindow().hide();
 
-        JSONHandler.setEmployeeStatus(employee, false);
+        JSONHandler.setEmployeeStatus(employee.getEmpID(), false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
@@ -175,8 +175,9 @@ public class EmployeeController implements Initializable {
 
     }
 
-    public void shutdown() {
+    public void shutdown() throws RemoteException {
         System.out.println("EXITING...");
+        stub.setStatus(employee.getEmpID(), false);
     }
 
     public Text getTimeLabel() {
