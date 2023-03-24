@@ -109,10 +109,13 @@ public class LoginController implements Initializable {
                 Stage stage = (Stage) logInButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+
+                stage.setOnHidden(windowEvent ->
+                        employeeController.shutdown());
             }
         }
         else if (object instanceof CredentialsErrorException credentialsErrorException) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING, String.valueOf(credentialsErrorException), ButtonType.OK);
+            Alert dialog = new Alert(Alert.AlertType.WARNING, credentialsErrorException.getMessage(), ButtonType.OK);
             dialog.show();
         }
     }
