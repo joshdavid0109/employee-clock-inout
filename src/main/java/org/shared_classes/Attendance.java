@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 public interface Attendance extends Remote {
-    Object logIn(String username, String password) throws RemoteException, CredentialsErrorException;
+    EmployeeProfile logIn(String username, String password) throws RemoteException, CredentialsErrorException;
     void signUp(EmployeeProfile employeeProfile) throws RemoteException;
     Date timeIn(String EmployeeID) throws RemoteException;
     Date timeOut(String EmployeeID) throws RemoteException;

@@ -18,16 +18,27 @@ public class AttendanceServant implements Attendance {
     private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
-    
+
 
     @Override
-    public Object logIn(String username, String password) throws RemoteException, CredentialsErrorException {
-        return JSONHandler.checkIfValidLogIn(username, password);
+    public EmployeeProfile logIn(String username, String password) throws RemoteException {
+        EmployeeProfile employeeProfile = null;
+        try {
+            employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
+        } catch (CredentialsErrorException credentialsErrorException) {
+            throw new CredentialsErrorException();
+        }
+        return employeeProfile;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
+//        Date date = new Date();
+//        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
+//        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
+        .logIn("asdcasdxasx", "asdcqwxewqx#");
+//        addTimeIn(ep.getEmpID(), date);
+    }*/
 
-    }
 
     @Override
     public void signUp(EmployeeProfile employeeProfile) throws RemoteException {

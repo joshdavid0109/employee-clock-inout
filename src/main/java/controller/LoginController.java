@@ -16,9 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.shared_classes.Attendance;
-import org.shared_classes.CredentialsErrorException;
-import org.shared_classes.EmployeeProfile;
+import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -86,44 +84,52 @@ public class LoginController implements Initializable {
         String userName = logInUsername.getText();
         String passWord = (logInPassword.getText() == null ? logInPassword.getText() : logInPasswordHide.getText());
 
-        Object object = stub.logIn(userName, passWord);
-        EmployeeProfile employee = null;
-
-        if (object instanceof EmployeeProfile employeeProfile) {
-            employee = employeeProfile;
+        try {
+            EmployeeProfile employee = stub.logIn(userName, passWord);
 
             if (employee.getPersonalDetails()==null){
                 //TODO setup userdetails for newly accepted employees:)
                 System.out.println("welcome to slu");
             }
-            else{
-                logInButton.getScene().getWindow().hide();
-                System.out.println("log in OK");
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
-                Parent root = loader.load();
-                EmployeeController employeeController = loader.getController();
-                employeeController.setEmployee(employee);
-                employeeController.setStub(stub);
 
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) logInButton.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
 
-                stage.setOnHidden(windowEvent ->
-                {
-                    try {
-                        employeeController.shutdown();
-                    } catch (RemoteException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+            logInButton.getScene().getWindow().hide();
+            System.out.println("log in OK");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
+            Parent root = loader.load();
+            EmployeeController employeeController = loader.getController();
+            employeeController.setEmployee(employee);
+            employeeController.setStub(stub);
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) logInButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnHidden(windowEvent ->
+            {
+                try {
+                    employeeController.shutdown();
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException
+                | UserNotExistingException e) {
+            if (e instanceof UserCurrentlyLoggedInException ) {
+                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
+                dialog.show();
+            } else if (e instanceof CredentialsErrorException ) {
+                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
+                dialog.show();
+            } else if (e instanceof EmptyFieldsException){
+                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
+                dialog.show();
+            } else {
+                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
+                dialog.show();
             }
-        }
-        else if (object instanceof CredentialsErrorException credentialsErrorException) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING, credentialsErrorException.getMessage(), ButtonType.OK);
-            dialog.show();
         }
     }
 

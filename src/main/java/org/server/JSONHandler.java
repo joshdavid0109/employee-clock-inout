@@ -35,9 +35,13 @@ public class JSONHandler {
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
     static private final String pendingRegistersList = "registers.json";
 
-    public static Object checkIfValidLogIn(String username, String password) {
+    public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
             List<EmployeeProfile> employees = getFromFile();
+
+            if (username.equals("") || password.equals("")) {
+                throw new EmptyFieldsException();
+            }
             for (EmployeeProfile employee : employees) {
                 if (employee.getUserName().equals(username)) {
                     if(employee.getPassWord().equals(password)){
@@ -49,18 +53,26 @@ public class JSONHandler {
                             return employee;
                         } else {
                             System.out.println("currently logged in");
-                            return new CredentialsErrorException("User is currently logged in from another device.");
+                            throw new UserCurrentlyLoggedInException();
                         }
                     }
-                    return new CredentialsErrorException("Invalid password");
-                }
+                    throw new CredentialsErrorException();
+                } else
+                    throw new UserNotExistingException();
             }
-            return new CredentialsErrorException("Invalid username/password");
-        } catch (Exception e) {
-            e.printStackTrace();
+            throw new CredentialsErrorException();
+        } catch (UserCurrentlyLoggedInException | CredentialsErrorException  | EmptyFieldsException |
+                UserNotExistingException e) {
+            if (e instanceof UserCurrentlyLoggedInException) {
+                throw new UserCurrentlyLoggedInException();
+            } else if (e instanceof CredentialsErrorException) {
+                throw new CredentialsErrorException();
+            } else if (e instanceof EmptyFieldsException){
+                throw new EmptyFieldsException();
+            } else {
+                throw new UserNotExistingException();
+            }
         }
-
-        return null;
     }
 
     //true = logged in, false logged out
