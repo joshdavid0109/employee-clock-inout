@@ -21,7 +21,7 @@ public class EmployeeProfile implements Serializable {
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
     private EmployeeDailyReport employeeDailyReport; // Daily time in/out
-    public SummaryReport summaryReport;
+    public List<SummaryReport> summaryReport;
 
     public EmployeeProfile() {}
 
@@ -48,12 +48,16 @@ public class EmployeeProfile implements Serializable {
         this.status = status;
     }
 
-    public SummaryReport getSummaryReport() {
+    public List<SummaryReport> getSummaryReport() {
         return summaryReport;
     }
 
-    public void setSummaryReport(SummaryReport summaryReport) {
+    public void setSummaryReport(List<SummaryReport> summaryReport) {
         this.summaryReport = summaryReport;
+    }
+
+    public void addSummaryReport(SummaryReport summaryReport)    {
+        this.summaryReport.add(summaryReport);
     }
 
     /**

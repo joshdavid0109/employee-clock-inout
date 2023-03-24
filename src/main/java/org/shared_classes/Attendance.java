@@ -10,6 +10,6 @@ public interface Attendance extends Remote {
     Date timeIn(String EmployeeID) throws RemoteException;
     Date timeOut(String EmployeeID) throws RemoteException;
     void setStatus(String EmployeeID, boolean loggedIn) throws RemoteException;
-    void getSummary() throws RemoteException;
+    EmployeeDailyReport getSummary() throws RemoteException;
     void getCurrentStatus() throws RemoteException;
 }

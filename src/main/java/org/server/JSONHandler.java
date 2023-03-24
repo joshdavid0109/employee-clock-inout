@@ -173,9 +173,10 @@ public class JSONHandler {
                         List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                         List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
-                        emp.setSummaryReport(new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]));
-                        emp.getSummaryReport().setTimeIns(ins);
-                        emp.getSummaryReport().setTimeOuts(outs);
+                        SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
+                        summaryReport.setTimeIns(ins);
+                        summaryReport.setTimeOuts(outs);
+                        emp.getSummaryReport().add(summaryReport);
 
                         emp.getEmployeeDailyReport().getListofTimeIns().clear();
                         emp.getEmployeeDailyReport().getListofTimeOuts().clear();

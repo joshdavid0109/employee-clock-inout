@@ -6,8 +6,6 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 
 public class AttendanceServant implements Attendance {
     static Date serverDate = new Date();
@@ -72,8 +70,10 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
-    public void getSummary() throws RemoteException {
-
+    public EmployeeDailyReport getSummary() throws RemoteException {
+        Date date = new Date();
+        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(dateFormat.format(date));
+        return employeeDailyReport;
     }
 
     @Override

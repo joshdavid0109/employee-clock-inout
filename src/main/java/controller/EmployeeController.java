@@ -58,7 +58,7 @@ public class EmployeeController implements Initializable {
     private TableView<EmployeeDailyReport> tableView;
 
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd YYYY, HH:mm:ss");
 
     public EmployeeController() {
     }
@@ -96,7 +96,7 @@ public class EmployeeController implements Initializable {
 
         employee.getEmployeeDailyReport().setStatus("Working");
         employee.setStatus("Working");
-        employee.getEmployeeDailyReport().setTimeIn(timeFormat.format(date));
+        employee.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
     }
 
     @FXML
@@ -114,8 +114,7 @@ public class EmployeeController implements Initializable {
 
         employee.getEmployeeDailyReport().setStatus("On Break");
         employee.setStatus("On Break");
-        employee.getEmployeeDailyReport().setTimeOut(timeFormat.format(date));
-
+        employee.getEmployeeDailyReport().setTimeOut(dateFormat.format(date));
 
     }
 
@@ -127,16 +126,39 @@ public class EmployeeController implements Initializable {
 
             List<EmployeeReport> reports = new ArrayList<>();
 
+            if (employee.getEmployeeDailyReport().getListofTimeOuts().size() ==
+                    employee.getEmployeeDailyReport().getListofTimeIns().size()) {
+                for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
 
-            for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
-                String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
-                String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                if (i == 0) {
-                    employeeReport.setDate(timeOut.split(", ")[0]);
+                    String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
+                    String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                    EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                    if (i == 0) {
+                        employeeReport.setDate(timeOut.split(", ")[0]);
+                    }
+                    reports.add(employeeReport);
                 }
-                reports.add(employeeReport);
+            } else if (employee.getEmployeeDailyReport().getListofTimeOuts().size() <
+                    employee.getEmployeeDailyReport().getListofTimeIns().size()) {
+                for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeIns().size(); i++) {
+                    String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
+                    String timeOut;
+                    EmployeeReport employeeReport = null;
+                    if (employee.getEmployeeDailyReport().getListofTimeIns().size() - 1 == i){
+                        timeOut = "";
+                        employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut);
+                    }else {
+                        timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                        employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                    }
+                    if (i == 0) {
+                        employeeReport.setDate(timeOut.split(", ")[0]);
+                    }
+                    reports.add(employeeReport);
+                }
             }
+
+
             EmployeeTable.employeeDailyReport = reports;
 
             Pane employeeTable = fxmlLoader.load();
