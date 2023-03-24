@@ -106,6 +106,13 @@ public class JSONHandler {
         }
     }
 
+    public static void main(String[] args) {
+        Date date = new Date();
+        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
+        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
+        addTimeIn(ep.getEmpID(), date);
+    }
+
     private static void registerEmployee(String username, String password) {
         try (FileWriter writer = new FileWriter(pendingRegistersList)) {
             List<EmployeeProfile> pendingRegisters = getPendingRegistersFromFile();
