@@ -27,7 +27,7 @@ public class LoginInterface extends Application {
         LoginController loginController = fxmlLoader.getController();
 
         try {
-            Registry registry = LocateRegistry.getRegistry(2345);
+            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
             stub = (Attendance) registry.lookup("sayhi");
 /*
             "Can not connect to the server. The server" +
