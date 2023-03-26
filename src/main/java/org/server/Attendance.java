@@ -1,4 +1,8 @@
-package org.shared_classes;
+package org.server;
+
+import org.shared_classes.CredentialsErrorException;
+import org.shared_classes.EmployeeDailyReport;
+import org.shared_classes.EmployeeProfile;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
