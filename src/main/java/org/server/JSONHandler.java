@@ -4,12 +4,6 @@ package org.server;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.layout.Pane;
 import org.shared_classes.*;
 
 import java.io.*;
@@ -32,12 +26,13 @@ public class JSONHandler {
     private static final Gson gson = gsonBuilder
             .create();
     static private final String employeesJSONPath = "employees.json";
+    static public File summaryReportsFile = new File("summaryReports.json");
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
     static private final String pendingRegistersList = "registers.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
-            List<EmployeeProfile> employees = getFromFile();
+            List<EmployeeProfile> employees = getEmployeesFromFile();
 
             if (username.equals("") || password.equals("")) {
                 throw new EmptyFieldsException();
@@ -78,7 +73,7 @@ public class JSONHandler {
     //true = logged in, false logged out
     public static void setEmployeeStatus(String EmployeeID, boolean loggedIn) {
         try {
-            List<EmployeeProfile> employees = getFromFile();
+            List<EmployeeProfile> employees = getEmployeesFromFile();
 
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(EmployeeID)) {
@@ -98,7 +93,7 @@ public class JSONHandler {
 
     public static void checkIfValidRegistration(EmployeeProfile employeeProfile) {
         try {
-            List<EmployeeProfile> employees = getFromFile();
+            List<EmployeeProfile> employees = getEmployeesFromFile();
 
 //            System.out.println(employees);
 
@@ -120,13 +115,13 @@ public class JSONHandler {
         }
     }
 
-/*    public static void main(String[] args) {
-//        Date date = new Date();
-//        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
-//        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
-        checkIfValidLogIn("asdcasdxasx", "asdcqwxewqx#");
-//        addTimeIn(ep.getEmpID(), date);
-    }*/
+    public static void main(String[] args) {
+        Date date = new Date();
+        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser1");
+        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
+//        checkIfValidLogIn("asdcasdxasx", "asdcqwxewqx#");
+        addTimeIn(ep.getEmpID(), date);
+    }
 
     private static void registerEmployee(String username, String password) {
         try (FileWriter writer = new FileWriter(pendingRegistersList)) {
@@ -155,7 +150,7 @@ public class JSONHandler {
     public static void addTimeIn(String employeeID, Date d) {
 
         try {
-            List<EmployeeProfile> employees = getFromFile();
+            List<EmployeeProfile> employees = getEmployeesFromFile();
 
             for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
                 EmployeeProfile emp = employees.get(i);
@@ -169,20 +164,29 @@ public class JSONHandler {
                     //add timein
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
 
+                    List<SummaryReport> summaryReports = getSummaryReportsFromFile();
+
                     if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
                         List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                         List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
+
+
                         SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
                         summaryReport.setTimeIns(ins);
                         summaryReport.setTimeOuts(outs);
-                        emp.getSummaryReport().add(summaryReport);
+                        summaryReport.setEmpID(emp.getEmpID());
+                        summaryReports.add(summaryReport);
+//                        emp.getSummaryReport().add(summaryReport); // to be removed?
 
                         emp.getEmployeeDailyReport().getListofTimeIns().clear();
                         emp.getEmployeeDailyReport().getListofTimeOuts().clear();
                         emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                         employees.add(i, emp);
                         employees.remove(i);
+
+                        addSummaryToFile(summaryReports);
+
                         break;
                     }
 
@@ -213,11 +217,39 @@ public class JSONHandler {
         }
     }
 
+    private static List<SummaryReport> getSummaryReportsFromFile() {
+        try (Reader reader = Files.newBufferedReader(summaryReportsFile.toPath())) {
+            List<SummaryReport> summaryReports = new ArrayList<>();
+//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
+            JsonParser parser = new JsonParser();
+            JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
+            SummaryReport summaryReport = null;
+            for (int i = 0; i < rootoObj.size(); i++) {
+                JsonElement element = rootoObj.get(i);
+                summaryReports.add(gson.fromJson(element, SummaryReport.class));
+            }
+            return summaryReports;
+//            JsonElement jsonElement = gson.toJsonTree(new EmployeeProfile());
+        } catch (Exception e) {
+            System.err.println("FILE NOT FOUND");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static void addSummaryToFile(List<SummaryReport> summaryReports) {
+        try (FileWriter writer = new FileWriter(summaryReportsFile)) {
+            gson.toJson(summaryReports, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void addTimeOut(String employeeID, Date d) {
 //        SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
         try {
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            List<EmployeeProfile> employees = getFromFile();
+            List<EmployeeProfile> employees = getEmployeesFromFile();
 
             for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
                 EmployeeProfile emp = employees.get(i);
@@ -259,7 +291,7 @@ public class JSONHandler {
     }
 
     public static void writeGSon(List<EmployeeProfile> list) {
-        try (FileWriter writer = new FileWriter(pendingRegistersList)) {
+        try (FileWriter writer = new FileWriter(employeesJSONPath)) {
             gson.toJson(list, writer);
         } catch (Exception e) {
             e.printStackTrace();
@@ -271,7 +303,7 @@ public class JSONHandler {
      *
      * @return A list of EmployeeProfile objects.
      */
-    public static List<EmployeeProfile> getFromFile() {
+    public static List<EmployeeProfile> getEmployeesFromFile() {
         try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();

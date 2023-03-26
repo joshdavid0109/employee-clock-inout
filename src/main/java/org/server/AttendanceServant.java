@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AttendanceServant implements Attendance {
     static Date serverDate = new Date();
-    static List<EmployeeProfile> empList = JSONHandler.getFromFile();
+    static List<EmployeeProfile> empList = JSONHandler.getEmployeesFromFile();
     private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");

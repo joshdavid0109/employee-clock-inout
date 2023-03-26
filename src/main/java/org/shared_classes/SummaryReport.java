@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SummaryReport implements Serializable {
+    private String empID;
+    private String date;
     private List<String> timeIns;
     private List<String> timeOuts ;
-    private String date;
 
     public SummaryReport(String date) {
         this.date = date;
@@ -35,5 +36,13 @@ public class SummaryReport implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEmpID() {
+        return empID;
+    }
+
+    public void setEmpID(String empID) {
+        this.empID = empID;
     }
 }

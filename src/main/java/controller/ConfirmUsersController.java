@@ -11,11 +11,8 @@ import org.shared_classes.Attendance;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 import org.server.*;
-import org.shared_classes.EmployeeReport;
 
 import java.net.URL;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.*;
 
 public class ConfirmUsersController implements Initializable {
@@ -56,7 +53,7 @@ public class ConfirmUsersController implements Initializable {
                         String employeeID = "EMP"+UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
                         pendingEmp.setEmpID(employeeID);
                         pendingEmp.setPersonalDetails(new EmployeeDetails());
-                        List<EmployeeProfile> empi = JSONHandler.getFromFile();
+                        List<EmployeeProfile> empi = JSONHandler.getEmployeesFromFile();
                         empi.add(pendingEmp);
                         JSONHandler.addToFile(empi);
                         Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +

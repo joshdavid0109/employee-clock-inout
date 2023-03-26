@@ -158,7 +158,6 @@ public class EmployeeController implements Initializable {
                 }
             }
 
-
             EmployeeTable.employeeDailyReport = reports;
 
             Pane employeeTable = fxmlLoader.load();
