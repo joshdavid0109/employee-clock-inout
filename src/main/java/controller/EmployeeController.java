@@ -243,6 +243,10 @@ public class EmployeeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            /**
+             * CHANGE HOST
+             */
+//            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
             Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
@@ -253,7 +257,7 @@ public class EmployeeController implements Initializable {
 
         date = new Date();
         System.out.println("B  " + date);
-        dateLabel.setText(dateFormat.format(date));
+        dateLabel.setText(dateFormat.format(date).split(", ")[0]);
 
 
         // Timer Animation
