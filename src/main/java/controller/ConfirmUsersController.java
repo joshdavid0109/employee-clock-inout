@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.shared_classes.Attendance;
+import org.server.Attendance;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 import org.server.*;
