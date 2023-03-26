@@ -11,11 +11,12 @@
     },
     "isLoggedIn": false,
     "employeeDailyReport": {
-      "timeIn": "Mar 26 2023, 09:26:33",
-      "timeOut": "Mar 24 2023, 22:20:34",
-      "date": "Mar 23 2023",
+      "timeIn": "Mar 26 2023, 18:26:30",
+      "timeOut": "Mar 26 2023, 14:27:20",
+      "date": "Mar 26 2023, 18:26:30",
       "listofTimeIns": [
-        "Mar 26 2023, 09:26:33"
+        "Mar 26 2023, 18:26:30",
+        "Mar 26 2023, 18:26:30"
       ],
       "listofTimeOuts": []
     }

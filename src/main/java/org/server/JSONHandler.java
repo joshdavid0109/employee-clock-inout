@@ -117,7 +117,7 @@ public class JSONHandler {
 
     public static void main(String[] args) {
         Date date = new Date();
-        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser1");
+        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser11");
         ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
 //        checkIfValidLogIn("asdcasdxasx", "asdcqwxewqx#");
         addTimeIn(ep.getEmpID(), date);
@@ -161,15 +161,17 @@ public class JSONHandler {
                         emp.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(d.getDate())));
                     }
 
+                    emp.getEmployeeDailyReport().setDate(dateFormat.format(d));
+
                     //add timein
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
 
                     List<SummaryReport> summaryReports = getSummaryReportsFromFile();
 
+                    // check if same date, write sa summary report if not
                     if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
                         List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                         List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
-
 
 
                         SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
@@ -181,6 +183,8 @@ public class JSONHandler {
 
                         emp.getEmployeeDailyReport().getListofTimeIns().clear();
                         emp.getEmployeeDailyReport().getListofTimeOuts().clear();
+                        emp.getEmployeeDailyReport().setDate(dateFormat.format(d).split(", ")[0]);
+                        emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                         emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                         employees.add(i, emp);
                         employees.remove(i);
