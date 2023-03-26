@@ -9,6 +9,7 @@ import org.shared_classes.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,10 +26,12 @@ public class JSONHandler {
             .setPrettyPrinting();
     private static final Gson gson = gsonBuilder
             .create();
-    static private final String employeesJSONPath = "employees.json";
-    static public File summaryReportsFile = new File("summaryReports.json");
+
+    static private final File employeesJSONPath = new File("employees.json");
+    static private final File summaryReportsFile = new File("summaryReports.json");
+    static private final File pendingRegistersList = new File("registers.json");
+
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
-    static private final String pendingRegistersList = "registers.json";
 
     public static EmployeeProfile checkIfValidLogIn(String username, String password) {
         try {
@@ -89,38 +92,6 @@ public class JSONHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void checkIfValidRegistration(EmployeeProfile employeeProfile) {
-        try {
-            List<EmployeeProfile> employees = getEmployeesFromFile();
-
-//            System.out.println(employees);
-
-            for (EmployeeProfile emp : employees) {
-                // *|MARCADOR_CURSOR|*
-                if (emp.getUserName().equals(employeeProfile.getUserName()) || !checkValidPassword(employeeProfile.getPassWord()) ) {
-//                    System.out.println(emsp);
-                    System.out.println("username taken or password invalid or passwords aint the saem lol try again noob");
-                } else {
-                    System.out.println(emp);
-                    System.out.println("Successful login.");
-                    registerEmployee(employeeProfile.getFullName(), employeeProfile.getPassWord()); //TODO for some reason nabubura yung employees.json if this runs idk why
-                }
-                break;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        Date date = new Date();
-        EmployeeProfile ep = new EmployeeProfile("c123c", "testuser", "testuser1");
-        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
-//        checkIfValidLogIn("asdcasdxasx", "asdcqwxewqx#");
-        addTimeIn(ep.getEmpID(), date);
     }
 
     private static void registerEmployee(String username, String password) {
@@ -304,7 +275,7 @@ public class JSONHandler {
      * @return A list of EmployeeProfile objects.
      */
     public static List<EmployeeProfile> getEmployeesFromFile() {
-        try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try (Reader reader = Files.newBufferedReader(employeesJSONPath.toPath())) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             JsonParser parser = new JsonParser();
@@ -331,7 +302,7 @@ public class JSONHandler {
     }
 
     public static List<EmployeeProfile> getPendingRegistersFromFile() {
-        try (Reader reader = Files.newBufferedReader(Paths.get(pendingRegistersList))) {
+        try (Reader reader = Files.newBufferedReader(pendingRegistersList.toPath())) {
             Type dataType = new TypeToken<List<EmployeeProfile>>() {
             }.getType();
             List<EmployeeProfile> temp = gson.fromJson(reader, dataType);
@@ -358,7 +329,7 @@ public class JSONHandler {
 
 
     public static List<EmployeeProfile> populateTable() {
-        try (Reader reader = Files.newBufferedReader(Paths.get(employeesJSONPath))) {
+        try (Reader reader = Files.newBufferedReader(employeesJSONPath.toPath())) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             JsonParser parser = new JsonParser();
@@ -399,5 +370,11 @@ public class JSONHandler {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public static byte getCurrentStatus(String employeeID) {
+        //habang ginagawa ko ito, i realized na wala pala sa json yung
+        //current status, saan kukunin current status pala ng current user?
+        return 2;
     }
 }

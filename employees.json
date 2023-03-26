@@ -9,15 +9,27 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
     "employeeDailyReport": {
-      "timeIn": "Mar 26 2023, 09:26:33",
-      "timeOut": "Mar 24 2023, 22:20:34",
+      "timeIn": "Mar 26 2023, 23:46:28",
+      "timeOut": "Mar 26 2023, 23:46:29",
       "date": "Mar 23 2023",
       "listofTimeIns": [
-        "Mar 26 2023, 09:26:33"
+        "Mar 26 2023, 09:26:33",
+        "Mar 26 2023, 14:52:59",
+        "Mar 26 2023, 14:52:59",
+        "Mar 26 2023, 14:53:00",
+        "Mar 26 2023, 23:26:24",
+        "Mar 26 2023, 23:46:28"
       ],
-      "listofTimeOuts": []
+      "listofTimeOuts": [
+        "Mar 26 2023, 14:52:58",
+        "Mar 26 2023, 14:52:59",
+        "Mar 26 2023, 14:53:00",
+        "Mar 26 2023, 14:53:06",
+        "Mar 26 2023, 23:26:26",
+        "Mar 26 2023, 23:46:29"
+      ]
     }
   },
   {

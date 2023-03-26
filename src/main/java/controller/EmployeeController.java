@@ -13,7 +13,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.server.Attendance;
-import org.server.JSONHandler;
 import org.shared_classes.*;
 
 import java.io.IOException;
@@ -179,8 +178,7 @@ public class EmployeeController implements Initializable {
     void logOut(MouseEvent event) throws IOException {
 
         logOutButton.getScene().getWindow().hide();
-
-        JSONHandler.setEmployeeStatus(employee.getEmpID(), false);
+        stub.setStatus(employee.getEmpID(), false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
@@ -277,5 +275,19 @@ public class EmployeeController implements Initializable {
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
         }
+    }
+
+    public void editProfile(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/EditProfile.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage addEmployeeWindow = new Stage();
+        addEmployeeWindow.setTitle("TODO :) ");
+        addEmployeeWindow.setScene(scene);
+        addEmployeeWindow.show();
+
+        Alert x = new Alert(Alert.AlertType.WARNING, "idontknow how to make ui, i shall do the backend parts nalang:)");
+        x.show();
     }
 }
