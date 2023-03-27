@@ -201,6 +201,8 @@ public class ServerController implements Initializable {
 
         tableView.setItems(sortedList);
 
+
+        // not sure abt this hahaha gawin ko sana separate column yung status color ng employee
 /*        status.setCellFactory(column -> {
             TableCell<EmployeeProfile, String> cell = new TableCell<EmployeeProfile, String>() {
                 @Override
