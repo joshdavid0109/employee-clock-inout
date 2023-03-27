@@ -92,6 +92,7 @@ public class EmployeeController implements Initializable {
 
         Date date = new Date();
         try {
+            employee.setStatus("Working");
             date = stub.timeIn(employee.getEmpID());
             timeInButton.setDisable(true);
             timeOutButton.setDisable(false);
@@ -101,7 +102,7 @@ public class EmployeeController implements Initializable {
         }
 
         employee.getEmployeeDailyReport().setStatus("Working");
-        employee.setStatus("Working");
+
         employee.getEmployeeDailyReport().setTimeIn(dateFormat.format(date));
     }
 
@@ -113,6 +114,7 @@ public class EmployeeController implements Initializable {
         imageViewIcon.setImage(timOutImage);
         Date date = new Date();
         try {
+            employee.setStatus("On Break");
             date = stub.timeOut(employee.getEmpID());
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
@@ -121,7 +123,7 @@ public class EmployeeController implements Initializable {
         }
 
         employee.getEmployeeDailyReport().setStatus("On Break");
-        employee.setStatus("On Break");
+
         employee.getEmployeeDailyReport().setTimeOut(dateFormat.format(date));
 
     }

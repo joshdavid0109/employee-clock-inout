@@ -13,7 +13,7 @@
                <children>
                   <TableView fx:id="tableView" prefHeight="473.0" prefWidth="752.0">
                     <columns>
-                      <TableColumn fx:id="columnId" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="columnId" prefWidth="139.0" text="ID" />
                       <TableColumn fx:id="lnColumn" prefWidth="75.0" text="Last Name" />
                         <TableColumn fx:id="fnColumn" prefWidth="75.0" text="First Name" />
                         <TableColumn fx:id="statusColumn" prefWidth="112.7999267578125" text="Status" />
@@ -80,7 +80,7 @@
       </Pane>
       <Pane layoutX="25.0" layoutY="180.0" prefHeight="35.0" prefWidth="768.0" style="-fx-background-color: #065659;">
          <children>
-            <TextField fx:id="searchField" layoutX="14.0" layoutY="4.0" onInputMethodTextChanged="#searchEmpID" prefHeight="25.0" prefWidth="175.0" promptText="Enter Employee ID" style="-fx-background-radius: 15;" />
+            <TextField fx:id="searchField" layoutX="14.0" layoutY="4.0" prefHeight="25.0" prefWidth="175.0" promptText="Enter Employee ID" style="-fx-background-radius: 15;" />
             <Text fx:id="adminNameLabel2212" fill="WHITE" layoutX="350.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMED IN">
                <font>
                   <Font name="System Bold" size="18.0" />

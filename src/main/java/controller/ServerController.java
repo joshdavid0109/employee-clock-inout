@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +34,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
 public class ServerController implements Initializable {
 
+    public TableColumn status;
     @FXML
     private Text adminNameLabel, companyNameLabel, genReport;
 
@@ -47,7 +51,7 @@ public class ServerController implements Initializable {
     private TableColumn<EmployeeProfile, String> columnId;
 
     @FXML
-    private TableColumn<EmployeeProfile, Date> dateColumn;
+    private TableColumn<EmployeeProfile, String> dateColumn;
 
     @FXML
     private TableColumn<EmployeeProfile, String> fnColumn;
@@ -95,40 +99,6 @@ public class ServerController implements Initializable {
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
         tableView.setItems(tableData);
         tableView.refresh();
-    }
-
-
-
-    @FXML
-    void searchEmpID(InputMethodEvent event) {
-        String input = event.getCommitted();
-
-        searchField.setOnKeyPressed(keyEvent -> {
-            if (keyEvent.getCode().equals(KeyCode.ENTER))
-                System.out.println(input);
-        });
-
-
-       /* List<EmployeeProfile> list = JSONHandler.populateTable();
-        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
-        FilteredList<EmployeeProfile> filteredList = new FilteredList<>(tableData, p -> true);
-        tableView.setItems(filteredList);
-
-        ChoiceBox<String> choiceBox = new ChoiceBox<>();
-        choiceBox.getItems().addAll("empID");
-        choiceBox.setValue("empID");
-        searchField.textProperty().addListener((observableValue, s, t1) -> {
-            switch (choiceBox.getValue()) {
-                case "empID":
-                    filteredList.setPredicate(p -> p.getEmpID().toLowerCase(Locale.ROOT).contains(t1.toLowerCase().trim()));
-                    break;
-            }
-        });
-
-        choiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            if (t1 != null)
-                searchField.setText("");
-        });*/
     }
 
     /**
@@ -188,12 +158,78 @@ public class ServerController implements Initializable {
                 Bindings.selectString(cell.getValue().getPersonalDetails(), "lastName"));
         fnColumn.setCellValueFactory(cell ->
                 Bindings.selectString(cell.getValue().getPersonalDetails(), "firstName"));
+        dateColumn.setCellValueFactory(cell ->
+        {
+            Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "date");
+            return Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "date");
+        });
         statusColumn.setCellValueFactory(cell ->
-                Bindings.selectString(cell.getValue(), "isLoggedIn"));
+        {
+            Bindings.selectString(cell.getValue(), "status");
+            return Bindings.selectString(cell.getValue(), "status");
+        });
 
         tableView.setItems(tableData);
         tableView.refresh();
 
+
+        // For searchField -- works only for empID
+        // uncomment lines if gusto nyo working pati sa name
+
+        FilteredList<EmployeeProfile> filteredList = new FilteredList<>(tableData, p -> true);
+        tableView.setItems(filteredList);
+
+        searchField.textProperty().addListener((observableValue, s, t1) -> {
+            filteredList.setPredicate(employeeProfile -> {
+                if (t1 == null || t1.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = t1.toLowerCase();
+
+                return employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter);
+
+                /*if  (employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else return employeeProfile.getFullName().toLowerCase().contains(lowerCaseFilter);*/
+            });
+        });
+
+        SortedList<EmployeeProfile> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+
+        tableView.setItems(sortedList);
+
+/*        status.setCellFactory(column -> {
+            TableCell<EmployeeProfile, String> cell = new TableCell<EmployeeProfile, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null)
+                        setStyle("");
+                    else if (item.getIsLoggedIn().equals("online")) {
+                        setStyle("-fx-background-color: #50C878;");
+                    } else
+                        setStyle("-fx-background-color: #EE4B2B;");
+                }
+        })*/
+
+            tableView.setRowFactory(tv -> new TableRow<>(){
+        @Override
+        protected void updateItem(EmployeeProfile item, boolean empty) {
+            super.updateItem(item, empty);
+
+
+
+            if (item == null)
+                setStyle("");
+            else if (item.getIsLoggedIn().equals("online")) {
+                setStyle("-fx-background-color: #50C878;");
+            } else
+                setStyle("-fx-background-color: #FA5F55;");
+        }
+    });
 
     }
 
@@ -207,6 +243,9 @@ public class ServerController implements Initializable {
         addEmployeeWindow.setScene(scene);
         addEmployeeWindow.show();
 
+    }
+
+    public void printReport(ActionEvent event) {
     }
 
 /*    @FXML

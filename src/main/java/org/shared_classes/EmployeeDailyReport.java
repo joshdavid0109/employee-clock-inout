@@ -29,7 +29,6 @@ public class EmployeeDailyReport implements Serializable {
     public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
         listofTimeIns.add(timeIn);
-
     }
 
     public String getTimeOut() {

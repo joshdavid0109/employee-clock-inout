@@ -146,14 +146,11 @@ public class JSONHandler {
                         List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                         List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
-
-
                         SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
                         summaryReport.setTimeIns(ins);
                         summaryReport.setTimeOuts(outs);
                         summaryReport.setEmpID(emp.getEmpID());
                         summaryReports.add(summaryReport);
-//                        emp.getSummaryReport().add(summaryReport); // to be removed?
 
                         emp.getEmployeeDailyReport().getListofTimeIns().clear();
                         emp.getEmployeeDailyReport().getListofTimeOuts().clear();
@@ -167,6 +164,8 @@ public class JSONHandler {
                     }
 
                     emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
+                    emp.status = "Working";
+                    emp.getEmployeeDailyReport().setDate(dateFormat.format(d).split(", ")[0]);
                     JsonElement timeIns = gson.toJsonTree(timeIs);
 
                     //add timein sa json file
@@ -222,9 +221,7 @@ public class JSONHandler {
     }
 
     public static void addTimeOut(String employeeID, Date d) {
-//        SimpleDateFormat format1 = new SimpleDateFormat("MMM dd yyyy, hh:mm:ss ");
         try {
-//            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
             for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
@@ -241,6 +238,7 @@ public class JSONHandler {
                     List<String> timeOs = emp.getEmployeeDailyReport().getListofTimeOuts();
 
                     emp.getEmployeeDailyReport().setTimeOut(dateFormat.format(d));
+                    emp.status = "On Break";
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
 
                     //add timeout sa json file
@@ -386,9 +384,43 @@ public class JSONHandler {
         }
     }
 
+    /**
+     * 0 - on break
+     * 1 - working
+     * @param employeeID
+     * @return
+     */
     public static byte getCurrentStatus(String employeeID) {
         //habang ginagawa ko ito, i realized na wala pala sa json yung
         //current status, saan kukunin current status pala ng current user?
-        return 2;
+
+        try {
+            List<EmployeeProfile> employees = getEmployeesFromFile();
+
+            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+                EmployeeProfile emp = employees.get(i);
+                if (emp.getEmpID().equals(employeeID)) {
+                    JsonElement jsonElement = gson.toJsonTree(emp);
+                    //add timeout
+                    Date d = new Date();
+
+                    if (emp.getEmployeeDailyReport() == null) {
+                        emp.setEmployeeDailyReport(new EmployeeDailyReport(String.valueOf(d.getDate())));
+                    }
+
+                    //add timeout sa json file
+                    String stat = String.valueOf(jsonElement.getAsJsonObject().get("status"));
+
+                    if (stat.equals("Working"))
+                        return 1;
+                    else
+                        return 0;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("FILE NOT FOUND");
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
