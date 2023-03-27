@@ -211,6 +211,11 @@
       "age": 12,
       "gender": "Male"
     },
-    "isLoggedIn": false
+    "isLoggedIn": true,
+    "employeeDailyReport": {
+      "date": "27",
+      "listofTimeIns": [],
+      "listofTimeOuts": []
+    }
   }
 ]

@@ -55,8 +55,9 @@ public class JSONHandler {
                         }
                     }
                     throw new CredentialsErrorException();
-                } else
+                } else if (employees.get(employees.size()-1).equals(employee)) {
                     throw new UserNotExistingException();
+                }
             }
             throw new CredentialsErrorException();
         } catch (UserCurrentlyLoggedInException | CredentialsErrorException  | EmptyFieldsException |
