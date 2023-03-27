@@ -183,5 +183,34 @@
       "listofTimeIns": [],
       "listofTimeOuts": []
     }
+  },
+  {
+    "empID": "EMP67ab24cf",
+    "userName": "@reybans",
+    "passWord": "reyrey",
+    "personalDetails": {
+      "firstName": "Rey",
+      "lastName": "Jhon",
+      "age": 20,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "date": "27",
+      "listofTimeIns": [],
+      "listofTimeOuts": []
+    }
+  },
+  {
+    "empID": "EMP39ffb59c",
+    "userName": "franzxdsu",
+    "passWord": "ssss",
+    "personalDetails": {
+      "firstName": "franz",
+      "lastName": "xxxx",
+      "age": 12,
+      "gender": "Male"
+    },
+    "isLoggedIn": false
   }
 ]

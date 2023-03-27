@@ -51,28 +51,23 @@ public class ConfirmUsersController implements Initializable {
             Optional<ButtonType> input = dialog.showAndWait();
             if (input.get() == yes) {
                 for (EmployeeProfile pendingEmp : pendingEmployees) {
-                    System.out.println("Z "+pendingEmp.equals(employeeProfile));
-                    System.out.println("X "+pendingEmp);
-                    System.out.println("C "+employeeProfile);
                     if (pendingEmp.equals(employeeProfile)) {
-                        System.out.println("V "+pendingEmp);
                         pendingEmployees.remove(pendingEmp);
                         pendingEmp.setEmpID(generateID());
-                        pendingEmp.setPersonalDetails(new EmployeeDetails());
                         List<EmployeeProfile> empi = JSONHandler.getEmployeesFromFile();
 
                         System.out.println(" K \n\n"+empi);
                         System.out.println(" G \n\n"+pendingEmp);
 
                         empi.add(pendingEmp);
-                        JSONHandler.addToFile(empi);
+                        JSONHandler.writeGSon(empi, "employees");
                         Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +
                                 "ID: "+pendingEmp.getEmpID());
                         accepted.show();
                         break;
                     }
                 }
-                JSONHandler.writeGSon(pendingEmployees);
+                JSONHandler.writeGSon(pendingEmployees, "pending");
                 updateTable();
             } else
                 dialog.close();
@@ -107,7 +102,7 @@ public class ConfirmUsersController implements Initializable {
                     }
                 }
 
-                JSONHandler.writeGSon(pendingEmployees);
+                JSONHandler.writeGSon(pendingEmployees, "pending");
                 updateTable();
             } else
                 dialog.close();

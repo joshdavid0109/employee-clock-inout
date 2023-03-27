@@ -17,7 +17,9 @@ public class AdminLoginInterface extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
+
 
     public static void main(String[] args) {
         launch(args);
