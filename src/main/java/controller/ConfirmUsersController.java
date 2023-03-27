@@ -38,6 +38,9 @@ public class ConfirmUsersController implements Initializable {
     @FXML
     void acceptUser(ActionEvent event) {
         EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
+
+        System.out.println("C  "+employeeProfile);
+
         if (employeeProfile != null) {
             Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
                     " accept " + employeeProfile.getUserName() + "?");
@@ -48,16 +51,23 @@ public class ConfirmUsersController implements Initializable {
             Optional<ButtonType> input = dialog.showAndWait();
             if (input.get() == yes) {
                 for (EmployeeProfile pendingEmp : pendingEmployees) {
+                    System.out.println("Z "+pendingEmp.equals(employeeProfile));
+                    System.out.println("X "+pendingEmp);
+                    System.out.println("C "+employeeProfile);
                     if (pendingEmp.equals(employeeProfile)) {
+                        System.out.println("V "+pendingEmp);
                         pendingEmployees.remove(pendingEmp);
-                        String employeeID = "EMP"+UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
-                        pendingEmp.setEmpID(employeeID);
+                        pendingEmp.setEmpID(generateID());
                         pendingEmp.setPersonalDetails(new EmployeeDetails());
                         List<EmployeeProfile> empi = JSONHandler.getEmployeesFromFile();
+
+                        System.out.println(" K \n\n"+empi);
+                        System.out.println(" G \n\n"+pendingEmp);
+
                         empi.add(pendingEmp);
                         JSONHandler.addToFile(empi);
                         Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +
-                                "ID: "+employeeID);
+                                "ID: "+pendingEmp.getEmpID());
                         accepted.show();
                         break;
                     }
@@ -71,6 +81,10 @@ public class ConfirmUsersController implements Initializable {
             Alert x = new Alert(Alert.AlertType.WARNING, "Choose an employee");
             x.show();
         }
+    }
+
+    private String generateID() {
+        return "EMP" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8);
     }
 
     @FXML

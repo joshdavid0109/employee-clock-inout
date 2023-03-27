@@ -360,9 +360,6 @@ public class JSONHandler {
         List<EmployeeProfile> pendingEmployees = getPendingRegistersFromFile();
         pendingEmployees.add(profile);
 
-        /*System.out.println("A "+profile);
-        System.out.println("B "+pendingEmployees);*/
-
         try (Writer writer = new FileWriter(pendingRegistersList)) {
             gson.toJson(pendingEmployees, writer);
         }
