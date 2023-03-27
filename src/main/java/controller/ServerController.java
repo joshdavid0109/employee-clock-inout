@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.JsonObject;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,8 @@ import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -93,6 +96,8 @@ public class ServerController implements Initializable {
         tableView.setItems(tableData);
         tableView.refresh();
     }
+
+
 
     @FXML
     void searchEmpID(InputMethodEvent event) {
@@ -203,4 +208,18 @@ public class ServerController implements Initializable {
         addEmployeeWindow.show();
 
     }
+
+/*    @FXML
+    public void printReport(ActionEvent event) {
+        String jsonString;
+        JsonObject jsonObject;
+
+        try {
+            jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
+
+            jsonObject = gson.fromJson(jsonString);
+
+
+        }
+    }*/
 }

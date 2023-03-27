@@ -211,7 +211,7 @@
       "age": 12,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "date": "27",
       "listofTimeIns": [],
