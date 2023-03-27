@@ -35,14 +35,6 @@ public class AttendanceServant implements Attendance {
         return employeeProfile;
     }
 
-/*    public static void main(String[] args) {
-//        Date date = new Date();
-//        EmployeeProfile ep = new EmployeeProfile("c123b", "testuser", "testuser");
-//        ep.setPersonalDetails(new EmployeeDetails("Test", "asd", 14, "Male"));
-        .logIn("asdcasdxasx", "asdcqwxewqx#");
-//        addTimeIn(ep.getEmpID(), date);
-    }*/
-
 
     @Override
     public void signUp(EmployeeProfile employeeProfile) throws RemoteException {
@@ -85,10 +77,8 @@ public class AttendanceServant implements Attendance {
      *
      * @param employeeID employeeID
      * @return byte value that corresponds to a status
-     * @throws RemoteException lol
      */
     @Override
-
     public byte getCurrentStatus(String employeeID) throws RemoteException {
         return JSONHandler.getCurrentStatus(employeeID);
     }

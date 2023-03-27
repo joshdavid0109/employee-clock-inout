@@ -142,6 +142,8 @@ public class RegisterController implements Initializable {
         System.out.println(username);
         System.out.println(password);
 
+        System.out.println(" A " + emp);
+
         stub.signUp(emp);
     }
 

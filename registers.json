@@ -1,27 +1,35 @@
 [
   {
-    "userName": "asd",
-    "passWord": "asd",
+    "userName": "@franzxsu",
+    "passWord": "teamkuneho",
+    "personalDetails": {
+      "firstName": "Darren",
+      "lastName": "Franz",
+      "age": 19,
+      "gender": "Male"
+    },
     "isLoggedIn": false
   },
   {
-    "userName": "x",
-    "passWord": "x",
+    "userName": "@reybans",
+    "passWord": "reyrey",
+    "personalDetails": {
+      "firstName": "Rey",
+      "lastName": "Jhon",
+      "age": 20,
+      "gender": "Male"
+    },
     "isLoggedIn": false
   },
   {
-    "userName": "s",
-    "passWord": "s",
-    "isLoggedIn": false
-  },
-  {
-    "userName": "xxx",
-    "passWord": "xxx",
-    "isLoggedIn": false
-  },
-  {
-    "userName": "usarnam",
-    "passWord": "ccc",
+    "userName": "franzxdsu",
+    "passWord": "ssss",
+    "personalDetails": {
+      "firstName": "franz",
+      "lastName": "xxxx",
+      "age": 12,
+      "gender": "Male"
+    },
     "isLoggedIn": false
   }
 ]
