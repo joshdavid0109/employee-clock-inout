@@ -4,14 +4,17 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -19,23 +22,29 @@ import javafx.util.Duration;
 import org.server.Attendance;
 import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.EmptyFieldsException;
 
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegisterInformationController implements Initializable {
-
+    @FXML
+    private ComboBox<String> genderBox;
+    @FXML
+    private DatePicker datePicker;
     Attendance stub;
 
     @FXML
-    private TextField lastNameField, ageField, firstNameField;
+    private TextField lastNameField, firstNameField;
 
-    @FXML
-    private RadioButton maleBTN, femaleBTN;
 
     @FXML
     private AnchorPane registerInformationAnchorPane;
@@ -63,39 +72,52 @@ public class RegisterInformationController implements Initializable {
 
     @FXML
     public void loadRegisterGUI() throws IOException {
+        LocalDate localDate = LocalDate.now();
+        try {
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            LocalDate birthDate = datePicker.getValue();
+            int age = calculateAge(birthDate, localDate);
+            String gender = genderBox.getValue();
 
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        int age = Integer.parseInt(ageField.getText());
-        //todo gender hardcode muna
-        String gender = "Male";
+            EmployeeDetails employeeDetails = new EmployeeDetails(firstName, lastName, age, gender);
 
-        EmployeeDetails employeeDetails = new EmployeeDetails(firstName, lastName, age, gender);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterInterface.fxml"));
+            Parent root = loader.load();
+            RegisterController registerController = loader.getController();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RegisterInterface.fxml"));
-        Parent root = loader.load();
-        RegisterController registerController = loader.getController();
-
-        registerController.setEmployeeDetails(employeeDetails);
+            registerController.setEmployeeDetails(employeeDetails);
 
         /*registerController.setFirstName(firstName);
         registerController.setLastName(lastName);
         registerController.setAge(age);
         registerController.setGender(gender);*/
-        registerController.setStub(stub);
+            registerController.setStub(stub);
 
-        Scene scene = nextButton.getScene();
+            Scene scene = nextButton.getScene();
 
-        root.translateXProperty().set(scene.getWidth());
-        parentContainer.getChildren().add(root);
+            root.translateXProperty().set(scene.getWidth());
+            parentContainer.getChildren().add(root);
 
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+            Timeline timeline = new Timeline();
+            KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
 
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(registerInformationAnchorPane));
-        timeline.play();
+            timeline.getKeyFrames().add(keyFrame);
+            timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(registerInformationAnchorPane));
+            timeline.play();
+        } catch (EmptyFieldsException e) {
+            Alert dialog = new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK);
+            dialog.show();
+        }
+    }
+
+    private static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
+        if ((birthDate != null) && (currentDate != null)) {
+            return (Period.between(birthDate, currentDate).getYears());
+        } else {
+            throw new EmptyFieldsException();
+        }
     }
 
     @Override
@@ -106,5 +128,12 @@ public class RegisterInformationController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void clicky(MouseEvent mouseEvent) {
+        ObservableList<String> list = FXCollections.observableArrayList("Male", "Female", "Other");
+        genderBox.getItems().setAll(list);
+        genderBox.getSelectionModel().selectFirst();
     }
 }

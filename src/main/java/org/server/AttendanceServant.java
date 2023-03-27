@@ -57,8 +57,13 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
-    public void setStatus(String EmployeeID, boolean loggedIn) throws RemoteException {
-        JSONHandler.setEmployeeStatus(EmployeeID, loggedIn);
+    public void setStatus(String employeeID, boolean loggedIn) throws RemoteException {
+        JSONHandler.setEmployeeStatus(employeeID, loggedIn);
+    }
+
+    @Override
+    public void setPersonalDetails(String employeeID, EmployeeDetails employeeDetails) throws RemoteException {
+//        JSONHandler.setEmployeeDetails(employeeID, employeeDetails);
     }
 
     @Override

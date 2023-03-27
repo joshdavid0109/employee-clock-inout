@@ -211,7 +211,24 @@
       "age": 12,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
+    "employeeDailyReport": {
+      "date": "27",
+      "listofTimeIns": [],
+      "listofTimeOuts": []
+    }
+  },
+  {
+    "empID": "EMPca5fe510",
+    "userName": "patabobers",
+    "passWord": "patabobers",
+    "personalDetails": {
+      "firstName": "xd",
+      "lastName": "xd",
+      "age": 21,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
     "employeeDailyReport": {
       "date": "27",
       "listofTimeIns": [],
