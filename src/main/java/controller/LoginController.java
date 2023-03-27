@@ -116,21 +116,11 @@ public class LoginController implements Initializable {
                     throw new RuntimeException(e);
                 }
             });
+
         }catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException
                 | UserNotExistingException e) {
-            if (e instanceof UserCurrentlyLoggedInException ) {
-                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
-                dialog.show();
-            } else if (e instanceof CredentialsErrorException ) {
-                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
-                dialog.show();
-            } else if (e instanceof EmptyFieldsException){
-                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
-                dialog.show();
-            } else {
-                Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
-                dialog.show();
-            }
+            Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
+            dialog.show();
         }
     }
 
