@@ -82,6 +82,7 @@ public class JSONHandler {
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(EmployeeID)) {
                     emp.setLoggedIn(loggedIn);
+                    emp.setStatus("");
                     break;
                 }
             }
