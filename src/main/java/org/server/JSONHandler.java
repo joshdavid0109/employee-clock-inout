@@ -261,12 +261,24 @@ public class JSONHandler {
         }
     }
 
-    public static void writeGSon(List<EmployeeProfile> list) {
-        try (FileWriter writer = new FileWriter(employeesJSONPath)) {
-            gson.toJson(list, writer);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void writeGSon(List<EmployeeProfile> list, String path) {
+        switch(path){
+            case "employees":
+                try (FileWriter writer = new FileWriter(employeesJSONPath)) {
+                    gson.toJson(list, writer);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "pending":
+                try (FileWriter writer = new FileWriter(pendingRegistersList)) {
+                    gson.toJson(list, writer);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+
     }
 
     /**
