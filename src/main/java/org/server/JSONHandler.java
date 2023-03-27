@@ -9,8 +9,7 @@ import org.shared_classes.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JSONHandler {
+public class JSONHandler<TimeIn> {
 
     private static final GsonBuilder gsonBuilder = new GsonBuilder()
             .setDateFormat("MMM dd YYYY, HH:mm:ss")
@@ -424,4 +423,28 @@ public class JSONHandler {
         }
         return 0;
     }
+
+    /** incomplete.. need help.. zeph..*/
+    private List<TimeIn> timeInList;
+    public void getSummary() throws RemoteException {
+        Gson gson = new Gson();
+        try (Reader reader = new FileReader("summaryReports.json")) {
+            Type listType = new TypeToken<List<TimeIn>>() {}.getType();
+            timeInList = gson.fromJson(reader, listType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<TimeIn> search(Date startDate, Date endDate) throws RemoteException {
+        List<TimeIn> results = new ArrayList<>();
+        for (TimeIn data : timeInList) {
+            /** if statement to for the search part*/
+//            if (data.getDate().after(startDate) && data.getDate().before(endDate)) {
+//                results.add(data);
+//            }
+        }
+        return results;
+    }
+
 }

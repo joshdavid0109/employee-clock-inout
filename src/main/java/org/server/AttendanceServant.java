@@ -3,6 +3,7 @@ package org.server;
 import org.shared_classes.*;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -67,7 +68,7 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
-    public EmployeeDailyReport getSummary() throws RemoteException {
+    public EmployeeDailyReport getSummary(Date startDate, Date endDate) throws RemoteException {
         Date date = new Date();
         EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(dateFormat.format(date));
         return employeeDailyReport;
@@ -111,4 +112,5 @@ public class AttendanceServant implements Attendance {
     protected List<EmployeeProfile> getEmpList() {
         return empList;
     }
+
 }

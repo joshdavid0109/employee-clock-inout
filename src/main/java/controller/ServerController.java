@@ -69,7 +69,7 @@ public class ServerController implements Initializable {
     private TableView<EmployeeProfile> tableView;
 
     @FXML
-    private Button logOutButton, printBtn, refreshButton, addEmployeeButton;
+    private Button logOutButton, searchButton, printBtn, refreshButton, addEmployeeButton;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
 
@@ -104,6 +104,17 @@ public class ServerController implements Initializable {
     /**
      * zephhhhhhhhhhhhhhhhhhh
      */
+//    void summary(ActionEvent event) throws IOException {
+//
+//        Date startDate = fromTF.getValue();
+//        Date endDate = toTf.getValue();
+//
+//        if (startDate != null && endDate != null) {
+//            List<Data> searchResults = dataService.search(startDate, endDate);
+//
+//        }
+//    }
+
 //    public void generateReport (ActionEvent actionEvent) throws IOException {
 //        genReport.setText("Generate Report");
 //        //var fromTF = fromTF.getText();
