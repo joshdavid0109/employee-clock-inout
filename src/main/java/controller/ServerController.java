@@ -70,12 +70,19 @@ public class ServerController implements Initializable {
 //    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
     private static final AttendanceServant ers = new AttendanceServant();
 
-    public ServerController() throws IOException {
-    }
+    public ServerController() throws IOException {}
 
     @FXML
-    void logOut(ActionEvent event) {
+    void logOut(ActionEvent event) throws IOException {
 
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/AdminLoginInterface.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) logOutButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

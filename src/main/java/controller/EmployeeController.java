@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -56,11 +58,13 @@ public class EmployeeController implements Initializable {
     @FXML
     private TableView<EmployeeDailyReport> tableView;
 
+    @FXML
+    private ImageView imageViewIcon;
+
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd YYYY, HH:mm:ss");
 
-    public EmployeeController() {
-    }
+    public EmployeeController() {}
 
     public EmployeeController(EmployeeProfile employee) {
         EmployeeController.employee = employee;
@@ -81,8 +85,11 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void addTimeIn(MouseEvent event) {
+        Image timeInImage = new Image("TYPING_ICON.gif");
 
         statusLabel.setText("TIMED IN");
+        imageViewIcon.setImage(timeInImage);
+
         Date date = new Date();
         try {
             date = stub.timeIn(employee.getEmpID());
@@ -100,8 +107,10 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void addTimeOut(MouseEvent event) {
+        Image timOutImage = new Image("TIME_OUT.gif");
 
         statusLabel.setText("TIMED OUT");
+        imageViewIcon.setImage(timOutImage);
         Date date = new Date();
         try {
             date = stub.timeOut(employee.getEmpID());
@@ -119,6 +128,7 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void showSummary(MouseEvent event) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
@@ -168,6 +178,7 @@ public class EmployeeController implements Initializable {
             Window window = dialog.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 ->
                     window.hide());
+
             dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -275,19 +286,5 @@ public class EmployeeController implements Initializable {
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
         }
-    }
-
-    public void editProfile(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/EditProfile.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage addEmployeeWindow = new Stage();
-        addEmployeeWindow.setTitle("TODO :) ");
-        addEmployeeWindow.setScene(scene);
-        addEmployeeWindow.show();
-
-        Alert x = new Alert(Alert.AlertType.WARNING, "idontknow how to make ui, i shall do the backend parts nalang:)");
-        x.show();
     }
 }
