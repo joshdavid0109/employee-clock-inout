@@ -95,6 +95,10 @@ public class JSONHandler {
         }
     }
 
+    public static void setEmployeeDetails(String employeeID, EmployeeDetails employeeDetails) {
+        //TODO
+    }
+
     private static void registerEmployee(String username, String password) {
         try (FileWriter writer = new FileWriter(pendingRegistersList)) {
             List<EmployeeProfile> pendingRegisters = getPendingRegistersFromFile();
