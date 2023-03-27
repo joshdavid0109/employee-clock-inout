@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.server.Attendance;
+import org.shared_classes.EmployeeDetails;
 import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
@@ -24,6 +25,12 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
+
+    private String firstName, lastName, gender;
+    private int age;
+
+    private EmployeeDetails employeeDetails;
+
     private Attendance stub;
     @FXML
     private Button loadLoginGUIbtn, returnRegisterInformation;
@@ -51,6 +58,30 @@ public class RegisterController implements Initializable {
     private TextField regVerifyPassword;
     @FXML
     private TextField regUsername;
+
+    public void setStub(Attendance stub) {
+        this.stub = stub;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setEmployeeDetails(EmployeeDetails employeeDetails) {
+        this.employeeDetails = employeeDetails;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,6 +128,9 @@ public class RegisterController implements Initializable {
     }
 
     public void registerNa() throws IOException {
+
+        System.out.println(employeeDetails);
+
         String username = regUsername.getText();
         String password = regPasswordHide.getText();
         String verify = regVerifyPasswordHide.getText();
@@ -104,16 +138,11 @@ public class RegisterController implements Initializable {
         regButton.getScene().getWindow().hide();
 
         EmployeeProfile emp = new EmployeeProfile(username, password);
+        emp.setPersonalDetails(employeeDetails);
+        System.out.println(username);
+        System.out.println(password);
 
         stub.signUp(emp);
-
-        System.out.println();
-
-        /*if (employee == null) {
-            System.out.println("wrong");
-        } else {
-            LoadLoginGUI();
-        }*/
     }
 
     @FXML
