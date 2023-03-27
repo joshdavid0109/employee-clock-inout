@@ -4,10 +4,12 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PageLayout;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -62,21 +64,25 @@ public class AdminLoginInterfaceController implements Initializable {
 
     @FXML
     public void cancelAdmin() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancel");
-        alert.setHeaderText("Do you want to cancel?");
-
-        if(alert.showAndWait().get() == ButtonType.OK){
-            stage = (Stage) adminAnchorPane.getScene().getWindow();
-            System.out.println(" ");
-            stage.close();
-        }
-
+        Platform.exit();
     }
 
     @FXML
     void loginNa(ActionEvent event) {
-       //TO DO
+       String userName = loginUsername.getText();
+       String passWord = loginPassword.getText();
+
+       Alert message = new Alert(Alert.AlertType.INFORMATION);
+       if(userName.equals("admin")&& passWord.equals("1234")){
+          //to do
+       }else {
+           message.setContentText("Invalid Login Details.");
+           message.setTitle("Unsuccessful Login");
+           message.show();
+        }
+
+       loginPassword.setText("");
+       loginUsername.setText("");
     }
 
     @FXML
