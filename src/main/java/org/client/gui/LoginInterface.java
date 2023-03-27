@@ -25,6 +25,10 @@ public class LoginInterface extends Application {
         LoginController loginController = fxmlLoader.getController();
 
         try {
+            /**
+             * CHANGE HOST
+             */
+//            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
             Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
 /*
@@ -43,9 +47,5 @@ public class LoginInterface extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

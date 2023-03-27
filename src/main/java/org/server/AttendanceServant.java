@@ -76,9 +76,21 @@ public class AttendanceServant implements Attendance {
         return employeeDailyReport;
     }
 
+    /**
+     * this method returns a byte value that corresponds to a status
+     *
+     * 0 = on break
+     * 1 = working
+     * 2 = what?
+     *
+     * @param employeeID employeeID
+     * @return byte value that corresponds to a status
+     * @throws RemoteException lol
+     */
     @Override
-    public void getCurrentStatus() throws RemoteException {
-        //TODO
+
+    public byte getCurrentStatus(String employeeID) throws RemoteException {
+        return JSONHandler.getCurrentStatus(employeeID);
     }
 
     public synchronized void addEmployee(EmployeeProfile emp) throws RemoteException {

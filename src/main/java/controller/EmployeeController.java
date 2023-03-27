@@ -7,13 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.server.Attendance;
-import org.server.JSONHandler;
 import org.shared_classes.*;
 
 import java.io.IOException;
@@ -57,11 +58,13 @@ public class EmployeeController implements Initializable {
     @FXML
     private TableView<EmployeeDailyReport> tableView;
 
+    @FXML
+    private ImageView imageViewIcon;
+
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd YYYY, HH:mm:ss");
 
-    public EmployeeController() {
-    }
+    public EmployeeController() {}
 
     public EmployeeController(EmployeeProfile employee) {
         EmployeeController.employee = employee;
@@ -82,8 +85,11 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void addTimeIn(MouseEvent event) {
+        Image timeInImage = new Image("TYPING_ICON.gif");
 
         statusLabel.setText("TIMED IN");
+        imageViewIcon.setImage(timeInImage);
+
         Date date = new Date();
         try {
             date = stub.timeIn(employee.getEmpID());
@@ -101,8 +107,10 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void addTimeOut(MouseEvent event) {
+        Image timOutImage = new Image("TIME_OUT.gif");
 
         statusLabel.setText("TIMED OUT");
+        imageViewIcon.setImage(timOutImage);
         Date date = new Date();
         try {
             date = stub.timeOut(employee.getEmpID());
@@ -120,6 +128,7 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void showSummary(MouseEvent event) {
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
@@ -169,6 +178,7 @@ public class EmployeeController implements Initializable {
             Window window = dialog.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 ->
                     window.hide());
+
             dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,8 +189,7 @@ public class EmployeeController implements Initializable {
     void logOut(MouseEvent event) throws IOException {
 
         logOutButton.getScene().getWindow().hide();
-
-        JSONHandler.setEmployeeStatus(employee.getEmpID(), false);
+        stub.setStatus(employee.getEmpID(), false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
@@ -243,6 +252,10 @@ public class EmployeeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            /**
+             * CHANGE HOST
+             */
+//            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
             Registry registry = LocateRegistry.getRegistry(2345);
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
@@ -253,7 +266,7 @@ public class EmployeeController implements Initializable {
 
         date = new Date();
         System.out.println("B  " + date);
-        dateLabel.setText(dateFormat.format(date));
+        dateLabel.setText(dateFormat.format(date).split(", ")[0]);
 
 
         // Timer Animation
