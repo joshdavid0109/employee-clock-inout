@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminLoginInterfaceController">
    <children>
-      <Pane fx:id="loginAnchorPane" prefHeight="400.0" prefWidth="246.0" style="-fx-background-color: #13202F;">
+      <Pane prefHeight="400.0" prefWidth="246.0" style="-fx-background-color: #13202F;">
          <children>
             <Text fill="WHITE" layoutX="30.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME ADMIN" wrappingWidth="224.0">
                <font>

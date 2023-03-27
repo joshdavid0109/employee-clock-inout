@@ -1,25 +1,32 @@
 package controller;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.server.Attendance;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminLoginInterfaceController implements Initializable {
 
     public static Attendance stub;
 
-    @FXML
-    private Pane loginAnchorPane;
+    private AnchorPane adminAnchorPane;
+
 
     @FXML
     private ImageView smcisLogo;
@@ -45,21 +52,31 @@ public class AdminLoginInterfaceController implements Initializable {
     @FXML
     private Button loadRegister;
 
+    Stage stage;
+
+
     @FXML
     void LoadRegisterInformation() {
-        //TO DO
+
     }
 
     @FXML
-    void cancelAdmin() {
-        //TO DO
+    public void cancelAdmin() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancel");
+        alert.setHeaderText("Do you want to cancel?");
+
+        if(alert.showAndWait().get() == ButtonType.OK){
+            stage = (Stage) adminAnchorPane.getScene().getWindow();
+            System.out.println(" ");
+            stage.close();
+        }
+
     }
 
     @FXML
     void loginNa(ActionEvent event) {
-        String username = loginUsername.getText();
-        String password = (loginPassword.getText() == null ? loginPassword.getText() : loginHidePassword.getText());
-
+       //TO DO
     }
 
     @FXML
@@ -71,7 +88,6 @@ public class AdminLoginInterfaceController implements Initializable {
             loginHidePassword.setText(loginPassword.getText());
             loginHidePassword.toFront();
         }
-
     }
 
     @Override
