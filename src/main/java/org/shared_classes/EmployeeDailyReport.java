@@ -23,7 +23,7 @@ public class EmployeeDailyReport implements Serializable {
     }
 
     public String getTimeIn() {
-        return timeIn;
+        return timeIn == null ? "" :timeIn.split(",")[1];
     }
 
     public void setTimeIn(String timeIn) {
@@ -32,7 +32,7 @@ public class EmployeeDailyReport implements Serializable {
     }
 
     public String getTimeOut() {
-        return timeOut;
+        return timeOut == null ? "" :timeOut.split(",")[1];
     }
 
     public void setTimeOut(String timeOutFromServer) {

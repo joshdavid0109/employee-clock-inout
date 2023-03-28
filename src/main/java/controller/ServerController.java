@@ -16,12 +16,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.server.AttendanceServant;
 import org.server.JSONHandler;
 import org.server.Attendance;
 import org.shared_classes.EmployeeProfile;
+import org.shared_classes.EmployeeReport;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,15 +35,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class ServerController implements Initializable {
 
     public TableColumn status;
+    public TableColumn<EmployeeProfile, String> timeOutColumn;
+    public TableColumn<EmployeeProfile, String> timeInColumn;
     @FXML
     private Text adminNameLabel, companyNameLabel, genReport;
 
@@ -174,6 +176,14 @@ public class ServerController implements Initializable {
             Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "date");
             return Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "date");
         });
+        timeInColumn.setCellValueFactory(cell -> {
+            Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "timeIn")  ;
+            return Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "timeIn");
+        });
+        timeOutColumn.setCellValueFactory(cell -> {
+            Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "timeOut");
+            return Bindings.selectString(cell.getValue().getEmployeeDailyReport(), "timeOut");
+        });
         statusColumn.setCellValueFactory(cell ->
         {
             Bindings.selectString(cell.getValue(), "status");
@@ -229,21 +239,90 @@ public class ServerController implements Initializable {
         })*/
 
             tableView.setRowFactory(tv -> new TableRow<>(){
+
         @Override
         protected void updateItem(EmployeeProfile item, boolean empty) {
             super.updateItem(item, empty);
 
-
-
-            if (item == null)
+            if (item == null) {
                 setStyle("");
-            else if (item.getIsLoggedIn().equals("online")) {
-                setStyle("-fx-background-color: #50C878;");
-            } else
-                setStyle("-fx-background-color: #FA5F55;");
+                setStyle("-fx-font-weight: bold");
+            } else if (item.getIsLoggedIn().equals("online")) {
+                setStyle("-fx-background-color: #50C878; -fx-font-weight: bold;");
+            } else {
+                setStyle("-fx-background-color: #FA5F55; -fx-font-weight: bold;");
+            }
         }
     });
 
+        tableView.setRowFactory(tv ->{
+            TableRow<EmployeeProfile> tableRow = new TableRow<>();
+
+            tableRow.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! tableRow.isEmpty())) {
+                    EmployeeProfile employeeProfile = tableRow.getItem();
+
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
+
+                        List<EmployeeReport> reports = new ArrayList<>();
+
+                        if (employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size() ==
+                                employeeProfile.getEmployeeDailyReport().getListofTimeIns().size()) {
+                            for (int i = 0; i < employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
+
+                                String timeIn = employeeProfile.getEmployeeDailyReport().getListofTimeIns().get(i);
+                                String timeOut = employeeProfile.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                                EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                                if (i == 0) {
+                                    employeeReport.setDate(timeOut.split(", ")[0]);
+                                }
+                                reports.add(employeeReport);
+                            }
+                        } else if (employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size() <
+                                employeeProfile.getEmployeeDailyReport().getListofTimeIns().size()) {
+                            for (int i = 0; i < employeeProfile.getEmployeeDailyReport().getListofTimeIns().size(); i++) {
+                                String timeIn = employeeProfile.getEmployeeDailyReport().getListofTimeIns().get(i);
+                                String timeOut;
+                                EmployeeReport employeeReport = null;
+                                if (employeeProfile.getEmployeeDailyReport().getListofTimeIns().size() - 1 == i){
+                                    timeOut = "";
+                                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut);
+                                }else {
+                                    timeOut = employeeProfile.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                                }
+                                if (i == 0) {
+                                    employeeReport.setDate(timeOut.split(", ")[0]);
+                                }
+                                reports.add(employeeReport);
+                            }
+                        }
+
+                        EmployeeTable.employeeDailyReport = reports;
+
+                        Pane employeeTable = fxmlLoader.load();
+                        Dialog<ButtonType> dialog = new Dialog<>();
+                        dialog.setDialogPane((DialogPane) employeeTable);
+                        dialog.setTitle("Summary");
+
+                        //close button
+                        Window window = dialog.getDialogPane().getScene().getWindow();
+                        window.setOnCloseRequest(event1 ->
+                                window.hide());
+
+                        dialog.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                }
+            });
+            return tableRow;
+        });
     }
 
     public void addEmployee(ActionEvent actionEvent) throws Exception{
