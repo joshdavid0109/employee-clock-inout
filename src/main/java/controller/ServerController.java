@@ -37,6 +37,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -71,6 +73,12 @@ public class ServerController implements Initializable {
 
     @FXML
     private TableView<EmployeeProfile> tableView;
+
+    @FXML
+    private DatePicker startDate, endDate;
+
+    @FXML
+    private Label selectedDateFrom, selectedDateTo;
 
     @FXML
     private Button logOutButton, searchButton, printBtn, refreshButton, addEmployeeButton;
@@ -118,6 +126,23 @@ public class ServerController implements Initializable {
 //
 //        }
 //    }
+
+    @FXML
+    void getTimeLogs(ActionEvent event) throws IOException {
+
+        LocalDate fromDate = startDate.getValue();
+        LocalDate toDate = endDate.getValue();
+        String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+        String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+
+        selectedDateFrom.setText(fromDateFormat);
+        selectedDateTo.setText(toDateFormat);
+
+        // code to calculate the total time worked by each employee(total hours rendered)?
+//        if (startDate.getValue() !=null && endDate.getValue() !=null) {
+//            for (EmployeeProfile e : employee.get)
+//        }
+    }
 
 //    public void generateReport (ActionEvent actionEvent) throws IOException {
 //        genReport.setText("Generate Report");
