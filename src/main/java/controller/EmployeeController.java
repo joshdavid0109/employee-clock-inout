@@ -84,16 +84,18 @@ public class EmployeeController implements Initializable {
     }
 
     @FXML
-    void addTimeIn(MouseEvent event) {
+    void addTimeIn(MouseEvent event) throws RemoteException {
         Image timeInImage = new Image("TYPING_ICON.gif");
 
-        statusLabel.setText("TIMED IN");
+
         imageViewIcon.setImage(timeInImage);
 
         Date date = new Date();
         try {
             employee.setStatus("Working");
             date = stub.timeIn(employee.getEmpID());
+            String s = stub.getCurrentStatus(employee.getEmpID());
+            statusLabel.setText(s);
             timeInButton.setDisable(true);
             timeOutButton.setDisable(false);
         } catch (RemoteException e) {
@@ -107,15 +109,17 @@ public class EmployeeController implements Initializable {
     }
 
     @FXML
-    void addTimeOut(MouseEvent event) {
+    void addTimeOut(MouseEvent event) throws RemoteException {
         Image timOutImage = new Image("TIME_OUT.gif");
 
-        statusLabel.setText("TIMED OUT");
+
         imageViewIcon.setImage(timOutImage);
         Date date = new Date();
         try {
             employee.setStatus("On Break");
             date = stub.timeOut(employee.getEmpID());
+            String s = stub.getCurrentStatus(employee.getEmpID());
+            statusLabel.setText(stub.getCurrentStatus(s));
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
         } catch (RemoteException e) {
@@ -135,40 +139,7 @@ public class EmployeeController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
 
-            List<EmployeeReport> reports = new ArrayList<>();
-
-            if (employee.getEmployeeDailyReport().getListofTimeOuts().size() ==
-                    employee.getEmployeeDailyReport().getListofTimeIns().size()) {
-                for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
-
-                    String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
-                    String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                    EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                    if (i == 0) {
-                        employeeReport.setDate(timeOut.split(", ")[0]);
-                    }
-                    reports.add(employeeReport);
-                }
-            } else if (employee.getEmployeeDailyReport().getListofTimeOuts().size() <
-                    employee.getEmployeeDailyReport().getListofTimeIns().size()) {
-                for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeIns().size(); i++) {
-                    String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
-                    String timeOut;
-                    EmployeeReport employeeReport = null;
-                    if (employee.getEmployeeDailyReport().getListofTimeIns().size() - 1 == i){
-                        timeOut = "";
-                        employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut);
-                    }else {
-                        timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                        employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                    }
-                    if (i == 0) {
-                        employeeReport.setDate(timeOut.split(", ")[0]);
-                    }
-                    reports.add(employeeReport);
-                }
-            }
-
+            List<EmployeeReport> reports = stub.getSummary(employee.getEmpID());
             EmployeeTable.employeeDailyReport = reports;
 
             Pane employeeTable = fxmlLoader.load();
@@ -262,6 +233,16 @@ public class EmployeeController implements Initializable {
             stub = (Attendance) registry.lookup("sayhi");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        try {
+            String s =stub.getCurrentStatus(employee.getEmpID());
+            System.out.println(s + "sd");
+            if (!s.equals("")) {
+                statusLabel.setText(s);
+            }
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
 
         employeeName.setText(employee.getFullName());

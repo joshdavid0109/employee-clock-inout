@@ -3,7 +3,6 @@ package org.server;
 import org.shared_classes.*;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,24 +67,25 @@ public class AttendanceServant implements Attendance {
     }
 
     @Override
-    public EmployeeDailyReport getSummary(Date startDate, Date endDate) throws RemoteException {
-        Date date = new Date();
-        EmployeeDailyReport employeeDailyReport = new EmployeeDailyReport(dateFormat.format(date));
-        return employeeDailyReport;
+    public List<EmployeeReport> getSummary(String empID) throws RemoteException {
+        List<EmployeeProfile> employeeProfiles = JSONHandler.getEmployeesFromFile();
+        for(EmployeeProfile employeeProfile : employeeProfiles ) {
+            if (employeeProfile.getEmpID().equals(empID)) {
+                List<EmployeeReport> employeeReports =  JSONHandler.getSummaryForClient(employeeProfile);
+                return employeeReports;
+            }
+        }
+        return null;
     }
 
     /**
      * this method returns a byte value that corresponds to a status
-     *
-     * 0 = on break
-     * 1 = working
-     * 2 = what?
-     *
+
      * @param employeeID employeeID
      * @return byte value that corresponds to a status
      */
     @Override
-    public byte getCurrentStatus(String employeeID) throws RemoteException {
+    public String getCurrentStatus(String employeeID) throws RemoteException {
         return JSONHandler.getCurrentStatus(employeeID);
     }
 

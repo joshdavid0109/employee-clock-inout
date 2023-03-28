@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.gson.JsonObject;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Callback;
 import org.server.AttendanceServant;
 import org.server.JSONHandler;
 import org.server.Attendance;
@@ -40,9 +42,9 @@ import java.util.*;
 
 public class ServerController implements Initializable {
 
-    public TableColumn status;
     public TableColumn<EmployeeProfile, String> timeOutColumn;
     public TableColumn<EmployeeProfile, String> timeInColumn;
+    public TableColumn<EmployeeProfile, String> activeStatusColumn;
     @FXML
     private Text adminNameLabel, companyNameLabel, genReport;
 
@@ -165,7 +167,10 @@ public class ServerController implements Initializable {
         List<EmployeeProfile> list = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
 
-
+        activeStatusColumn.setCellValueFactory(cell -> {
+            Bindings.selectString(cell.getValue(), "isLoggedIn");
+            return Bindings.selectString(cell.getValue(), "isLoggedIn");
+        });
         columnId.setCellValueFactory(new PropertyValueFactory<EmployeeProfile, String>("empID"));
         lnColumn.setCellValueFactory(cell ->
                 Bindings.selectString(cell.getValue().getPersonalDetails(), "lastName"));
@@ -223,40 +228,43 @@ public class ServerController implements Initializable {
         tableView.setItems(sortedList);
 
 
-        // not sure abt this hahaha gawin ko sana separate column yung status color ng employee
-/*        status.setCellFactory(column -> {
-            TableCell<EmployeeProfile, String> cell = new TableCell<EmployeeProfile, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item == null)
-                        setStyle("");
-                    else if (item.getIsLoggedIn().equals("online")) {
-                        setStyle("-fx-background-color: #50C878;");
-                    } else
-                        setStyle("-fx-background-color: #EE4B2B;");
+        //active status column
+        activeStatusColumn.setCellFactory(cell -> new TableCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {
+                    setStyle("");
+                    setStyle("-fx-font-weight: bold");
+                } else if (item.equals("online")) {
+                    setStyle("-fx-background-color: #50C878; -fx-font-weight: bold;");
+                } else {
+                    setStyle("-fx-background-color: #FA5F55; -fx-font-weight: bold;");
                 }
-        })*/
-
-            tableView.setRowFactory(tv -> new TableRow<>(){
-
-        @Override
-        protected void updateItem(EmployeeProfile item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (item == null) {
-                setStyle("");
-                setStyle("-fx-font-weight: bold");
-            } else if (item.getIsLoggedIn().equals("online")) {
-                setStyle("-fx-background-color: #50C878; -fx-font-weight: bold;");
-            } else {
-                setStyle("-fx-background-color: #FA5F55; -fx-font-weight: bold;");
             }
-        }
-    });
+        });
+
+
 
         tableView.setRowFactory(tv ->{
             TableRow<EmployeeProfile> tableRow = new TableRow<>();
+
+/*            tableView.setRowFactory(tvv -> new TableRow<>(){
+
+                @Override
+                protected void updateItem(EmployeeProfile item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null) {
+                        setStyle("");
+                        setStyle("-fx-font-weight: bold");
+                    } else if (item.getIsLoggedIn().equals("online")) {
+                        setStyle("-fx-background-color: #50C878; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-background-color: #FA5F55; -fx-font-weight: bold;");
+                    }
+                }
+            }) ;*/
 
             tableRow.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! tableRow.isEmpty())) {
@@ -323,6 +331,14 @@ public class ServerController implements Initializable {
             });
             return tableRow;
         });
+    }
+    
+    public void updateTable() {
+        List<EmployeeProfile> list = JSONHandler.populateTable();
+//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 
     public void addEmployee(ActionEvent actionEvent) throws Exception{

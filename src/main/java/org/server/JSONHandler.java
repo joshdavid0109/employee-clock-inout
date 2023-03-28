@@ -4,6 +4,7 @@ package org.server;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import controller.ServerController;
 import org.shared_classes.*;
 
 import java.io.*;
@@ -73,6 +74,43 @@ public class JSONHandler<TimeIn> {
         }
     }
 
+    public static List<EmployeeReport> getSummaryForClient(EmployeeProfile employee) {
+        List<EmployeeReport> reports = new ArrayList<>();
+
+        if (employee.getEmployeeDailyReport().getListofTimeOuts().size() ==
+                employee.getEmployeeDailyReport().getListofTimeIns().size()) {
+            for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
+
+                String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
+                String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                if (i == 0) {
+                    employeeReport.setDate(timeOut.split(", ")[0]);
+                }
+                reports.add(employeeReport);
+            }
+        } else if (employee.getEmployeeDailyReport().getListofTimeOuts().size() <
+                employee.getEmployeeDailyReport().getListofTimeIns().size()) {
+            for (int i = 0; i < employee.getEmployeeDailyReport().getListofTimeIns().size(); i++) {
+                String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
+                String timeOut;
+                EmployeeReport employeeReport = null;
+                if (employee.getEmployeeDailyReport().getListofTimeIns().size() - 1 == i){
+                    timeOut = "";
+                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut);
+                }else {
+                    timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
+                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
+                }
+                if (i == 0) {
+                    employeeReport.setDate(timeOut.split(", ")[0]);
+                }
+                reports.add(employeeReport);
+            }
+        }
+        return reports;
+    }
+
     //true = logged in, false logged out
     public static void setEmployeeStatus(String EmployeeID, boolean loggedIn) {
         try {
@@ -81,13 +119,11 @@ public class JSONHandler<TimeIn> {
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(EmployeeID)) {
                     emp.setLoggedIn(loggedIn);
-                    emp.setStatus("");
                     break;
                 }
             }
-
-            String json = gson.toJson(employees);
             FileWriter writer = new FileWriter(employeesJSONPath);
+            String json = gson.toJson(employees);
             writer.write(json);
             writer.close();
         } catch (IOException e) {
@@ -142,25 +178,28 @@ public class JSONHandler<TimeIn> {
 
                     List<SummaryReport> summaryReports = getSummaryReportsFromFile();
 
-                    if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
-                        List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
-                        List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
+                    if (timeIs.size() != 0) {
+                        if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
+                            List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
+                            List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
-                        SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
-                        summaryReport.setTimeIns(ins);
-                        summaryReport.setTimeOuts(outs);
-                        summaryReport.setEmpID(emp.getEmpID());
-                        summaryReports.add(summaryReport);
+                            SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
+                            summaryReport.setTimeIns(ins);
+                            summaryReport.setTimeOuts(outs);
+                            summaryReport.setEmpID(emp.getEmpID());
+                            summaryReports.add(summaryReport);
 
-                        emp.getEmployeeDailyReport().getListofTimeIns().clear();
-                        emp.getEmployeeDailyReport().getListofTimeOuts().clear();
-                        emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
-                        employees.add(i, emp);
-                        employees.remove(i);
+                            emp.getEmployeeDailyReport().getListofTimeIns().clear();
+                            emp.getEmployeeDailyReport().getListofTimeOuts().clear();
+                            emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
+                            emp.getEmployeeDailyReport().setDate(dateFormat.format(d).split(", ")[0]);
+                            employees.add(i, emp);
+                            employees.remove(i);
 
-                        addSummaryToFile(summaryReports);
+                            addSummaryToFile(summaryReports);
 
-                        break;
+                            break;
+                        }
                     }
 
                     emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
@@ -183,6 +222,8 @@ public class JSONHandler<TimeIn> {
 
             try (FileWriter writer = new FileWriter(employeesJSONPath)) {
                 gson.toJson(employees, writer);
+                ServerController serverController = new ServerController();
+                serverController.updateTable();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -255,6 +296,8 @@ public class JSONHandler<TimeIn> {
             //write to json file
             try (FileWriter writer = new FileWriter(employeesJSONPath)) {
                 gson.toJson(employees, writer);
+                ServerController serverController = new ServerController();
+                serverController.updateTable();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -390,7 +433,7 @@ public class JSONHandler<TimeIn> {
      * @param employeeID
      * @return
      */
-    public static byte getCurrentStatus(String employeeID) {
+    public static String getCurrentStatus(String employeeID) {
         //habang ginagawa ko ito, i realized na wala pala sa json yung
         //current status, saan kukunin current status pala ng current user?
 
@@ -411,17 +454,20 @@ public class JSONHandler<TimeIn> {
                     //add timeout sa json file
                     String stat = String.valueOf(jsonElement.getAsJsonObject().get("status"));
 
+                    System.out.println(stat);
                     if (stat.equals("Working"))
-                        return 1;
+                        return "Working";
+                    else if (stat.equals("On Break"))
+                        return "On Break";
                     else
-                        return 0;
+                        return "";
                 }
             }
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
         }
-        return 0;
+        return "";
     }
 
     /** incomplete.. need help.. zeph..*/

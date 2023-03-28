@@ -1,13 +1,11 @@
 package org.server;
 
-import org.shared_classes.CredentialsErrorException;
-import org.shared_classes.EmployeeDailyReport;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
+import org.shared_classes.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.List;
 
 public interface Attendance extends Remote {
     EmployeeProfile logIn(String username, String password) throws RemoteException, CredentialsErrorException;
@@ -16,6 +14,6 @@ public interface Attendance extends Remote {
     Date timeOut(String employeeID) throws RemoteException;
     void setStatus(String employeeID, boolean loggedIn) throws RemoteException;
     void setPersonalDetails(String employeeID, EmployeeDetails employeeDetails) throws RemoteException;
-    EmployeeDailyReport getSummary(Date startDate, Date endDate) throws RemoteException;
-    byte getCurrentStatus(String employeeID) throws RemoteException;
+    List<EmployeeReport> getSummary(String empID) throws RemoteException;
+    String getCurrentStatus(String employeeID) throws RemoteException;
 }

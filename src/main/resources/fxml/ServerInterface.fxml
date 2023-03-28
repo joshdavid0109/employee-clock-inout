@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="812.0" style="-fx-background-color: #13202F;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ServerController">
+<AnchorPane prefHeight="600.0" prefWidth="812.0" style="-fx-background-color: #13202F;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ServerController">
    <children>
       <ScrollPane layoutX="25.0" layoutY="228.0" prefHeight="316.0" prefWidth="768.0">
         <content>
@@ -13,18 +13,16 @@
                <children>
                   <TableView fx:id="tableView" prefHeight="473.0" prefWidth="752.0">
                     <columns>
-                      <TableColumn fx:id="columnId" prefWidth="139.0" text="ID" />
-                      <TableColumn fx:id="lnColumn" prefWidth="75.0" text="Last Name" />
-                        <TableColumn fx:id="fnColumn" prefWidth="75.0" text="First Name" />
-                        <TableColumn fx:id="statusColumn" prefWidth="112.7999267578125" text="Status" />
-                        <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="activeStatusColumn" prefWidth="19.0" />
+                      <TableColumn fx:id="columnId" prefWidth="123.0" text="ID" />
+                      <TableColumn fx:id="lnColumn" prefWidth="99.0" text="Last Name" />
+                        <TableColumn fx:id="fnColumn" text="First Name" />
+                        <TableColumn fx:id="statusColumn" prefWidth="82.0" text="Status" />
+                        <TableColumn fx:id="dateColumn" prefWidth="101.0" text="Date" />
                         <TableColumn fx:id="timeInColumn" prefWidth="77.5999755859375" text="Timed In" />
-                        <TableColumn fx:id="timeOutColumn" prefWidth="60.00006103515625" text="Timed out" />
-                        <TableColumn fx:id="workHoursColumn" prefWidth="56.0001220703125" text="Work Hours" />
+                        <TableColumn fx:id="timeOutColumn" prefWidth="84.0" text="Timed out" />
+                        <TableColumn fx:id="workHoursColumn" prefWidth="85.0" text="Work Hours" />
                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
                   </TableView>
                </children>
             </AnchorPane>
