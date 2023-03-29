@@ -452,7 +452,7 @@ public class JSONHandler<TimeIn> {
                     }
 
                     //add timeout sa json file
-                    String stat = String.valueOf(jsonElement.getAsJsonObject().get("status"));
+                    String stat = String.valueOf(jsonElement.getAsJsonObject().get("status")).replaceAll("\"", "");
 
                     System.out.println(stat);
                     if (stat.equals("Working"))

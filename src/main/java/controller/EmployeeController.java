@@ -119,7 +119,7 @@ public class EmployeeController implements Initializable {
             employee.setStatus("On Break");
             date = stub.timeOut(employee.getEmpID());
             String s = stub.getCurrentStatus(employee.getEmpID());
-            statusLabel.setText(stub.getCurrentStatus(s));
+            statusLabel.setText(s);
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
         } catch (RemoteException e) {
