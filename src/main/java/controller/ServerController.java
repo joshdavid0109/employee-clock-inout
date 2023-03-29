@@ -105,7 +105,7 @@ public class ServerController implements Initializable {
     }
 
     @FXML
-    void refresh(ActionEvent event) {
+    void refresh(ActionEvent event) throws IOException {
         List<EmployeeProfile> list = JSONHandler.populateTable();
 //        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
@@ -184,7 +184,6 @@ public class ServerController implements Initializable {
             Registry registry = null;
             registry = LocateRegistry.createRegistry(2345);
             registry.rebind("sayhi", stub);
-
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -334,16 +333,20 @@ public class ServerController implements Initializable {
                 }
             }
         });
-
-
-
-
     }
     
     public void updateTable() {
+
         List<EmployeeProfile> list = JSONHandler.populateTable();
 //        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+
+/*
+        TableView<EmployeeProfile> tableView1 = new TableView<>();
+
+        tableView1.setItems(tableData);
+*/
+
         tableView.setItems(tableData);
         tableView.refresh();
     }

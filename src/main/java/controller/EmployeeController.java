@@ -62,7 +62,7 @@ public class EmployeeController implements Initializable {
     private ImageView imageViewIcon;
 
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd YYYY, HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
 
     public EmployeeController() {}
 

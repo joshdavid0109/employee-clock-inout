@@ -222,8 +222,7 @@ public class JSONHandler<TimeIn> {
 
             try (FileWriter writer = new FileWriter(employeesJSONPath)) {
                 gson.toJson(employees, writer);
-                ServerController serverController = new ServerController();
-                serverController.updateTable();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -296,8 +295,7 @@ public class JSONHandler<TimeIn> {
             //write to json file
             try (FileWriter writer = new FileWriter(employeesJSONPath)) {
                 gson.toJson(employees, writer);
-                ServerController serverController = new ServerController();
-                serverController.updateTable();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

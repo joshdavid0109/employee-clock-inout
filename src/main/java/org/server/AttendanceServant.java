@@ -1,7 +1,10 @@
 package org.server;
 
+import controller.EmployeeController;
+import controller.ServerController;
 import org.shared_classes.*;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +23,7 @@ public class AttendanceServant implements Attendance {
         EmployeeProfile employeeProfile = null;
         try {
             employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
+
         } catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException |
                  UserNotExistingException e) {
             if (e instanceof UserCurrentlyLoggedInException) {
