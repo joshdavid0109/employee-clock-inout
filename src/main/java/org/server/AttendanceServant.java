@@ -2,6 +2,9 @@ package org.server;
 
 import controller.EmployeeController;
 import controller.ServerController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import org.shared_classes.*;
 
 import java.io.IOException;
@@ -50,6 +53,20 @@ public class AttendanceServant implements Attendance {
         Date date = getDateAndTime();
         System.out.println("Date : "  + this.dateFormat.format(date));
         JSONHandler.addTimeIn(employeeId, date);
+
+        List<EmployeeProfile> list = JSONHandler.populateTable();
+//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+
+        ServerController serverController = null;
+        try {
+            serverController = new ServerController();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TableView<EmployeeProfile> tv = new TableView<>();
+        tv.setItems(tableData);
+        serverController.setTableView(tv);
         return date;
     }
 
@@ -57,6 +74,20 @@ public class AttendanceServant implements Attendance {
     public Date timeOut(String employeeId) throws RemoteException {
         Date date = getDateAndTime();
         JSONHandler.addTimeOut(employeeId, date);
+
+        List<EmployeeProfile> list = JSONHandler.populateTable();
+//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+
+        ServerController serverController = null;
+        try {
+            serverController = new ServerController();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TableView<EmployeeProfile> tv = new TableView<>();
+        tv.setItems(tableData);
+        serverController.setTableView(tv);
         return date;
     }
 

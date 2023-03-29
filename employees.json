@@ -12,38 +12,34 @@
     "isLoggedIn": false,
     "status": "On Break",
     "employeeDailyReport": {
-      "timeIn": "Mar 29 2023, 21:15:38",
-      "timeOut": "Mar 29 2023, 21:15:39",
+      "timeIn": "Mar 29 2023, 21:43:03",
+      "timeOut": "Mar 29 2023, 21:43:44",
       "date": "Mar 29 2023",
       "listofTimeIns": [
         "Mar 29 2023, 18:32:19",
         "Mar 29 2023, 18:32:25",
         "Mar 29 2023, 18:32:34",
-        "Mar 29 2023, 21:08:07",
-        "Mar 29 2023, 21:08:14",
-        "Mar 29 2023, 21:09:42",
-        "Mar 29 2023, 21:09:47",
-        "Mar 29 2023, 21:10:50",
-        "Mar 29 2023, 21:15:34",
-        "Mar 29 2023, 21:15:38"
+        "Mar 29 2023, 21:38:06",
+        "Mar 29 2023, 21:38:14",
+        "Mar 29 2023, 21:40:05",
+        "Mar 29 2023, 21:42:26",
+        "Mar 29 2023, 21:43:03"
       ],
       "listofTimeOuts": [
         "Mar 29 2023, 18:32:23",
         "Mar 29 2023, 18:32:29",
         "Mar 29 2023, 21:08:02",
-        "Mar 29 2023, 21:08:12",
-        "Mar 29 2023, 21:09:39",
-        "Mar 29 2023, 21:09:45",
-        "Mar 29 2023, 21:10:45",
-        "Mar 29 2023, 21:10:53",
-        "Mar 29 2023, 21:15:36",
-        "Mar 29 2023, 21:15:39"
+        "Mar 29 2023, 21:38:10",
+        "Mar 29 2023, 21:38:21",
+        "Mar 29 2023, 21:41:25",
+        "Mar 29 2023, 21:42:31",
+        "Mar 29 2023, 21:43:44"
       ]
     }
   },
   {
     "empID": "c123c",
-    "userName": "testuser",
+    "userName": "testuser1",
     "passWord": "testuser1",
     "personalDetails": {
       "firstName": "Test",
@@ -52,13 +48,27 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
+    "status": "On Break",
     "employeeDailyReport": {
-      "timeIn": "Mar 26 2023, 09:36:16",
-      "timeOut": "Mar 23 2023, 16:51:20",
+      "timeIn": "Mar 29 2023, 21:28:27",
+      "timeOut": "Mar 29 2023, 21:33:29",
+      "date": "Mar 29 2023",
       "listofTimeIns": [
-        "Mar 26 2023, 09:36:16"
+        "Mar 29 2023, 21:27:30",
+        "Mar 29 2023, 21:27:34",
+        "Mar 29 2023, 21:27:38",
+        "Mar 29 2023, 21:27:44",
+        "Mar 29 2023, 21:28:20",
+        "Mar 29 2023, 21:28:27"
       ],
-      "listofTimeOuts": []
+      "listofTimeOuts": [
+        "Mar 29 2023, 21:27:32",
+        "Mar 29 2023, 21:27:37",
+        "Mar 29 2023, 21:27:39",
+        "Mar 29 2023, 21:28:19",
+        "Mar 29 2023, 21:28:23",
+        "Mar 29 2023, 21:32:28"
+      ]
     }
   },
   {
@@ -141,7 +151,7 @@
   },
   {
     "empID": "EMP4d6d9448",
-    "userName": "asdcasdxasx",
+    "userName": "asdcasdxasxc",
     "passWord": "asdcqwxewqx#",
     "personalDetails": {
       "firstName": "N/A",

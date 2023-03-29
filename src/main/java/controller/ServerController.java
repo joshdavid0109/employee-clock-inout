@@ -91,6 +91,14 @@ public class ServerController implements Initializable {
 
     public ServerController() throws IOException {}
 
+    public TableView<EmployeeProfile> getTableView() {
+        return tableView;
+    }
+
+    public void setTableView(TableView<EmployeeProfile> tableView) {
+        this.tableView = tableView;
+    }
+
     @FXML
     void logOut(ActionEvent event) throws IOException {
 
@@ -338,14 +346,7 @@ public class ServerController implements Initializable {
     public void updateTable() {
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
-//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
-
-/*
-        TableView<EmployeeProfile> tableView1 = new TableView<>();
-
-        tableView1.setItems(tableData);
-*/
 
         tableView.setItems(tableData);
         tableView.refresh();
