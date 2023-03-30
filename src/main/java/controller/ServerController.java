@@ -25,6 +25,7 @@ import javafx.util.Callback;
 import org.server.AttendanceServant;
 import org.server.JSONHandler;
 import org.server.Attendance;
+import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.EmployeeReport;
 
@@ -137,19 +138,33 @@ public class ServerController implements Initializable {
 
     @FXML
     void getTimeLogs(ActionEvent event) throws IOException {
-
         LocalDate fromDate = startDate.getValue();
         LocalDate toDate = endDate.getValue();
+
         String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
         String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
-
         selectedDateFrom.setText(fromDateFormat);
         selectedDateTo.setText(toDateFormat);
 
-        // code to calculate the total time worked by each employee(total hours rendered)?
-//        if (startDate.getValue() !=null && endDate.getValue() !=null) {
-//            for (EmployeeProfile e : employee.get)
-//        }
+        List<EmployeeProfile> employeeList = JSONHandler.populateTable();
+        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(employeeList);
+
+        for (EmployeeProfile employee : employeeList) {
+            List<EmployeeDailyReport> timeLogs = (List<EmployeeDailyReport>) employee.getEmployeeDailyReport();
+            List<EmployeeDailyReport> filteredTimeLogs = new ArrayList<>();
+
+            for (EmployeeDailyReport timeLog : timeLogs) {
+                LocalDate logDate = LocalDate.parse(timeLog.getDate(), DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
+                    filteredTimeLogs.add(timeLog);
+                }
+            }
+
+            employee.setEmployeeDailyReport((EmployeeDailyReport) filteredTimeLogs);
+        }
+
+        tableView.setItems(tableData);
+        tableView.refresh();
     }
 
 //    public void generateReport (ActionEvent actionEvent) throws IOException {
