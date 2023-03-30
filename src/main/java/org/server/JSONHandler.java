@@ -111,6 +111,7 @@ public class JSONHandler<TimeIn> {
         return reports;
     }
 
+
     //true = logged in, false logged out
     public static void setEmployeeStatus(String EmployeeID, boolean loggedIn) {
         try {
@@ -232,7 +233,7 @@ public class JSONHandler<TimeIn> {
         }
     }
 
-    private static List<SummaryReport> getSummaryReportsFromFile() {
+    public static List<SummaryReport> getSummaryReportsFromFile() {
         try (Reader reader = Files.newBufferedReader(summaryReportsFile.toPath())) {
             List<SummaryReport> summaryReports = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();

@@ -28,6 +28,7 @@ import org.server.Attendance;
 import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.EmployeeReport;
+import org.shared_classes.SummaryReport;
 
 import java.io.IOException;
 import java.net.URL;
@@ -150,13 +151,13 @@ public class ServerController implements Initializable {
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(employeeList);
 
         for (EmployeeProfile employee : employeeList) {
-            List<EmployeeDailyReport> timeLogs = (List<EmployeeDailyReport>) employee.getEmployeeDailyReport();
-            List<EmployeeDailyReport> filteredTimeLogs = new ArrayList<>();
+            List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
+            List<SummaryReport> filteredTimeLogs = new ArrayList<>();
 
-            for (EmployeeDailyReport timeLog : timeLogs) {
-                LocalDate logDate = LocalDate.parse(timeLog.getDate(), DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+            for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
+                LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd, yyyy"));
                 if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
-                    filteredTimeLogs.add(timeLog);
+                    filteredTimeLogs.add(summaryReport);
                 }
             }
 
