@@ -11,6 +11,9 @@
     },
     "isLoggedIn": false,
     "status": "On Break",
+    "totalWorkingHours": [
+      31.948055
+    ],
     "employeeDailyReport": {
       "timeIn": "Mar 29 2023, 21:43:03",
       "timeOut": "Mar 29 2023, 21:43:44",
@@ -49,6 +52,9 @@
     },
     "isLoggedIn": false,
     "status": "On Break",
+    "totalWorkingHours": [
+      83.85445
+    ],
     "employeeDailyReport": {
       "timeIn": "Mar 29 2023, 21:28:27",
       "timeOut": "Mar 29 2023, 21:33:29",

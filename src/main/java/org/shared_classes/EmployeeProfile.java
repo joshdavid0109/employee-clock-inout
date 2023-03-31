@@ -17,6 +17,7 @@ public class EmployeeProfile implements Serializable {
     private boolean isLoggedIn;
     public String status; // working or break
     private static String note;
+    private List<Float> totalWorkingHours;
 
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
@@ -157,5 +158,13 @@ public class EmployeeProfile implements Serializable {
 
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
+    }
+
+    public List<Float> getTotalWorkingHours() {
+        return totalWorkingHours;
+    }
+
+    public void setTotalWorkingHours(List<Float> totalWorkingHoursList) {
+        this.totalWorkingHours = totalWorkingHoursList;
     }
 }
