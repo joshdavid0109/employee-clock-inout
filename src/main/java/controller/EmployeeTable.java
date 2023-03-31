@@ -36,6 +36,7 @@ public class EmployeeTable implements Initializable {
 
     static List<EmployeeReport> employeeDailyReport;
 
+
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -47,6 +48,8 @@ public class EmployeeTable implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         TreeItem<EmployeeReport> root = new TreeItem<>(new EmployeeReport("Time In", "Time out",
                 employeeDailyReport.get(0).getDate()));
 

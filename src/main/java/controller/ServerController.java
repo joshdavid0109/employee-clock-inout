@@ -161,7 +161,6 @@ public class ServerController implements Initializable {
                 }
             }
 
-            employee.setEmployeeDailyReport((EmployeeDailyReport) filteredTimeLogs);
         }
 
         tableView.setItems(tableData);
@@ -257,8 +256,34 @@ public class ServerController implements Initializable {
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
 
+
+
+                        LocalDate fromDate = startDate.getValue();
+                        LocalDate toDate = endDate.getValue();
+
+                        String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                        String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                        selectedDateFrom.setText(fromDateFormat);
+                        selectedDateTo.setText(toDateFormat);
+
+                        List<EmployeeProfile> employeeList = JSONHandler.populateTable();
+                        ObservableList<EmployeeProfile> tableData1 = FXCollections.observableList(employeeList);
+
+                            List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
+                            List<SummaryReport> filteredTimeLogs = new ArrayList<>();
+
+                            for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
+                                if (employeeProfile.getEmpID().equals(summaryReport.getEmpID())) {
+                                    LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                                    if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
+                                        filteredTimeLogs.add(summaryReport);
+                                    }
+                                }
+                            }
+
                         List<EmployeeReport> reports = new ArrayList<>();
 
+/*
                         if (employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size() ==
                                 employeeProfile.getEmployeeDailyReport().getListofTimeIns().size()) {
                             for (int i = 0; i < employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
@@ -289,7 +314,19 @@ public class ServerController implements Initializable {
                                 }
                                 reports.add(employeeReport);
                             }
+                        }*/
+
+                        for (int i = 0; i < filteredTimeLogs.size(); i++) {
+                            SummaryReport summaryReport = filteredTimeLogs.get(i);
+                            for (int j = 0; j < summaryReport.getTimeOuts().size(); j++) {
+                                EmployeeReport employeeReport = new EmployeeReport(summaryReport.getTimeIns().get(i),
+                                        summaryReport.getTimeOuts().get(i), summaryReport.getDate());
+                                reports.add(employeeReport);
+                            }
+
                         }
+
+
 
                         EmployeeTable.employeeDailyReport = reports;
 
