@@ -29,9 +29,6 @@ public class AdminLoginInterfaceController implements Initializable {
 
     public static Attendance stub;
 
-    private AnchorPane adminAnchorPane;
-
-
     @FXML
     private ImageView smcisLogo;
 
@@ -45,9 +42,6 @@ public class AdminLoginInterfaceController implements Initializable {
     private Button enterLogin;
 
     @FXML
-    private Button cancel;
-
-    @FXML
     private CheckBox showPass;
 
     @FXML
@@ -58,11 +52,6 @@ public class AdminLoginInterfaceController implements Initializable {
 
     Stage stage;
 
-
-    @FXML
-    void LoadRegisterInformation() {
-
-    }
 
     @FXML
     public void cancelAdmin() {
@@ -113,9 +102,5 @@ public class AdminLoginInterfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
-
-    public void setStub(Attendance stub){
-        this.stub =stub;
     }
 }

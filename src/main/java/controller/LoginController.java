@@ -87,7 +87,6 @@ public class LoginController implements Initializable {
 
         try {
             EmployeeProfile employee = stub.logIn(userName, passWord);
-
             if (employee.getPersonalDetails()==null){
                 //TODO setup userdetails for newly accepted employees:)
                 System.out.println("welcome to slu");
@@ -121,7 +120,6 @@ public class LoginController implements Initializable {
                 | UserNotExistingException e) {
             Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
             dialog.show();
-            System.exit(0);
         }
     }
 

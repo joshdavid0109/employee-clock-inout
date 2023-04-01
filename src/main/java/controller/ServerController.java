@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -89,6 +90,8 @@ public class ServerController implements Initializable {
 //    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
     private static final AttendanceServant ers = new AttendanceServant();
 
+    public static Registry registry = null;
+
     public ServerController() throws IOException {}
 
     public TableView<EmployeeProfile> getTableView() {
@@ -100,7 +103,10 @@ public class ServerController implements Initializable {
     }
 
     @FXML
-    void logOut(ActionEvent event) throws IOException {
+    void logOut(ActionEvent event) throws IOException, NotBoundException {
+
+//        UnicastRemoteObject.unexportObject(ers, true);
+//        registry.unbind("sayhi");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/AdminLoginInterface.fxml"));
@@ -122,19 +128,7 @@ public class ServerController implements Initializable {
         tableView.refresh();
     }
 
-    /**
-     * zephhhhhhhhhhhhhhhhhhh
-     */
-//    void summary(ActionEvent event) throws IOException {
-//
-//        Date startDate = fromTF.getValue();
-//        Date endDate = toTf.getValue();
-//
-//        if (startDate != null && endDate != null) {
-//            List<Data> searchResults = dataService.search(startDate, endDate);
-//
-//        }
-//    }
+
 
     @FXML
     void getTimeLogs(ActionEvent event) throws IOException {
@@ -166,29 +160,6 @@ public class ServerController implements Initializable {
         tableView.refresh();
     }
 
-//    public void generateReport (ActionEvent actionEvent) throws IOException {
-//        genReport.setText("Generate Report");
-//        //var fromTF = fromTF.getText();
-//        //var toTF = toTF.getText();
-//
-//        LocalDate startDate = LocalDate.parse("2023-03-19");
-//        LocalDate endDate = LocalDate.parse("2023-03-20");
-//
-//        JsonArray dataArray = jsonObject.getAsJsonArray("listofTimeIns");
-//        for(JsonElement dataElement : dataArray) {
-//            JsonObject dataObject = dataElement.getAsJsonObject();
-//            String dateString = dataObject.get("date").getAsString();
-//            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
-//            if (date.isAfter(startDate) && date.isBefore(endDate)) {
-//                String value = dataObject.get("listofTimeIns").getAsString();
-//                // extract the data you need from the data object
-//                // e.g., String value = dataObject.get("key").getAsString();
-//                // recommit
-//            }
-//        }
-//    }
-
-
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -200,23 +171,23 @@ public class ServerController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Attendance stub;
-        try {
-            stub = (Attendance) UnicastRemoteObject.exportObject(ers, 0);
-            Registry registry = null;
-            registry = LocateRegistry.createRegistry(2345);
-            registry.rebind("sayhi", stub);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+
+        if (registry == null) {
+            try {
+                Attendance stub = (Attendance) UnicastRemoteObject.exportObject(ers, 0);
+                registry = LocateRegistry.createRegistry(2345);
+                registry.rebind("sayhi", stub);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         try {
             computeWorkingHours("summaryReports.Json");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);

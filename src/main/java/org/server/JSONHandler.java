@@ -116,7 +116,6 @@ public class JSONHandler<TimeIn> {
     public static void setEmployeeStatus(String employeeID, boolean loggedIn) {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
-
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(employeeID)) {
                     emp.setLoggedIn(loggedIn);

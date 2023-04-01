@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class AttendanceServant implements Attendance {
     static Date serverDate = new Date();
@@ -99,15 +100,11 @@ public class AttendanceServant implements Attendance {
         JSONHandler.setEmployeeStatus(employeeID, loggedIn);
     }
 
-    @Override
-    public void setPersonalDetails(String employeeID, EmployeeDetails employeeDetails) throws RemoteException {
-//        JSONHandler.setEmployeeDetails(employeeID, employeeDetails);
-    }
 
     @Override
     public List<EmployeeReport> getSummary(String empID) throws RemoteException {
         List<EmployeeProfile> employeeProfiles = JSONHandler.getEmployeesFromFile();
-        for(EmployeeProfile employeeProfile : employeeProfiles ) {
+        for(EmployeeProfile employeeProfile : Objects.requireNonNull(employeeProfiles)) {
             if (employeeProfile.getEmpID().equals(empID)) {
                 List<EmployeeReport> employeeReports =  JSONHandler.getSummaryForClient(employeeProfile);
                 return employeeReports;

@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.server.Attendance;
+import org.server.JSONHandler;
 import org.shared_classes.*;
 
 import java.io.IOException;
@@ -162,8 +163,8 @@ public class EmployeeController implements Initializable {
     void logOut(MouseEvent event) throws IOException {
 
         logOutButton.getScene().getWindow().hide();
-        stub.setStatus(employee.getEmpID(), false);
-
+//        stub.setStatus(employee.getEmpID(), false);
+        JSONHandler.setEmployeeStatus(employee.getEmpID(), false);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
         Parent root = loader.load();
@@ -178,7 +179,7 @@ public class EmployeeController implements Initializable {
 
     public void shutdown() throws RemoteException {
         System.out.println("EXITING...");
-        stub.setStatus(employee.getEmpID(), false);
+//        stub.setStatus(employee.getEmpID(), false);
     }
 
     public Text getTimeLabel() {
