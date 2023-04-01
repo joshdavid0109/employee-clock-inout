@@ -4,7 +4,6 @@ package org.server.resources;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import org.server.resources.AttendanceServant;
 import org.shared_classes.*;
 
 import java.io.*;
@@ -12,6 +11,8 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,12 +46,9 @@ public class JSONHandler<TimeIn> {
                     if(employee.getPassWord().equals(password)){
                         if (!employee.isLoggedIn()) {
                             employee.setLoggedIn(true);
-                            System.out.println("EMPLOYEE " + employee.getUserName() + " HAS LOGGED IN");
-                            System.out.println("kasjay");
                             setEmployeeStatus(employee.getEmpID(), true);
                             return employee;
                         } else {
-                            System.out.println("currently logged in");
                             throw new UserCurrentlyLoggedInException();
                         }
                     }
@@ -115,6 +113,8 @@ public class JSONHandler<TimeIn> {
             List<EmployeeProfile> employees = getEmployeesFromFile();
             for (EmployeeProfile emp : employees) {
                 if (emp.getEmpID().equals(employeeID)) {
+                    LocalTime time = LocalTime.now();
+                    System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee ID: " + employeeID + " has logged " + (loggedIn ? "in." : "out."));
                     emp.setLoggedIn(loggedIn);
                     break;
                 }
@@ -124,7 +124,7 @@ public class JSONHandler<TimeIn> {
             writer.write(json);
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -132,7 +132,7 @@ public class JSONHandler<TimeIn> {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
-            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+            for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp =  employees.get(i);
                 if (emp.getEmpID().equals(employeeID)) {
                     emp.setStatus("");
@@ -172,23 +172,7 @@ public class JSONHandler<TimeIn> {
             writer.write(json);
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void registerEmployee(String username, String password) {
-        try (FileWriter writer = new FileWriter(pendingRegistersList)) {
-            List<EmployeeProfile> pendingRegisters = getPendingRegistersFromFile();
-            if (pendingRegisters == null) {
-                pendingRegisters = new ArrayList<>();
-                pendingRegisters.add(new EmployeeProfile(username, password));
-                gson.toJson(pendingRegisters, writer);
-            } else {
-                pendingRegisters.add(new EmployeeProfile(username, password));
-                gson.toJson(pendingRegisters, writer);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -205,7 +189,7 @@ public class JSONHandler<TimeIn> {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
-            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+            for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(employeeID)) {
                     JsonElement jsonElement = gson.toJsonTree(emp);
@@ -217,13 +201,16 @@ public class JSONHandler<TimeIn> {
                     //add timein
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
 
-
                     emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                     emp.status = "Working";
                     emp.getEmployeeDailyReport().setDate(dateFormat.format(d).split(", ")[0]);
                     JsonElement timeIns = gson.toJsonTree(timeIs);
 
                     //add timein sa json file
+
+                    LocalTime time = LocalTime.now();
+                    System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee ID: " + employeeID + " has timed in.");
+
                     jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeIns", timeIns);
 
                     String updatedEmployee = jsonElement.toString();
@@ -240,11 +227,11 @@ public class JSONHandler<TimeIn> {
                 gson.toJson(employees, writer);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND!");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -263,7 +250,7 @@ public class JSONHandler<TimeIn> {
 //            JsonElement jsonElement = gson.toJsonTree(new EmployeeProfile());
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -272,7 +259,7 @@ public class JSONHandler<TimeIn> {
         try (FileWriter writer = new FileWriter(summaryReportsFile)) {
             gson.toJson(summaryReports, writer);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -280,7 +267,7 @@ public class JSONHandler<TimeIn> {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
-            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+            for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(employeeID)) {
                     JsonElement jsonElement = gson.toJsonTree(emp);
@@ -298,8 +285,10 @@ public class JSONHandler<TimeIn> {
                     JsonElement timeOuts = gson.toJsonTree(timeOs);
 
                     //add timeout sa json file
-                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
+                    LocalTime time = LocalTime.now();
+                    System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee ID: " + employeeID + " has timed out.");
 
+                    jsonElement.getAsJsonObject().get("employeeDailyReport").getAsJsonObject().add("listofTimeOuts", timeOuts);
                     String updatedEmployee = jsonElement.toString();
                     // get sa json as EmployeeProfile object
                     emp = gson.fromJson(updatedEmployee, EmployeeProfile.class);
@@ -313,33 +302,33 @@ public class JSONHandler<TimeIn> {
                 gson.toJson(employees, writer);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     public static void writeGSon(List<EmployeeProfile> list, String path) {
-        switch(path){
+        File file;
+        switch(path) {
             case "employees":
-                try (FileWriter writer = new FileWriter(employeesJSONPath)) {
-                    gson.toJson(list, writer);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                file = employeesJSONPath;
                 break;
             case "pending":
-                try (FileWriter writer = new FileWriter(pendingRegistersList)) {
-                    gson.toJson(list, writer);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                file = pendingRegistersList;
                 break;
+            default:
+                return;
         }
-
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(list, writer);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
     /**
      * It reads the JSON file, parses it, and returns a list of EmployeeProfile objects
@@ -368,7 +357,7 @@ public class JSONHandler<TimeIn> {
 //            JsonElement jsonElement = gson.toJsonTree(new EmployeeProfile());
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -384,7 +373,7 @@ public class JSONHandler<TimeIn> {
             }
             return temp;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return null;
@@ -418,7 +407,7 @@ public class JSONHandler<TimeIn> {
 //            JsonElement jsonElement = gson.toJsonTree(new EmployeeProfile());
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -431,13 +420,14 @@ public class JSONHandler<TimeIn> {
     public static void appendToRegister(EmployeeProfile profile) {
         List<EmployeeProfile> pendingEmployees = getPendingRegistersFromFile();
         pendingEmployees.add(profile);
-
         try (Writer writer = new FileWriter(pendingRegistersList)) {
+            LocalTime time = LocalTime.now();
+            System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] An employee ("+profile.getFullName()+") has applied to register.");
             gson.toJson(pendingEmployees, writer);
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -448,13 +438,11 @@ public class JSONHandler<TimeIn> {
      * @return
      */
     public static String getCurrentStatus(String employeeID) {
-        //habang ginagawa ko ito, i realized na wala pala sa json yung
-        //current status, saan kukunin current status pala ng current user?
 
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
-            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+            for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp = employees.get(i);
                 if (emp.getEmpID().equals(employeeID)) {
                     JsonElement jsonElement = gson.toJsonTree(emp);
@@ -468,7 +456,6 @@ public class JSONHandler<TimeIn> {
                     //add timeout sa json file
                     String stat = String.valueOf(jsonElement.getAsJsonObject().get("status")).replaceAll("\"", "");
 
-                    System.out.println(stat);
                     if (stat.equals("Working"))
                         return "Working";
                     else if (stat.equals("On Break"))
@@ -479,7 +466,7 @@ public class JSONHandler<TimeIn> {
             }
         } catch (Exception e) {
             System.err.println("FILE NOT FOUND");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return "";
     }
@@ -492,7 +479,7 @@ public class JSONHandler<TimeIn> {
             Type listType = new TypeToken<List<TimeIn>>() {}.getType();
             timeInList = gson.fromJson(reader, listType);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

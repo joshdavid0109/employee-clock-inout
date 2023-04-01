@@ -174,8 +174,8 @@ public class EmployeeController implements Initializable {
     }
 
     public void shutdown() throws RemoteException {
+        stub.setStatus(employee.getEmpID(), false);
         System.out.println("EXITING...");
-//        stub.setStatus(employee.getEmpID(), false);
     }
 
     public Text getTimeLabel() {
@@ -234,7 +234,6 @@ public class EmployeeController implements Initializable {
 
         try {
             String s =stub.getCurrentStatus(employee.getEmpID());
-            System.out.println(s + "sd");
             if (!s.equals("")) {
                 statusLabel.setText(s);
             }
@@ -245,7 +244,6 @@ public class EmployeeController implements Initializable {
         employeeName.setText(employee.getFullName());
 
         date = new Date();
-        System.out.println("B  " + date);
         dateLabel.setText(dateFormat.format(date).split(", ")[0]);
 
 

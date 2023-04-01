@@ -86,11 +86,6 @@ public class LoginController implements Initializable {
 
         try {
             EmployeeProfile employee = stub.logIn(userName, passWord);
-            if (employee.getPersonalDetails()==null){
-                //TODO setup userdetails for newly accepted employees:)
-                System.out.println("welcome to slu");
-            }
-
 
             logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");

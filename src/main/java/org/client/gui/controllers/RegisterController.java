@@ -127,8 +127,6 @@ public class RegisterController implements Initializable {
 
     public void registerNa() throws IOException {
 
-        System.out.println(employeeDetails);
-
         String username = regUsername.getText();
         String password = regPasswordHide.getText();
         String verify = regVerifyPasswordHide.getText();
@@ -137,11 +135,6 @@ public class RegisterController implements Initializable {
 
         EmployeeProfile emp = new EmployeeProfile(username, password);
         emp.setPersonalDetails(employeeDetails);
-        System.out.println(username);
-        System.out.println(password);
-
-        System.out.println(" A " + emp);
-
         stub.signUp(emp);
     }
 

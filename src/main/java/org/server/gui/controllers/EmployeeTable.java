@@ -50,7 +50,6 @@ public class EmployeeTable implements Initializable {
             }
 
                 date = employeeDailyReport.get(i).getDate();
-                System.out.println(date);
                 parent = new TreeItem<>(new EmployeeReport("", "", date));
 
                 for (EmployeeReport e :

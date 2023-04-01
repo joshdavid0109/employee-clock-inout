@@ -47,15 +47,13 @@ public class ClientMain extends Application {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(": ");
                 if (parts[0].equals(anoKukuninKo)) {
-                    String x = parts[1].replaceAll("\"", "");
-                    System.out.println(x);
-                    return x;
+                    return parts[1].replaceAll("\"", "");
                 }
             }
+            System.err.println("[WARNING]: cannot find "+anoKukuninKo+" in "+configPath+" check mo dun pls");
             br.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            System.err.println("cannot find "+anoKukuninKo+" in "+configPath+" check mo dun pls");
         }
         return null;
     }

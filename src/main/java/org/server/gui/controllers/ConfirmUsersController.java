@@ -11,6 +11,8 @@ import org.shared_classes.*;
 import org.server.resources.*;
 
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ConfirmUsersController implements Initializable {
@@ -37,8 +39,6 @@ public class ConfirmUsersController implements Initializable {
     void acceptUser(ActionEvent event) {
         EmployeeProfile employeeProfile = employeeTable.getSelectionModel().getSelectedItem();
 
-        System.out.println("C  "+employeeProfile);
-
         if (employeeProfile != null) {
             Alert dialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to" +
                     " accept " + employeeProfile.getUserName() + "?");
@@ -56,6 +56,8 @@ public class ConfirmUsersController implements Initializable {
 
                         empi.add(pendingEmp);
                         JSONHandler.writeGSon(empi, "employees");
+                        LocalTime time = LocalTime.now();
+                        System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee: " + pendingEmp.getFullName() + " has been accepted.");
                         Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +
                                 "ID: "+pendingEmp.getEmpID());
                         accepted.show();
@@ -92,6 +94,8 @@ public class ConfirmUsersController implements Initializable {
             if (input.get() == yes) {
                 for (EmployeeProfile e : pendingEmployees) {
                     if (e.equals(employeeProfile)) {
+                        LocalTime time = LocalTime.now();
+                        System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee: " + e.getFullName() + " has been rejected.");
                         pendingEmployees.remove(e);
                         break;
                     }

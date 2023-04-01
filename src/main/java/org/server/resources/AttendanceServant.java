@@ -103,7 +103,7 @@ public class AttendanceServant implements Attendance {
     @Override
     public List<EmployeeReport> getSummary(String empID) throws RemoteException {
         List<EmployeeProfile> employeeProfiles = JSONHandler.getEmployeesFromFile();
-        for(EmployeeProfile employeeProfile : Objects.requireNonNull(employeeProfiles)) {
+        for(EmployeeProfile employeeProfile : employeeProfiles) {
             if (employeeProfile.getEmpID().equals(empID)) {
                 List<EmployeeReport> employeeReports =  JSONHandler.getSummaryForClient(employeeProfile);
                 return employeeReports;
@@ -139,7 +139,6 @@ public class AttendanceServant implements Attendance {
 
     public Date getDateAndTime() throws RemoteException {
         serverDate = new Date();
-        System.out.println("A "+serverDate);
         return serverDate;
     }
 

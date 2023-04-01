@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "userName": "darrenski",
+    "passWord": "darrenski",
+    "personalDetails": {
+      "firstName": "Franz",
+      "lastName": "Darren",
+      "age": 0,
+      "gender": "Female"
+    },
+    "isLoggedIn": false,
+    "totalWorkingHours": 0
+  }
+]

@@ -10,13 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminLoginInterfaceController implements Initializable {
+
+    public static int port;
+    public static String stubName;
 
     @FXML
     private ImageView smcisLogo;
@@ -41,41 +43,55 @@ public class AdminLoginInterfaceController implements Initializable {
 
     Stage stage;
 
-
     @FXML
     public void cancelAdmin() {
         Platform.exit();
     }
 
+    public void setPort(int port) {
+        AdminLoginInterfaceController.port = port;
+    }
+
+    public void setStubName(String stubName) {
+        AdminLoginInterfaceController.stubName = stubName;
+    }
+
     @FXML
     void loginNa(ActionEvent event) throws IOException {
-       String userName = loginUsername.getText();
-       String passWord = (loginPassword.getText() == null ? loginPassword.getText() : loginHidePassword.getText());
+        try {
+            String userName = loginUsername.getText();
+            String passWord = (loginPassword.getText() == null ? loginPassword.getText() : loginHidePassword.getText());
 
-       Alert message = new Alert(Alert.AlertType.INFORMATION);
-       if(userName.equals("user")&& passWord.equals("admin")){
-           enterLogin.getScene().getWindow().hide();
-           System.out.println("log in OK");
-           FXMLLoader loader = new FXMLLoader();
-           loader.setLocation(getClass().getResource("/fxml/ServerInterface.fxml"));
+            Alert message = new Alert(Alert.AlertType.INFORMATION);
+            if (userName.equals("user") && passWord.equals("admin")) {
+                enterLogin.getScene().getWindow().hide();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ServerInterface.fxml"));
 
-           Parent root = loader.load();
+                ServerController serverController = new ServerController();
 
-           Scene scene = new Scene(root);
-           Stage stage = (Stage) enterLogin.getScene().getWindow();
-           stage.setScene(scene);
-           stage.show();
+                serverController.setPort(port);
+                serverController.setStubName(stubName);
 
-       } else {
-           message.setContentText("Invalid Login Details.");
-           message.setTitle("Unsuccessful Login");
-           message.show();
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) enterLogin.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
+            } else {
+                message.setContentText("Invalid Login Details.");
+                message.setTitle("Unsuccessful Login");
+                message.show();
+            }
+
+            loginHidePassword.setText("");
+            loginPassword.setText("");
+            loginUsername.setText("");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
-
-       loginHidePassword.setText("");
-       loginPassword.setText("");
-       loginUsername.setText("");
     }
+
 
     @FXML
     void showPassword() {

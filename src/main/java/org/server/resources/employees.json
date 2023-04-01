@@ -9,24 +9,24 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "status": "On Break",
     "totalWorkingHours": 34,
     "employeeDailyReport": {
-      "timeIn": "Apr 01 2023, 17:48:56",
-      "timeOut": "Apr 01 2023, 17:49:04",
-      "date": "Apr 01 2023",
+      "timeIn": "Apr 02 2023, 00:24:31",
+      "timeOut": "Apr 02 2023, 00:24:32",
+      "date": "Apr 02 2023",
       "listofTimeIns": [
-        "Apr 01 2023, 16:33:37",
-        "Apr 01 2023, 16:57:06",
-        "Apr 01 2023, 17:17:28",
-        "Apr 01 2023, 17:48:56"
+        "Apr 02 2023, 00:02:16",
+        "Apr 02 2023, 00:22:05",
+        "Apr 02 2023, 00:24:08",
+        "Apr 02 2023, 00:24:31"
       ],
       "listofTimeOuts": [
-        "Apr 01 2023, 16:33:39",
-        "Apr 01 2023, 16:58:47",
-        "Apr 01 2023, 17:17:29",
-        "Apr 01 2023, 17:49:04"
+        "Apr 02 2023, 00:02:19",
+        "Apr 02 2023, 00:24:03",
+        "Apr 02 2023, 00:24:29",
+        "Apr 02 2023, 00:24:32"
       ]
     }
   },
@@ -41,14 +41,20 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "status": "",
+    "status": "On Break",
     "totalWorkingHours": 11,
     "employeeDailyReport": {
-      "timeIn": "Mar 29 2023, 21:28:27",
-      "timeOut": "Mar 29 2023, 21:33:29",
-      "date": "Apr 01 2023",
-      "listofTimeIns": [],
-      "listofTimeOuts": []
+      "timeIn": "Apr 02 2023, 00:24:33",
+      "timeOut": "Apr 02 2023, 00:24:34",
+      "date": "Apr 02 2023",
+      "listofTimeIns": [
+        "Apr 02 2023, 00:24:21",
+        "Apr 02 2023, 00:24:33"
+      ],
+      "listofTimeOuts": [
+        "Apr 02 2023, 00:24:30",
+        "Apr 02 2023, 00:24:34"
+      ]
     }
   },
   {
@@ -82,11 +88,19 @@
       "age": 18,
       "gender": "Female"
     },
-    "isLoggedIn": false,
+    "isLoggedIn": true,
+    "status": "On Break",
     "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "listofTimeIns": [],
-      "listofTimeOuts": []
+      "timeIn": "Apr 02 2023, 02:04:11",
+      "timeOut": "Apr 02 2023, 02:04:13",
+      "date": "Apr 02 2023",
+      "listofTimeIns": [
+        "Apr 02 2023, 02:04:11"
+      ],
+      "listofTimeOuts": [
+        "Apr 02 2023, 02:04:13"
+      ]
     }
   },
   {
@@ -231,6 +245,35 @@
     "employeeDailyReport": {
       "listofTimeIns": [],
       "listofTimeOuts": []
+    }
+  },
+  {
+    "empID": "EMPb6385752",
+    "userName": "maervinpogi",
+    "passWord": "asdasdasd",
+    "personalDetails": {
+      "firstName": "Maervin",
+      "lastName": "Villalobos",
+      "age": 21,
+      "gender": "Male"
+    },
+    "isLoggedIn": false,
+    "status": "On Break",
+    "totalWorkingHours": 0,
+    "employeeDailyReport": {
+      "timeIn": "Apr 02 2023, 02:13:59",
+      "timeOut": "Apr 02 2023, 02:14:51",
+      "date": "Apr 02 2023",
+      "listofTimeIns": [
+        "Apr 02 2023, 00:03:45",
+        "Apr 02 2023, 00:03:49",
+        "Apr 02 2023, 02:13:59"
+      ],
+      "listofTimeOuts": [
+        "Apr 02 2023, 00:03:46",
+        "Apr 02 2023, 02:13:52",
+        "Apr 02 2023, 02:14:51"
+      ]
     }
   }
 ]
