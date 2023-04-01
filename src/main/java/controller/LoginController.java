@@ -121,6 +121,7 @@ public class LoginController implements Initializable {
                 | UserNotExistingException e) {
             Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
             dialog.show();
+            System.exit(0);
         }
     }
 

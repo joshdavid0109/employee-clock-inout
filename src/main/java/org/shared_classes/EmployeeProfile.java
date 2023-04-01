@@ -17,7 +17,7 @@ public class EmployeeProfile implements Serializable {
     private boolean isLoggedIn;
     public String status; // working or break
     private static String note;
-    private float totalWorkingHours;
+    private int totalWorkingHours;
 
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
@@ -59,6 +59,10 @@ public class EmployeeProfile implements Serializable {
 
     public void addSummaryReport(SummaryReport summaryReport)    {
         this.summaryReport.add(summaryReport);
+    }
+
+    public int getWorkingHours(){
+        return (int) totalWorkingHours;
     }
 
     /**
@@ -164,7 +168,7 @@ public class EmployeeProfile implements Serializable {
         return totalWorkingHours;
     }
 
-    public void setTotalWorkingHours(float totalWorkingHoursList) {
+    public void setTotalWorkingHours(int totalWorkingHoursList) {
         this.totalWorkingHours = totalWorkingHoursList;
     }
 }

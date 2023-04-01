@@ -69,7 +69,7 @@ public class ServerController implements Initializable {
     private TableColumn<EmployeeProfile, String > statusColumn;
 
     @FXML
-    private TableColumn<EmployeeProfile, String> workHoursColumn;
+    private TableColumn<EmployeeProfile, Integer> workHoursColumn;
 
     @FXML
     private TableView<EmployeeProfile> tableView;
@@ -208,14 +208,14 @@ public class ServerController implements Initializable {
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
-/*
+
         try {
             computeWorkingHours("summaryReports.Json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
             throw new RuntimeException(e);
-        }*/
+        }
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
@@ -246,6 +246,9 @@ public class ServerController implements Initializable {
         {
             Bindings.selectString(cell.getValue(), "status");
             return Bindings.selectString(cell.getValue(), "status");
+        });
+        workHoursColumn.setCellValueFactory(cell -> {
+            return Bindings.selectInteger(cell.getValue(), "totalWorkingHours").asObject();
         });
 
         tableView.setItems(tableData);
@@ -325,8 +328,8 @@ public class ServerController implements Initializable {
                             for (int i = 0; i < filteredTimeLogs.size(); i++) {
                                 SummaryReport summaryReport = filteredTimeLogs.get(i);
                                 for (int j = 0; j < summaryReport.getTimeOuts().size(); j++) {
-                                    EmployeeReport employeeReport = new EmployeeReport(summaryReport.getTimeIns().get(i).split(", ")[1],
-                                            summaryReport.getTimeOuts().get(i).split(", ")[1], summaryReport.getDate());
+                                    EmployeeReport employeeReport = new EmployeeReport(summaryReport.getTimeIns().get(j).split(", ")[1],
+                                            summaryReport.getTimeOuts().get(j).split(", ")[1], summaryReport.getDate());
                                     reports.add(employeeReport);
                                 }
                             }
@@ -409,8 +412,7 @@ public class ServerController implements Initializable {
             if (totalWorkingHoursPerEmployee.containsKey(employee.getEmpID())) {
                 long totalWorkingSeconds = totalWorkingHoursPerEmployee.get(employee.getEmpID());
                 float totalWorkingHours = totalWorkingSeconds / 3600000f;
-                float updatedTotalWorkingHoursList;
-                updatedTotalWorkingHoursList = totalWorkingHours;
+                int updatedTotalWorkingHoursList = (int) totalWorkingHours;
                 employee.setTotalWorkingHours(updatedTotalWorkingHoursList);
             }
         }

@@ -11,30 +11,16 @@
     },
     "isLoggedIn": false,
     "status": "On Break",
-    "totalWorkingHours": 31.948055,
+    "totalWorkingHours": 39,
     "employeeDailyReport": {
-      "timeIn": "Mar 29 2023, 21:43:03",
-      "timeOut": "Mar 29 2023, 21:43:44",
-      "date": "Mar 29 2023",
+      "timeIn": "Apr 01 2023, 16:33:37",
+      "timeOut": "Apr 01 2023, 16:33:39",
+      "date": "Apr 01 2023",
       "listofTimeIns": [
-        "Mar 29 2023, 18:32:19",
-        "Mar 29 2023, 18:32:25",
-        "Mar 29 2023, 18:32:34",
-        "Mar 29 2023, 21:38:06",
-        "Mar 29 2023, 21:38:14",
-        "Mar 29 2023, 21:40:05",
-        "Mar 29 2023, 21:42:26",
-        "Mar 29 2023, 21:43:03"
+        "Apr 01 2023, 16:33:37"
       ],
       "listofTimeOuts": [
-        "Mar 29 2023, 18:32:23",
-        "Mar 29 2023, 18:32:29",
-        "Mar 29 2023, 21:08:02",
-        "Mar 29 2023, 21:38:10",
-        "Mar 29 2023, 21:38:21",
-        "Mar 29 2023, 21:41:25",
-        "Mar 29 2023, 21:42:31",
-        "Mar 29 2023, 21:43:44"
+        "Apr 01 2023, 16:33:39"
       ]
     }
   },
@@ -50,7 +36,7 @@
     },
     "isLoggedIn": false,
     "status": "On Break",
-    "totalWorkingHours": 11.8544445,
+    "totalWorkingHours": 11,
     "employeeDailyReport": {
       "timeIn": "Mar 29 2023, 21:28:27",
       "timeOut": "Mar 29 2023, 21:33:29",
@@ -84,7 +70,7 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
       "listofTimeIns": [
         "Mar 20 2023, 17:52:21",
@@ -105,13 +91,10 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "timeOut": "Mar 23 2023, 12:35:13",
       "listofTimeIns": [],
-      "listofTimeOuts": [
-        "Mar 23 2023, 12:35:13"
-      ]
+      "listofTimeOuts": []
     }
   },
   {
@@ -125,7 +108,7 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
       "timeIn": "Mar 23 2023, 22:06:06",
       "timeOut": "Mar 23 2023, 22:06:06",
@@ -148,9 +131,9 @@
       "gender": "N/A"
     },
     "isLoggedIn": false,
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "date": "24",
+      "date": "",
       "listofTimeIns": [],
       "listofTimeOuts": []
     }
@@ -166,9 +149,9 @@
       "gender": "N/A"
     },
     "isLoggedIn": false,
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "date": "24",
+      "date": "",
       "listofTimeIns": [],
       "listofTimeOuts": []
     }
@@ -185,7 +168,7 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
       "listofTimeIns": [],
       "listofTimeOuts": []
@@ -203,7 +186,7 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
       "timeIn": "Mar 28 2023, 19:12:09",
       "timeOut": "Mar 28 2023, 19:12:13",
@@ -234,13 +217,10 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "timeOut": "Mar 28 2023, 18:50:30",
       "listofTimeIns": [],
-      "listofTimeOuts": [
-        "Mar 28 2023, 18:50:30"
-      ]
+      "listofTimeOuts": []
     }
   },
   {
@@ -255,14 +235,10 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": 0.0,
+    "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "timeOut": "Mar 28 2023, 18:50:05",
       "listofTimeIns": [],
-      "listofTimeOuts": [
-        "Mar 28 2023, 18:49:52",
-        "Mar 28 2023, 18:50:05"
-      ]
+      "listofTimeOuts": []
     }
   }
 ]

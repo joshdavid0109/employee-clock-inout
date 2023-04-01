@@ -16,9 +16,8 @@ import java.util.List;
 public class AttendanceServant implements Attendance {
     static Date serverDate = new Date();
     static List<EmployeeProfile> empList = JSONHandler.getEmployeesFromFile();
-    private String nasaanYungJsonList = "src/main/resources/employees.json";
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMMM-dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
 
 
     @Override
@@ -26,6 +25,11 @@ public class AttendanceServant implements Attendance {
         EmployeeProfile employeeProfile = null;
         try {
             employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
+
+
+            if (!dateFormat.format(AttendanceServant.serverDate).equals(employeeProfile.getEmployeeDailyReport().getDate())) {
+                JSONHandler.setDefaultValues(employeeProfile.getEmpID());
+            }
 
         } catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException |
                  UserNotExistingException e) {
@@ -51,7 +55,6 @@ public class AttendanceServant implements Attendance {
     @Override
     public Date timeIn(String employeeId) throws RemoteException {
         Date date = getDateAndTime();
-        System.out.println("Date : "  + this.dateFormat.format(date));
         JSONHandler.addTimeIn(employeeId, date);
 
         List<EmployeeProfile> list = JSONHandler.populateTable();

@@ -113,12 +113,12 @@ public class JSONHandler<TimeIn> {
 
 
     //true = logged in, false logged out
-    public static void setEmployeeStatus(String EmployeeID, boolean loggedIn) {
+    public static void setEmployeeStatus(String employeeID, boolean loggedIn) {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
 
             for (EmployeeProfile emp : employees) {
-                if (emp.getEmpID().equals(EmployeeID)) {
+                if (emp.getEmpID().equals(employeeID)) {
                     emp.setLoggedIn(loggedIn);
                     break;
                 }
@@ -132,8 +132,52 @@ public class JSONHandler<TimeIn> {
         }
     }
 
-    public static void setEmployeeDetails(String employeeID, EmployeeDetails employeeDetails) {
-        //TODO
+    public static void setDefaultValues(String employeeID) {
+        try {
+            List<EmployeeProfile> employees = getEmployeesFromFile();
+
+            for (int i = 0; i < Objects.requireNonNull(employees).size(); i++) {
+                EmployeeProfile emp =  employees.get(i);
+                if (emp.getEmpID().equals(employeeID)) {
+                    emp.setStatus("");
+
+                    //add timein
+                    List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
+                    List<SummaryReport> summaryReports = getSummaryReportsFromFile();
+
+                    if (timeIs.size() != 0) {
+                        if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(AttendanceServant.serverDate).split(", ")[0])) {
+                            List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
+                            List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
+
+                            SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
+                            summaryReport.setTimeIns(ins);
+                            summaryReport.setTimeOuts(outs);
+                            summaryReport.setEmpID(emp.getEmpID());
+                            summaryReports.add(summaryReport);
+
+                            emp.getEmployeeDailyReport().getListofTimeIns().clear();
+                            emp.getEmployeeDailyReport().getListofTimeOuts().clear();
+                            emp.getEmployeeDailyReport().setDate(dateFormat.format(AttendanceServant.serverDate).split(", ")[0]);
+                            employees.add(i, emp);
+                            employees.remove(i);
+
+                            addSummaryToFile(summaryReports);
+
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+            }
+            FileWriter writer = new FileWriter(employeesJSONPath);
+            String json = gson.toJson(employees);
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void registerEmployee(String username, String password) {
@@ -177,31 +221,6 @@ public class JSONHandler<TimeIn> {
                     //add timein
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
 
-                    List<SummaryReport> summaryReports = getSummaryReportsFromFile();
-
-                    if (timeIs.size() != 0) {
-                        if (!timeIs.get(0).split(", ")[0].equals(dateFormat.format(d).split(", ")[0])) {
-                            List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
-                            List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
-
-                            SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
-                            summaryReport.setTimeIns(ins);
-                            summaryReport.setTimeOuts(outs);
-                            summaryReport.setEmpID(emp.getEmpID());
-                            summaryReports.add(summaryReport);
-
-                            emp.getEmployeeDailyReport().getListofTimeIns().clear();
-                            emp.getEmployeeDailyReport().getListofTimeOuts().clear();
-                            emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
-                            emp.getEmployeeDailyReport().setDate(dateFormat.format(d).split(", ")[0]);
-                            employees.add(i, emp);
-                            employees.remove(i);
-
-                            addSummaryToFile(summaryReports);
-
-                            break;
-                        }
-                    }
 
                     emp.getEmployeeDailyReport().setTimeIn(dateFormat.format(d));
                     emp.status = "Working";
