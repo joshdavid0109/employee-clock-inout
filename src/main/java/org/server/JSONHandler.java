@@ -84,9 +84,8 @@ public class JSONHandler<TimeIn> {
                 String timeIn = employee.getEmployeeDailyReport().getListofTimeIns().get(i);
                 String timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
                 EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                if (i == 0) {
-                    employeeReport.setDate(timeOut.split(", ")[0]);
-                }
+                employeeReport.setDate(timeOut.split(", ")[0]);
+
                 reports.add(employeeReport);
             }
         } else if (employee.getEmployeeDailyReport().getListofTimeOuts().size() <
@@ -102,9 +101,7 @@ public class JSONHandler<TimeIn> {
                     timeOut = employee.getEmployeeDailyReport().getListofTimeOuts().get(i);
                     employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
                 }
-                if (i == 0) {
                     employeeReport.setDate(timeOut.split(", ")[0]);
-                }
                 reports.add(employeeReport);
             }
         }

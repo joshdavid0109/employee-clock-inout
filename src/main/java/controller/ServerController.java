@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,6 +49,7 @@ public class ServerController implements Initializable {
     public TableColumn<EmployeeProfile, String> timeOutColumn;
     public TableColumn<EmployeeProfile, String> timeInColumn;
     public TableColumn<EmployeeProfile, String> activeStatusColumn;
+    public Text dateLabel;
     @FXML
     private Text adminNameLabel, companyNameLabel, genReport;
 
@@ -85,6 +87,7 @@ public class ServerController implements Initializable {
     private Button logOutButton, searchButton, printBtn, refreshButton, addEmployeeButton;
 
     private static SimpleDateFormat timeFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
 //    String jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
 //    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
@@ -128,38 +131,6 @@ public class ServerController implements Initializable {
         tableView.refresh();
     }
 
-
-
-    @FXML
-    void getTimeLogs(ActionEvent event) throws IOException {
-        LocalDate fromDate = startDate.getValue();
-        LocalDate toDate = endDate.getValue();
-
-        String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
-        String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
-        selectedDateFrom.setText(fromDateFormat);
-        selectedDateTo.setText(toDateFormat);
-
-        List<EmployeeProfile> employeeList = JSONHandler.populateTable();
-        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(employeeList);
-
-        for (EmployeeProfile employee : employeeList) {
-            List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
-            List<SummaryReport> filteredTimeLogs = new ArrayList<>();
-
-            for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
-                LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
-                    filteredTimeLogs.add(summaryReport);
-                }
-            }
-
-        }
-
-        tableView.setItems(tableData);
-        tableView.refresh();
-    }
-
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -183,10 +154,26 @@ public class ServerController implements Initializable {
         }
 
         try {
+            Date date = new Date();
+            dateLabel.setText(dateFormat.format(date));
             computeWorkingHours("summaryReports.Json");
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+
+        EventHandler<ActionEvent> calPickerEvent = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                LocalDate fromDate = startDate.getValue();
+                LocalDate toDate = endDate.getValue();
+
+                String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                selectedDateFrom.setText(fromDateFormat);
+                selectedDateTo.setText(toDateFormat);
+
+            }
+        };
 
 
         List<EmployeeProfile> list = JSONHandler.populateTable();

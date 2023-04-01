@@ -9,22 +9,24 @@
       "age": 14,
       "gender": "Male"
     },
-    "isLoggedIn": false,
-    "status": "Working",
+    "isLoggedIn": true,
+    "status": "On Break",
     "totalWorkingHours": 34,
     "employeeDailyReport": {
-      "timeIn": "Apr 01 2023, 17:23:37",
-      "timeOut": "Apr 01 2023, 17:17:29",
+      "timeIn": "Apr 01 2023, 17:48:56",
+      "timeOut": "Apr 01 2023, 17:49:04",
       "date": "Apr 01 2023",
       "listofTimeIns": [
         "Apr 01 2023, 16:33:37",
         "Apr 01 2023, 16:57:06",
-        "Apr 01 2023, 17:17:28"
+        "Apr 01 2023, 17:17:28",
+        "Apr 01 2023, 17:48:56"
       ],
       "listofTimeOuts": [
         "Apr 01 2023, 16:33:39",
         "Apr 01 2023, 16:58:47",
-        "Apr 01 2023, 17:17:29"
+        "Apr 01 2023, 17:17:29",
+        "Apr 01 2023, 17:49:04"
       ]
     }
   },
