@@ -17,6 +17,7 @@ module com.example.helloworld {
     exports controller;
     exports org.shared_classes;
     exports org.server.gui;
+    exports org.client;
     opens org.server.gui to javafx.fxml;
     exports org.client.gui;
     opens org.client.gui to javafx.fxml;

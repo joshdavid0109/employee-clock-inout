@@ -15,6 +15,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class LoginInterface extends Application {
+
+    public String ip_address;
+    public int port;
+    public String remoteReferenceName;
+
     private Attendance stub;
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -25,13 +30,8 @@ public class LoginInterface extends Application {
         LoginController loginController = fxmlLoader.getController();
 
         try {
-            /**
-             * CHANGE HOST
-             */
-//            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
-            Registry registry = LocateRegistry.getRegistry(2345);
-            stub = (Attendance) registry.lookup("sayhi");
-
+            Registry registry = LocateRegistry.getRegistry(ip_address, port);
+            stub = (Attendance) registry.lookup(remoteReferenceName);
         } catch (Exception e) {
             Alert dialog = new Alert(Alert.AlertType.WARNING, e.getMessage(), ButtonType.OK);
             dialog.show();
