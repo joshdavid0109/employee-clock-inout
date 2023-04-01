@@ -1,6 +1,9 @@
 package org.shared_classes;
 
-public class EmployeeReport {
+
+import java.io.Serializable;
+
+public class EmployeeReport implements Serializable {
     private String timeIn;
     private String timeOut;
     private String date;
@@ -15,6 +18,10 @@ public class EmployeeReport {
         this.timeIn = timeIn;
         this.timeOut = timeOut;
         this.date = date;
+    }
+
+    public EmployeeReport() {
+
     }
 
     public String getTimeOut() {

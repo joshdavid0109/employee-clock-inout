@@ -19,7 +19,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.server.Attendance;
 
+import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -68,19 +70,31 @@ public class AdminLoginInterfaceController implements Initializable {
     }
 
     @FXML
-    void loginNa(ActionEvent event) {
+    void loginNa(ActionEvent event) throws IOException {
        String userName = loginUsername.getText();
-       String passWord = loginPassword.getText();
+       String passWord = (loginPassword.getText() == null ? loginPassword.getText() : loginHidePassword.getText());
 
        Alert message = new Alert(Alert.AlertType.INFORMATION);
-       if(userName.equals("admin")&& passWord.equals("1234")){
-          //to do
-       }else {
+       if(userName.equals("user")&& passWord.equals("admin")){
+           enterLogin.getScene().getWindow().hide();
+           System.out.println("log in OK");
+           FXMLLoader loader = new FXMLLoader();
+           loader.setLocation(getClass().getResource("/fxml/ServerInterface.fxml"));
+
+           Parent root = loader.load();
+
+           Scene scene = new Scene(root);
+           Stage stage = (Stage) enterLogin.getScene().getWindow();
+           stage.setScene(scene);
+           stage.show();
+
+       } else {
            message.setContentText("Invalid Login Details.");
            message.setTitle("Unsuccessful Login");
            message.show();
         }
 
+       loginHidePassword.setText("");
        loginPassword.setText("");
        loginUsername.setText("");
     }

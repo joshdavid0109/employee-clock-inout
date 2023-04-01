@@ -155,7 +155,7 @@ public class ServerController implements Initializable {
             List<SummaryReport> filteredTimeLogs = new ArrayList<>();
 
             for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
-                LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
                 if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
                     filteredTimeLogs.add(summaryReport);
                 }
@@ -245,111 +245,6 @@ public class ServerController implements Initializable {
         tableView.setItems(tableData);
         tableView.refresh();
 
-        tableView.setRowFactory(tv ->{
-            TableRow<EmployeeProfile> tableRow = new TableRow<>();
-
-            tableRow.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! tableRow.isEmpty())) {
-                    EmployeeProfile employeeProfile = tableRow.getItem();
-
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
-
-
-
-                        LocalDate fromDate = startDate.getValue();
-                        LocalDate toDate = endDate.getValue();
-
-                        String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
-                        String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
-                        selectedDateFrom.setText(fromDateFormat);
-                        selectedDateTo.setText(toDateFormat);
-
-                        List<EmployeeProfile> employeeList = JSONHandler.populateTable();
-                        ObservableList<EmployeeProfile> tableData1 = FXCollections.observableList(employeeList);
-
-                            List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
-                            List<SummaryReport> filteredTimeLogs = new ArrayList<>();
-
-                            for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
-                                if (employeeProfile.getEmpID().equals(summaryReport.getEmpID())) {
-                                    LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                                    if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
-                                        filteredTimeLogs.add(summaryReport);
-                                    }
-                                }
-                            }
-
-                        List<EmployeeReport> reports = new ArrayList<>();
-
-/*
-                        if (employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size() ==
-                                employeeProfile.getEmployeeDailyReport().getListofTimeIns().size()) {
-                            for (int i = 0; i < employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size(); i++) {
-
-                                String timeIn = employeeProfile.getEmployeeDailyReport().getListofTimeIns().get(i);
-                                String timeOut = employeeProfile.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                                EmployeeReport employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                                if (i == 0) {
-                                    employeeReport.setDate(timeOut.split(", ")[0]);
-                                }
-                                reports.add(employeeReport);
-                            }
-                        } else if (employeeProfile.getEmployeeDailyReport().getListofTimeOuts().size() <
-                                employeeProfile.getEmployeeDailyReport().getListofTimeIns().size()) {
-                            for (int i = 0; i < employeeProfile.getEmployeeDailyReport().getListofTimeIns().size(); i++) {
-                                String timeIn = employeeProfile.getEmployeeDailyReport().getListofTimeIns().get(i);
-                                String timeOut;
-                                EmployeeReport employeeReport = null;
-                                if (employeeProfile.getEmployeeDailyReport().getListofTimeIns().size() - 1 == i){
-                                    timeOut = "";
-                                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut);
-                                }else {
-                                    timeOut = employeeProfile.getEmployeeDailyReport().getListofTimeOuts().get(i);
-                                    employeeReport = new EmployeeReport(timeIn.split(", ")[1], timeOut.split(", ")[1]);
-                                }
-                                if (i == 0) {
-                                    employeeReport.setDate(timeOut.split(", ")[0]);
-                                }
-                                reports.add(employeeReport);
-                            }
-                        }*/
-
-                        for (int i = 0; i < filteredTimeLogs.size(); i++) {
-                            SummaryReport summaryReport = filteredTimeLogs.get(i);
-                            for (int j = 0; j < summaryReport.getTimeOuts().size(); j++) {
-                                EmployeeReport employeeReport = new EmployeeReport(summaryReport.getTimeIns().get(i),
-                                        summaryReport.getTimeOuts().get(i), summaryReport.getDate());
-                                reports.add(employeeReport);
-                            }
-
-                        }
-
-
-
-                        EmployeeTable.employeeDailyReport = reports;
-
-                        Pane employeeTable = fxmlLoader.load();
-                        Dialog<ButtonType> dialog = new Dialog<>();
-                        dialog.setDialogPane((DialogPane) employeeTable);
-                        dialog.setTitle("Summary");
-
-                        //close button
-                        Window window = dialog.getDialogPane().getScene().getWindow();
-                        window.setOnCloseRequest(event1 ->
-                                window.hide());
-
-                        dialog.show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return tableRow;
-        });
-
-
         // For searchField -- works only for empID
         // uncomment lines if gusto nyo working pati sa name
 
@@ -377,6 +272,88 @@ public class ServerController implements Initializable {
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
 
         tableView.setItems(sortedList);
+
+        tableView.setRowFactory(tv ->{
+            TableRow<EmployeeProfile> tableRow = new TableRow<>();
+
+            tableRow.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! tableRow.isEmpty())) {
+                    EmployeeProfile employeeProfile = tableRow.getItem();
+
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("/fxml/TreeTableView.fxml"));
+                        Alert errorMessage = new Alert(Alert.AlertType.WARNING);
+
+                        if (startDate.getValue() == null || endDate.getValue() == null) {
+                            errorMessage.setTitle("No dates selected");
+                            errorMessage.setContentText("Please select a date from the calendar");
+                            errorMessage.show();
+                        }
+                        LocalDate fromDate = startDate.getValue();
+                        LocalDate toDate = endDate.getValue();
+
+
+                        String fromDateFormat = fromDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                        String toDateFormat = toDate.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"));
+                        selectedDateFrom.setText(fromDateFormat);
+                        selectedDateTo.setText(toDateFormat);
+
+                        List<EmployeeProfile> employeeList = JSONHandler.populateTable();
+                        ObservableList<EmployeeProfile> tableData1 = FXCollections.observableList(employeeList);
+
+                        List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
+                        List<SummaryReport> filteredTimeLogs = new ArrayList<>();
+
+                        for (SummaryReport summaryReport : Objects.requireNonNull(summaryReports)) {
+                            if (employeeProfile.getEmpID().equals(summaryReport.getEmpID())) {
+                                LocalDate logDate = LocalDate.parse(summaryReport.getDate(), DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                                if (!logDate.isBefore(fromDate) && !logDate.isAfter(toDate)) {
+                                    filteredTimeLogs.add(summaryReport);
+                                }
+                            }
+                        }
+
+                        if (!filteredTimeLogs.isEmpty()) {
+                            List<EmployeeReport> reports = new ArrayList<>();
+                            for (int i = 0; i < filteredTimeLogs.size(); i++) {
+                                SummaryReport summaryReport = filteredTimeLogs.get(i);
+                                for (int j = 0; j < summaryReport.getTimeOuts().size(); j++) {
+                                    EmployeeReport employeeReport = new EmployeeReport(summaryReport.getTimeIns().get(i).split(", ")[1],
+                                            summaryReport.getTimeOuts().get(i).split(", ")[1], summaryReport.getDate());
+                                    reports.add(employeeReport);
+                                }
+                            }
+
+                            EmployeeTable.employeeDailyReport = reports;
+
+                            Pane employeeTable = fxmlLoader.load();
+                            Dialog<ButtonType> dialog = new Dialog<>();
+                            dialog.setDialogPane((DialogPane) employeeTable);
+                            dialog.setTitle("Summary");
+
+                            //close button
+                            Window window = dialog.getDialogPane().getScene().getWindow();
+                            window.setOnCloseRequest(event1 ->
+                                    window.hide());
+
+                            dialog.show();
+                        } else {
+                            errorMessage.setTitle("Error generating report");
+                            errorMessage.setContentText("No generated summary for the range of dates selected");
+                            errorMessage.show();
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return tableRow;
+        });
+
+
+
 
 
         //active status column

@@ -185,7 +185,6 @@
     "isLoggedIn": false,
     "status": "",
     "employeeDailyReport": {
-      "date": "24",
       "listofTimeIns": [],
       "listofTimeOuts": []
     }
@@ -234,7 +233,6 @@
     "status": "",
     "employeeDailyReport": {
       "timeOut": "Mar 28 2023, 18:50:30",
-      "date": "27",
       "listofTimeIns": [],
       "listofTimeOuts": [
         "Mar 28 2023, 18:50:30"
@@ -255,7 +253,6 @@
     "status": "",
     "employeeDailyReport": {
       "timeOut": "Mar 28 2023, 18:50:05",
-      "date": "27",
       "listofTimeIns": [],
       "listofTimeOuts": [
         "Mar 28 2023, 18:49:52",

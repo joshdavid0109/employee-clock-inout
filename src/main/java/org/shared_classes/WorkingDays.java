@@ -53,13 +53,13 @@ public class WorkingDays {
             if (totalWorkingHoursPerEmployee.containsKey(employee.getEmpID())) {
                 long totalWorkingSeconds = totalWorkingHoursPerEmployee.get(employee.getEmpID());
                 float totalWorkingHours = totalWorkingSeconds / 3600000f;
-                List<Float> totalWorkingHoursList = employee.getTotalWorkingHours();
-                if (totalWorkingHoursList != null && !totalWorkingHoursList.isEmpty()) {
+                float totalWorkingHoursList = employee.getTotalWorkingHours();
+/*                if (totalWorkingHoursList != null && !totalWorkingHoursList.isEmpty()) {
                     float lastTotalWorkingHours = totalWorkingHoursList.get(totalWorkingHoursList.size() - 1);
                     totalWorkingHours += lastTotalWorkingHours;
-                }
-                List<Float> updatedTotalWorkingHoursList = new ArrayList<>();
-                updatedTotalWorkingHoursList.add(totalWorkingHours);
+                }*/
+                float updatedTotalWorkingHoursList;
+                updatedTotalWorkingHoursList = totalWorkingHours;
                 employee.setTotalWorkingHours(updatedTotalWorkingHoursList);
             }
         }

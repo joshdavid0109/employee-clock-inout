@@ -48,29 +48,46 @@ public class EmployeeTable implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        String date = null;
+        TreeItem<EmployeeReport> root = new TreeItem<>(new EmployeeReport());
 
+        for (int i = 0; i < employeeDailyReport.size(); i++) {
+            TreeItem<EmployeeReport> parent = null;
+            if (i == 0) {
+                date = employeeDailyReport.get(i).getDate();
+                parent = new TreeItem<>(new EmployeeReport("", "", date));
+            }else if (date.equals(employeeDailyReport.get(i).getDate()) || employeeDailyReport.get(i).getDate().equals("")) {
+                continue;
+            }
 
-        TreeItem<EmployeeReport> root = new TreeItem<>(new EmployeeReport("Time In", "Time out",
-                employeeDailyReport.get(0).getDate()));
+                date = employeeDailyReport.get(i).getDate();
+                System.out.println(date);
+                parent = new TreeItem<>(new EmployeeReport("", "", date));
 
-        for (EmployeeReport e:
-             employeeDailyReport) {
-            e.setDate("");
-            TreeItem<EmployeeReport> employeeReportTreeItem = new TreeItem<>(e);
-            root.getChildren().add(employeeReportTreeItem);
+                for (EmployeeReport e :
+                        employeeDailyReport) {
+                    if (e.getDate().equals(date)) {
+                        e.setDate("");
+                        TreeItem<EmployeeReport> employeeReportTreeItem = new TreeItem<>(e);
+                        parent.getChildren().add(employeeReportTreeItem);
+                    }
+                }
+                root.getChildren().add(parent);
+                parent = null;
+
         }
 
-        System.out.println("test commit");
-
         dateTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getDate()));
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param)
+                        -> new SimpleStringProperty(param.getValue().getValue().getDate()));
         timeInTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getTimeIn()));
-
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param)
+                        -> new SimpleStringProperty(param.getValue().getValue().getTimeIn()));
         timeOutTTColumn.setCellValueFactory(
-                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param) -> new SimpleStringProperty(param.getValue().getValue().getTimeOut()));
+                (TreeTableColumn.CellDataFeatures<EmployeeReport, String> param)
+                        -> new SimpleStringProperty(param.getValue().getValue().getTimeOut()));
+
         treeTableView.setRoot(root);
+        treeTableView.setShowRoot(false);
     }
-
-
 }
