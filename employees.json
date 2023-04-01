@@ -35,28 +35,14 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "status": "On Break",
+    "status": "",
     "totalWorkingHours": 11,
     "employeeDailyReport": {
       "timeIn": "Mar 29 2023, 21:28:27",
       "timeOut": "Mar 29 2023, 21:33:29",
-      "date": "Mar 29 2023",
-      "listofTimeIns": [
-        "Mar 29 2023, 21:27:30",
-        "Mar 29 2023, 21:27:34",
-        "Mar 29 2023, 21:27:38",
-        "Mar 29 2023, 21:27:44",
-        "Mar 29 2023, 21:28:20",
-        "Mar 29 2023, 21:28:27"
-      ],
-      "listofTimeOuts": [
-        "Mar 29 2023, 21:27:32",
-        "Mar 29 2023, 21:27:37",
-        "Mar 29 2023, 21:27:39",
-        "Mar 29 2023, 21:28:19",
-        "Mar 29 2023, 21:28:23",
-        "Mar 29 2023, 21:32:28"
-      ]
+      "date": "Apr 01 2023",
+      "listofTimeIns": [],
+      "listofTimeOuts": []
     }
   },
   {

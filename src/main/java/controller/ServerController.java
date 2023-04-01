@@ -113,8 +113,9 @@ public class ServerController implements Initializable {
     }
 
     @FXML
-    void refresh(ActionEvent event) throws IOException {
+    void refresh(ActionEvent event) throws IOException, ParseException {
         List<EmployeeProfile> list = JSONHandler.populateTable();
+        computeWorkingHours("summaryReports.json");
 //        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
         tableView.setItems(tableData);
