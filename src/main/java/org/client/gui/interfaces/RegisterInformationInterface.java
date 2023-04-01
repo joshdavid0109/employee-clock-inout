@@ -1,4 +1,4 @@
-package org.client.gui;
+package org.client.gui.interfaces;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package org.server.gui;
+package org.server.gui.interfaces;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

@@ -1,6 +1,6 @@
-package org.client.gui;
+package org.client.gui.interfaces;
 
-import controller.LoginController;
+import org.client.gui.controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.server.Attendance;
+import org.shared_classes.Attendance;
 
 import java.io.IOException;
 import java.rmi.registry.LocateRegistry;

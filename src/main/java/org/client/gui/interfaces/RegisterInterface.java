@@ -1,24 +1,21 @@
-package org.server.gui;
+package org.client.gui.interfaces;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
-public class ServerInterface extends Application {
-
+public class RegisterInterface extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Image image = new Image("SLU_LOGO.jpg");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ServerInterface.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/RegisterInterface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("ADMIN");
+        primaryStage.setTitle("EMPLOYEE");
         primaryStage.getIcons().add(image);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);

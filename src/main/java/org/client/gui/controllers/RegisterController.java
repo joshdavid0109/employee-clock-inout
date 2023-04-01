@@ -1,4 +1,4 @@
-package controller;
+package org.client.gui.controllers;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -13,9 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import org.server.Attendance;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
+import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;

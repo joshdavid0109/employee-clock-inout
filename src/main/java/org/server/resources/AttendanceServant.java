@@ -1,7 +1,6 @@
-package org.server;
+package org.server.resources;
 
-import controller.EmployeeController;
-import controller.ServerController;
+import org.server.gui.controllers.ServerController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

@@ -1,4 +1,4 @@
-package controller;
+package org.client.gui.controllers;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -6,23 +6,17 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.server.Attendance;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
-import org.shared_classes.EmptyFieldsException;
+import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,8 +24,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
 

@@ -1,6 +1,5 @@
-package org.server.gui;
+package org.server.gui.interfaces;
 
-import org.client.gui.EmployeeInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +11,7 @@ public class ConfirmUsersInterface extends Application {
     public void start(Stage stage) throws Exception {
         Image image = new Image("SLU_LOGO.jpg");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(EmployeeInterface.class.getResource("/fxml/ConfirmUsersTable.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ConfirmUsersTable.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("ADMIN");
         stage.setResizable(false);

@@ -1,4 +1,4 @@
-package org.server;
+package org.shared_classes;
 
 import org.shared_classes.*;
 

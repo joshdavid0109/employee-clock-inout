@@ -1,4 +1,4 @@
-package controller;
+package org.server.gui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,10 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.server.Attendance;
-import org.shared_classes.EmployeeDetails;
-import org.shared_classes.EmployeeProfile;
-import org.server.*;
+import org.shared_classes.*;
+import org.server.resources.*;
 
 import java.net.URL;
 import java.util.*;

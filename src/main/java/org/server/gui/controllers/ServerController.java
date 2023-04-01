@@ -1,4 +1,4 @@
-package controller;
+package org.server.gui.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,12 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.server.AttendanceServant;
-import org.server.JSONHandler;
-import org.server.Attendance;
-import org.shared_classes.EmployeeProfile;
-import org.shared_classes.EmployeeReport;
-import org.shared_classes.SummaryReport;
+import org.server.resources.*;
+import org.shared_classes.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -124,7 +120,7 @@ public class ServerController implements Initializable {
     @FXML
     void refresh(ActionEvent event) throws IOException, ParseException {
         List<EmployeeProfile> list = JSONHandler.populateTable();
-        computeWorkingHours("summaryReports.json");
+        computeWorkingHours("src/main/java/org/server/resources/summaryReports.json");
 //        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
         tableView.setItems(tableData);
@@ -156,7 +152,7 @@ public class ServerController implements Initializable {
         try {
             Date date = new Date();
             dateLabel.setText(dateFormat.format(date));
-            computeWorkingHours("summaryReports.Json");
+            computeWorkingHours("src/main/java/org/server/resources/summaryReports.json");
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -378,7 +374,7 @@ public class ServerController implements Initializable {
 
         // Writing the updated employees list to the employees.json file.
         String updatedJson = gson.toJson(employees);
-        FileWriter writer = new FileWriter("employees.json");
+        FileWriter writer = new FileWriter("src/main/java/org/server/resources/employees.json");
         JsonWriter jsonWriter = new JsonWriter(writer);
         jsonWriter.setIndent("  ");
         gson.toJson(employees, new TypeToken<List<EmployeeProfile>>(){}.getType(), jsonWriter);

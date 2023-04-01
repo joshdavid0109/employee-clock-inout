@@ -1,26 +1,15 @@
-package controller;
+package org.server.gui.controllers;
 
-import javafx.beans.Observable;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.ReadOnlyStringWrapper;
+
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
-import org.shared_classes.EmployeeDailyReport;
-import org.shared_classes.EmployeeProfile;
-import org.shared_classes.EmployeeReport;
-import org.shared_classes.SummaryReport;
+import org.shared_classes.*;
 
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
-
 
 public class EmployeeTable implements Initializable {
 
@@ -34,7 +23,7 @@ public class EmployeeTable implements Initializable {
     @FXML
     public TreeTableView<EmployeeReport> treeTableView;
 
-    static List<EmployeeReport> employeeDailyReport;
+    public static List<EmployeeReport> employeeDailyReport;
 
 
     /**

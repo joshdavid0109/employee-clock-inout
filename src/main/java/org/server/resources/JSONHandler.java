@@ -1,10 +1,10 @@
-package org.server;
+package org.server.resources;
 
 //dapat server lang nakakagamit nitong class na ito
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import controller.ServerController;
+import org.server.resources.AttendanceServant;
 import org.shared_classes.*;
 
 import java.io.*;
@@ -27,9 +27,9 @@ public class JSONHandler<TimeIn> {
     private static final Gson gson = gsonBuilder
             .create();
 
-    static private final File employeesJSONPath = new File("employees.json");
-    static private final File summaryReportsFile = new File("summaryReports.json");
-    static private final File pendingRegistersList = new File("registers.json");
+    static private final File employeesJSONPath = new File("src/main/java/org/server/resources/employees.json");
+    static private final File summaryReportsFile = new File("src/main/java/org/server/resources/summaryReports.json");
+    static private final File pendingRegistersList = new File("src/main/java/org/server/resources/registers.json");
 
     static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
 

@@ -2,7 +2,7 @@ package org.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.client.gui.LoginInterface;
+import org.client.gui.interfaces.LoginInterface;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class ClientMain extends Application {
 
-    private static final String configPath = "src/main/java/org/client/config.txt";
+    private static final String configPath = "src/main/java/org/client/clientcfg.txt";
     public String ip_address;
     public int port;
     public String stubName;

@@ -1,33 +1,22 @@
-package controller;
+package org.server.gui.controllers;
 
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.print.PageLayout;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.server.Attendance;
+import org.shared_classes.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminLoginInterfaceController implements Initializable {
-
-    public static Attendance stub;
 
     @FXML
     private ImageView smcisLogo;

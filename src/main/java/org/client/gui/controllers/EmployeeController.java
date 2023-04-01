@@ -1,4 +1,4 @@
-package controller;
+package org.client.gui.controllers;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -14,8 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import org.server.Attendance;
-import org.server.JSONHandler;
+import org.server.gui.controllers.EmployeeTable;
 import org.shared_classes.*;
 
 import java.io.IOException;
@@ -26,7 +25,6 @@ import java.rmi.registry.Registry;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -87,7 +85,6 @@ public class EmployeeController implements Initializable {
     @FXML
     void addTimeIn(MouseEvent event) throws RemoteException {
         Image timeInImage = new Image("TYPING_ICON.gif");
-
 
         imageViewIcon.setImage(timeInImage);
 
@@ -163,8 +160,7 @@ public class EmployeeController implements Initializable {
     void logOut(MouseEvent event) throws IOException {
 
         logOutButton.getScene().getWindow().hide();
-//        stub.setStatus(employee.getEmpID(), false);
-        JSONHandler.setEmployeeStatus(employee.getEmpID(), false);
+        stub.setStatus(employee.getEmpID(), false);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/LoginInterface.fxml"));
         Parent root = loader.load();
