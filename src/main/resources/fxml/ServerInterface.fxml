@@ -62,7 +62,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="printButton" layoutX="636.0" layoutY="101.0" mnemonicParsing="false" onAction="#printReport" prefHeight="28.0" prefWidth="68.0" style="-fx-background-radius: 15;" text="PRINT" />
+      <Button fx:id="printButton" layoutX="636.0" layoutY="101.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="68.0" style="-fx-background-radius: 15;" text="PRINT" />
       <Text fx:id="adminNameLabel2" fill="WHITE" layoutX="28.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FROM">
          <font>
             <Font name="System Bold" size="10.0" />

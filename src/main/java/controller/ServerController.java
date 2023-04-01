@@ -1,7 +1,8 @@
 package controller;
 
-import com.google.gson.JsonObject;
-import javafx.beans.Observable;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonWriter;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,21 +16,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.util.Callback;
 import org.server.AttendanceServant;
 import org.server.JSONHandler;
 import org.server.Attendance;
-import org.shared_classes.EmployeeDailyReport;
 import org.shared_classes.EmployeeProfile;
 import org.shared_classes.EmployeeReport;
 import org.shared_classes.SummaryReport;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -38,6 +35,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,7 +83,7 @@ public class ServerController implements Initializable {
     @FXML
     private Button logOutButton, searchButton, printBtn, refreshButton, addEmployeeButton;
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy - MMMM - dd");
+    private static SimpleDateFormat timeFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
 
 //    String jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
 //    JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
@@ -210,6 +208,14 @@ public class ServerController implements Initializable {
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
+/*
+        try {
+            computeWorkingHours("summaryReports.Json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }*/
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
@@ -354,8 +360,6 @@ public class ServerController implements Initializable {
 
 
 
-
-
         //active status column
         activeStatusColumn.setCellFactory(cell -> new TableCell<>() {
             @Override
@@ -372,15 +376,55 @@ public class ServerController implements Initializable {
             }
         });
     }
-    
-    public void updateTable() {
 
-        List<EmployeeProfile> list = JSONHandler.populateTable();
-        ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
+    public static void computeWorkingHours(String jsonFilePath) throws IOException, ParseException {
+        String json = Files.readString(Paths.get(jsonFilePath));
+        Gson gson = new Gson();
+        List<SummaryReport> reports = gson.fromJson(json,
+                new TypeToken<List<SummaryReport>>(){}.getType());
 
-        tableView.setItems(tableData);
-        tableView.refresh();
+        Map<String, Long> totalWorkingHoursPerEmployee = new HashMap<>();
+        for (SummaryReport report : reports) {
+            String empID = report.getEmpID();
+
+            List<String> timeIns = report.getTimeIns();
+            List<String> timeOuts = report.getTimeOuts();
+            long totalWorkingHours = 0;
+            for (int i = 0; i < timeIns.size(); i++) {
+                Date timeIn = timeFormat.parse(timeIns.get(i));
+                Date timeOut = timeFormat.parse(timeOuts.get(i));
+                totalWorkingHours += timeOut.getTime() - timeIn.getTime();
+            }
+            totalWorkingHoursPerEmployee.merge(empID, totalWorkingHours, Long::sum);
+        }
+
+        for (String empID : totalWorkingHoursPerEmployee.keySet()) {
+            long totalWorkingHours = totalWorkingHoursPerEmployee.get(empID);
+            System.out.println("Employee ID: " + empID + ", Total working hours: " + (totalWorkingHours / 3600000f));
+        }
+
+        List<EmployeeProfile> employees = JSONHandler.getEmployeesFromFile();
+
+        for (EmployeeProfile employee : Objects.requireNonNull(employees)) {
+            if (totalWorkingHoursPerEmployee.containsKey(employee.getEmpID())) {
+                long totalWorkingSeconds = totalWorkingHoursPerEmployee.get(employee.getEmpID());
+                float totalWorkingHours = totalWorkingSeconds / 3600000f;
+                float updatedTotalWorkingHoursList;
+                updatedTotalWorkingHoursList = totalWorkingHours;
+                employee.setTotalWorkingHours(updatedTotalWorkingHoursList);
+            }
+        }
+
+        // Writing the updated employees list to the employees.json file.
+        String updatedJson = gson.toJson(employees);
+        FileWriter writer = new FileWriter("employees.json");
+        JsonWriter jsonWriter = new JsonWriter(writer);
+        jsonWriter.setIndent("  ");
+        gson.toJson(employees, new TypeToken<List<EmployeeProfile>>(){}.getType(), jsonWriter);
+        writer.close();
+
     }
+
 
     public void addEmployee(ActionEvent actionEvent) throws Exception{
         FXMLLoader loader = new FXMLLoader();
@@ -394,20 +438,5 @@ public class ServerController implements Initializable {
 
     }
 
-    public void printReport(ActionEvent event) {
-    }
 
-/*    @FXML
-    public void printReport(ActionEvent event) {
-        String jsonString;
-        JsonObject jsonObject;
-
-        try {
-            jsonString = new String(Files.readAllBytes(Paths.get("employees.json")));
-
-            jsonObject = gson.fromJson(jsonString);
-
-
-        }
-    }*/
 }

@@ -56,9 +56,6 @@ public class ConfirmUsersController implements Initializable {
                         pendingEmp.setEmpID(generateID());
                         List<EmployeeProfile> empi = JSONHandler.getEmployeesFromFile();
 
-                        System.out.println(" K \n\n"+empi);
-                        System.out.println(" G \n\n"+pendingEmp);
-
                         empi.add(pendingEmp);
                         JSONHandler.writeGSon(empi, "employees");
                         Alert accepted = new Alert(Alert.AlertType.INFORMATION, "Employee "+pendingEmp.getUserName()+" has been registered. \n" +

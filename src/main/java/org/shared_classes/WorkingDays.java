@@ -1,8 +1,10 @@
 package org.shared_classes;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonWriter;
+import org.server.JSONHandler;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,10 +27,6 @@ public class WorkingDays {
         Map<String, Long> totalWorkingHoursPerEmployee = new HashMap<>();
         for (SummaryReport report : reports) {
             String empID = report.getEmpID();
-//            String dateStr = report.getDate();
-//            Date date = dateFormat.parse(dateStr);
-//            Map<String, Long> workingHoursPerDay = workingHoursPerEmployeePerDay.
-//                    computeIfAbsent(empID, k -> new HashMap<>());
 
             List<String> timeIns = report.getTimeIns();
             List<String> timeOuts = report.getTimeOuts();
@@ -46,10 +44,9 @@ public class WorkingDays {
             System.out.println("Employee ID: " + empID + ", Total working hours: " + (totalWorkingHours / 3600000f));
         }
 
-        json = Files.readString(Paths.get("employees.json"));
-        List<EmployeeProfile> employees = gson.fromJson(json, new TypeToken<List<EmployeeProfile>>(){}.getType());
+        List<EmployeeProfile> employees = JSONHandler.getEmployeesFromFile();
 
-        for (EmployeeProfile employee : employees) {
+        for (EmployeeProfile employee : Objects.requireNonNull(employees)) {
             if (totalWorkingHoursPerEmployee.containsKey(employee.getEmpID())) {
                 long totalWorkingSeconds = totalWorkingHoursPerEmployee.get(employee.getEmpID());
                 float totalWorkingHours = totalWorkingSeconds / 3600000f;
