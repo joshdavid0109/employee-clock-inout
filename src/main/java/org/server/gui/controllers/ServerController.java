@@ -255,9 +255,10 @@ public class ServerController implements Initializable {
 
                     return employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter);
 
-        /*if  (employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter))
-            return true;
-        else return employeeProfile.getFullName().toLowerCase().contains(lowerCaseFilter);*/
+                    /*if  (employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    else return employeeProfile.getFullName().toLowerCase().contains(lowerCaseFilter);*/
+
                 });
             });
             SortedList<EmployeeProfile> sortedList = new SortedList<>(filteredList);
@@ -295,8 +296,6 @@ public class ServerController implements Initializable {
                         selectedDateTo.setText(toDateFormat);
 
                         List<EmployeeProfile> employeeList = JSONHandler.populateTable();
-                        ObservableList<EmployeeProfile> tableData1 = FXCollections.observableList(employeeList);
-
                         List<SummaryReport> summaryReports = JSONHandler.getSummaryReportsFromFile();
                         List<SummaryReport> filteredTimeLogs = new ArrayList<>();
 
@@ -404,8 +403,7 @@ public class ServerController implements Initializable {
                 }
             }
 
-            // Writing the updated employees list to the employees.json file.
-            String updatedJson = gson.toJson(employees);
+            // Writing the updated employees list to the employees.json file
             FileWriter writer = new FileWriter("src/main/java/org/server/resources/employees.json");
             JsonWriter jsonWriter = new JsonWriter(writer);
             jsonWriter.setIndent("  ");

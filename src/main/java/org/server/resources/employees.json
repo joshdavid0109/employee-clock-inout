@@ -10,23 +10,26 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "status": "On Break",
+    "status": "Working",
     "totalWorkingHours": 34,
     "employeeDailyReport": {
-      "timeIn": "Apr 02 2023, 00:24:31",
-      "timeOut": "Apr 02 2023, 00:24:32",
+      "timeIn": "Apr 02 2023, 19:29:11",
+      "timeOut": "Apr 02 2023, 19:24:11",
       "date": "Apr 02 2023",
       "listofTimeIns": [
         "Apr 02 2023, 00:02:16",
         "Apr 02 2023, 00:22:05",
         "Apr 02 2023, 00:24:08",
-        "Apr 02 2023, 00:24:31"
+        "Apr 02 2023, 00:24:31",
+        "Apr 02 2023, 19:23:54",
+        "Apr 02 2023, 19:29:11"
       ],
       "listofTimeOuts": [
         "Apr 02 2023, 00:02:19",
         "Apr 02 2023, 00:24:03",
         "Apr 02 2023, 00:24:29",
-        "Apr 02 2023, 00:24:32"
+        "Apr 02 2023, 00:24:32",
+        "Apr 02 2023, 19:24:11"
       ]
     }
   },
@@ -88,7 +91,7 @@
       "age": 18,
       "gender": "Female"
     },
-    "isLoggedIn": true,
+    "isLoggedIn": false,
     "status": "On Break",
     "totalWorkingHours": 0,
     "employeeDailyReport": {

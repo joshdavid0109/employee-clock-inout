@@ -60,7 +60,8 @@ public class AdminLoginInterfaceController implements Initializable {
     void loginNa(ActionEvent event) throws IOException {
         try {
             String userName = loginUsername.getText();
-            String passWord = (loginPassword.getText() == null ? loginPassword.getText() : loginHidePassword.getText());
+            String passWord = (loginHidePassword.getText().equals("")
+                    ? loginPassword.getText() : loginHidePassword.getText());
 
             Alert message = new Alert(Alert.AlertType.INFORMATION);
             if (userName.equals("user") && passWord.equals("admin")) {
@@ -77,6 +78,10 @@ public class AdminLoginInterfaceController implements Initializable {
                 Stage stage = (Stage) enterLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+
+                stage.setOnCloseRequest(e -> {
+
+                });
 
             } else {
                 message.setContentText("Invalid Login Details.");

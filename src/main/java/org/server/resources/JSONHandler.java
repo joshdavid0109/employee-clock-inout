@@ -128,6 +128,27 @@ public class JSONHandler<TimeIn> {
         }
     }
 
+    //true = logged in, false logged out
+    public static void setAllEmployeeOffline(String employeeID, boolean loggedIn) {
+        try {
+            List<EmployeeProfile> employees = getEmployeesFromFile();
+            for (EmployeeProfile emp : employees) {
+                if (emp.getEmpID().equals(employeeID)) {
+                    LocalTime time = LocalTime.now();
+                    System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee ID: " + employeeID + " has logged " + (loggedIn ? "in." : "out."));
+                    emp.setLoggedIn(loggedIn);
+                    break;
+                }
+            }
+            FileWriter writer = new FileWriter(employeesJSONPath);
+            String json = gson.toJson(employees);
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void setDefaultValues(String employeeID) {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
