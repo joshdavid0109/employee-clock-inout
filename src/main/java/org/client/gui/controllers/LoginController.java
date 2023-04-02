@@ -27,6 +27,9 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     public static Attendance stub;
+    public static int port;
+    public static String hostname;
+    public static String refName;
     @FXML
     public TextField logInUsername;
     @FXML
@@ -89,9 +92,14 @@ public class LoginController implements Initializable {
 
             logInButton.getScene().getWindow().hide();
             System.out.println("log in OK");
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/EmployeeInterface.fxml"));
             EmployeeController employeeController = new EmployeeController();
+            EmployeeController.ip_address = hostname;
+            EmployeeController.port = port;
+            EmployeeController.remoteReferenceName = refName;
+
             employeeController.setEmployee(employee);
             employeeController.setStub(stub);
             Parent root = loader.load();
@@ -118,6 +126,6 @@ public class LoginController implements Initializable {
     }
 
     public void setStub(Attendance stub) {
-        this.stub = stub;
+        LoginController.stub = stub;
     }
 }

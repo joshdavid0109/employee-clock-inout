@@ -63,6 +63,10 @@ public class EmployeeController implements Initializable {
     SimpleDateFormat timeFormat = new SimpleDateFormat("HH : mm : ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
 
+    public static int port;
+    public static String remoteReferenceName;
+    public static String ip_address;
+
     public EmployeeController() {}
 
     public EmployeeController(EmployeeProfile employee) {
@@ -226,8 +230,10 @@ public class EmployeeController implements Initializable {
              * CHANGE HOST
              */
 //            Registry registry = LocateRegistry.getRegistry("192.168.254.101",2345);
-            Registry registry = LocateRegistry.getRegistry(2345);
-            stub = (Attendance) registry.lookup("sayhi");
+            System.out.println(ip_address);
+            System.out.println(port);
+            Registry registry = LocateRegistry.getRegistry(ip_address, port);
+            stub = (Attendance) registry.lookup(remoteReferenceName);
         } catch (Exception e) {
             e.printStackTrace();
         }

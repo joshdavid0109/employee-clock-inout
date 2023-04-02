@@ -38,6 +38,9 @@ public class LoginInterface extends Application {
         }
         if (stub != null) {
             loginController.setStub(stub);
+            LoginController.refName = remoteReferenceName;
+            LoginController.hostname = ip_address;
+            LoginController.port = port;
             primaryStage.setTitle("EMPLOYEE");
             primaryStage.getIcons().add(image);
             primaryStage.setResizable(false);
