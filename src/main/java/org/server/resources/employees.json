@@ -105,8 +105,8 @@
   },
   {
     "empID": "asd",
-    "userName": "asweq",
-    "passWord": "asdcasxd",
+    "userName": "x",
+    "passWord": "x",
     "personalDetails": {
       "firstName": "as",
       "lastName": "asd",
@@ -114,15 +114,17 @@
       "gender": "Female"
     },
     "isLoggedIn": false,
+    "status": "On Break",
     "totalWorkingHours": 0,
     "employeeDailyReport": {
-      "timeIn": "Mar 23 2023, 22:06:06",
-      "timeOut": "Mar 23 2023, 22:06:06",
+      "timeIn": "Apr 02 2023, 16:43:22",
+      "timeOut": "Apr 02 2023, 16:43:22",
+      "date": "Apr 02 2023",
       "listofTimeIns": [
-        "Mar 23 2023, 22:06:06"
+        "Apr 02 2023, 16:43:22"
       ],
       "listofTimeOuts": [
-        "Mar 23 2023, 22:06:06"
+        "Apr 02 2023, 16:43:22"
       ]
     }
   },

@@ -15,7 +15,7 @@ public class ServerMain extends Application{
     private static final String configPath = "src/main/java/org/server/servercfg.txt";
     public int port;
     public String stubName;
-    Image image = new Image("SLU_LOGO.jpg");
+    Image image = new Image("SLU_LOGO_REMOVEBG.png");
 
     @Override
     public void start(Stage primaryStage) {

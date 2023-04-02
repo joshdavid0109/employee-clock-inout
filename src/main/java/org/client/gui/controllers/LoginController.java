@@ -101,7 +101,7 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.show();
 
-            stage.setOnHidden(windowEvent ->
+            stage.setOnCloseRequest(windowEvent ->
             {
                 try {
                     employeeController.shutdown();
