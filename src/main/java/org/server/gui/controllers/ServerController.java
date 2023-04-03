@@ -123,8 +123,10 @@ public class ServerController implements Initializable {
         loader.setLocation(getClass().getResource("/fxml/AdminLoginInterface.fxml"));
         Parent root = loader.load();
 
+
         Scene scene = new Scene(root);
         Stage stage = (Stage) logOutButton.getScene().getWindow();
+        stage.setOnCloseRequest(e -> JSONHandler.setAllEmployeesOffline());
         stage.setScene(scene);
         stage.show();
     }
@@ -330,7 +332,6 @@ public class ServerController implements Initializable {
                             Window window = dialog.getDialogPane().getScene().getWindow();
                             window.setOnCloseRequest(event1 ->
                                     window.hide());
-
                             dialog.show();
                         } else {
                             errorMessage.setTitle("Error generating report");

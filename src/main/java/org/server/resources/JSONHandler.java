@@ -129,16 +129,12 @@ public class JSONHandler<TimeIn> {
     }
 
     //true = logged in, false logged out
-    public static void setAllEmployeeOffline(String employeeID, boolean loggedIn) {
+    public static void setAllEmployeesOffline() {
         try {
             List<EmployeeProfile> employees = getEmployeesFromFile();
+            boolean loggedIn = false;
             for (EmployeeProfile emp : employees) {
-                if (emp.getEmpID().equals(employeeID)) {
-                    LocalTime time = LocalTime.now();
-                    System.out.println("["+time.format(DateTimeFormatter.ofPattern("HH:mm"))+"] Employee ID: " + employeeID + " has logged " + (loggedIn ? "in." : "out."));
                     emp.setLoggedIn(loggedIn);
-                    break;
-                }
             }
             FileWriter writer = new FileWriter(employeesJSONPath);
             String json = gson.toJson(employees);
@@ -167,6 +163,10 @@ public class JSONHandler<TimeIn> {
                             List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                             List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
+                            for (int j = outs.size(); j < ins.size(); j++) {
+                                outs.add(ins.get(outs.size()));
+                            }
+
                             SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
                             summaryReport.setTimeIns(ins);
                             summaryReport.setTimeOuts(outs);
@@ -175,16 +175,16 @@ public class JSONHandler<TimeIn> {
 
                             emp.getEmployeeDailyReport().getListofTimeIns().clear();
                             emp.getEmployeeDailyReport().getListofTimeOuts().clear();
-                            emp.getEmployeeDailyReport().setDate(dateFormat.format(AttendanceServant.serverDate).split(", ")[0]);
+                            emp.getEmployeeDailyReport().setTimeIn(null);
+                            emp.getEmployeeDailyReport().setTimeOut(null);
+                            emp.getEmployeeDailyReport().setDate(null);
                             employees.add(i, emp);
                             employees.remove(i);
 
                             addSummaryToFile(summaryReports);
-
                             break;
                         }
                     }
-
                     break;
                 }
             }

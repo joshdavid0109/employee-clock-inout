@@ -28,7 +28,8 @@ public class EmployeeDailyReport implements Serializable {
 
     public void setTimeIn(String timeIn) {
         this.timeIn = timeIn;
-        listofTimeIns.add(timeIn);
+        if (!(timeIn == null))
+            listofTimeIns.add(timeIn);
     }
 
     public String getTimeOut() {
@@ -37,7 +38,8 @@ public class EmployeeDailyReport implements Serializable {
 
     public void setTimeOut(String timeOutFromServer) {
         this.timeOut = timeOutFromServer;
-        listofTimeOuts.add(timeOutFromServer);
+        if (!(timeOutFromServer == null))
+            listofTimeOuts.add(timeOutFromServer);
 
     }
 

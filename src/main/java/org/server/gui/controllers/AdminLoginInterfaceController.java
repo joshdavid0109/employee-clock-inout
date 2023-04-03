@@ -10,9 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.server.resources.AttendanceServant;
+import org.server.resources.JSONHandler;
+import org.shared_classes.EmployeeProfile;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminLoginInterfaceController implements Initializable {
@@ -43,6 +50,9 @@ public class AdminLoginInterfaceController implements Initializable {
 
     Stage stage;
 
+    static public final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy, HH:mm:ss");
+
+
     @FXML
     public void cancelAdmin() {
         Platform.exit();
@@ -69,9 +79,17 @@ public class AdminLoginInterfaceController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ServerInterface.fxml"));
 
                 ServerController serverController = new ServerController();
-
                 serverController.setPort(port);
                 serverController.setStubName(stubName);
+
+
+                if (!AttendanceServant.serverDate.toString().equals(dateFormat.format(new Date()))) {
+                    List<EmployeeProfile> employeeProfileList = JSONHandler.getEmployeesFromFile();
+
+                    for (EmployeeProfile employeeProfile: employeeProfileList) {
+                        JSONHandler.setDefaultValues(employeeProfile.getEmpID());
+                    }
+                }
 
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
@@ -80,7 +98,7 @@ public class AdminLoginInterfaceController implements Initializable {
                 stage.show();
 
                 stage.setOnCloseRequest(e -> {
-
+                    JSONHandler.setAllEmployeesOffline();
                 });
 
             } else {
@@ -93,7 +111,7 @@ public class AdminLoginInterfaceController implements Initializable {
             loginPassword.setText("");
             loginUsername.setText("");
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

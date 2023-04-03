@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class AttendanceServant implements Attendance {
-    static Date serverDate = new Date();
+    public static Date serverDate = new Date();
     static List<EmployeeProfile> empList = JSONHandler.getEmployeesFromFile();
     public SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
@@ -25,11 +25,10 @@ public class AttendanceServant implements Attendance {
         EmployeeProfile employeeProfile = null;
         try {
             employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
-
-
-            if (!dateFormat.format(AttendanceServant.serverDate).equals(employeeProfile.getEmployeeDailyReport().getDate())) {
-                JSONHandler.setDefaultValues(employeeProfile.getEmpID());
-            }
+//
+//            if (!dateFormat.format(AttendanceServant.serverDate).equals(employeeProfile.getEmployeeDailyReport().getDate())) {
+//                JSONHandler.setDefaultValues(employeeProfile.getEmpID());
+//            }
 
         } catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException |
                  UserNotExistingException e) {
