@@ -170,7 +170,7 @@ public class JSONHandler<TimeIn> {
                                 calendar.getTime();
                                 for (int j = outs.size(); j < ins.size(); j++) {
                                     calendar.setTime(dateFormat.parse(ins.get(outs.size())));
-                                    outs.add(ins.get(outs.size()).split(", ")[0] + ", 5:30:00");
+                                    outs.add(ins.get(outs.size()).split(", ")[0] + ", 17:30:00");
                                 }
                             }
 

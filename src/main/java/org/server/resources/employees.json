@@ -11,7 +11,7 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": 20,
+    "totalWorkingHours": 32,
     "employeeDailyReport": {
       "listofTimeIns": [],
       "listofTimeOuts": []
@@ -47,7 +47,7 @@
     },
     "isLoggedIn": false,
     "status": "",
-    "totalWorkingHours": -37,
+    "totalWorkingHours": 3,
     "employeeDailyReport": {
       "listofTimeIns": [],
       "listofTimeOuts": []

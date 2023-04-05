@@ -139,6 +139,34 @@ public class ServerController implements Initializable {
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
         tableView.setItems(tableData);
         tableView.refresh();
+
+
+
+        // For searchField -- works only for empID
+        // uncomment lines if gusto nyo working pati sa name
+
+        FilteredList<EmployeeProfile> filteredList = new FilteredList<>(tableData, p -> true);
+        tableView.setItems(filteredList);
+
+        searchField.textProperty().addListener((observableValue, s, t1) -> {
+            filteredList.setPredicate(employeeProfile -> {
+                if (t1 == null || t1.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = t1.toLowerCase();
+
+                return employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter);
+
+                    /*if  (employeeProfile.getEmpID().toLowerCase().contains(lowerCaseFilter))
+                        return true;
+                    else return employeeProfile.getFullName().toLowerCase().contains(lowerCaseFilter);*/
+
+            });
+        });
+        SortedList<EmployeeProfile> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
     }
 
     /**
