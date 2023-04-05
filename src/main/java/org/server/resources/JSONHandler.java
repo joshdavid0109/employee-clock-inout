@@ -10,6 +10,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -163,8 +164,14 @@ public class JSONHandler<TimeIn> {
                             List<String> ins = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeIns());
                             List<String> outs = new ArrayList<>(emp.getEmployeeDailyReport().getListofTimeOuts());
 
-                            for (int j = outs.size(); j < ins.size(); j++) {
-                                outs.add(ins.get(outs.size()));
+
+                            if (outs.size() < ins.size()) {
+                                Calendar calendar = new GregorianCalendar();
+                                calendar.getTime();
+                                for (int j = outs.size(); j < ins.size(); j++) {
+                                    calendar.setTime(dateFormat.parse(ins.get(outs.size())));
+                                    outs.add(ins.get(outs.size()).split(", ")[0] + ", 5:30:00");
+                                }
                             }
 
                             SummaryReport summaryReport = new SummaryReport(emp.getEmployeeDailyReport().getListofTimeIns().get(0).split(", ")[0]);
@@ -194,6 +201,8 @@ public class JSONHandler<TimeIn> {
             writer.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 
