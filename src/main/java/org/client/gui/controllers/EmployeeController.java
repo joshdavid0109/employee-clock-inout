@@ -125,7 +125,7 @@ public class EmployeeController implements Initializable {
             timeInButton.setDisable(false);
             timeOutButton.setDisable(true);
         } catch (RemoteException e) {
-            e.printStackTrace();
+
         }
 
         employee.getEmployeeDailyReport().setStatus("On Break");

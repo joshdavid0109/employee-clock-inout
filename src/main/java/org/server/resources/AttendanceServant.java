@@ -25,11 +25,6 @@ public class AttendanceServant implements Attendance {
         EmployeeProfile employeeProfile = null;
         try {
             employeeProfile = JSONHandler.checkIfValidLogIn(username, password);
-//
-//            if (!dateFormat.format(AttendanceServant.serverDate).equals(employeeProfile.getEmployeeDailyReport().getDate())) {
-//                JSONHandler.setDefaultValues(employeeProfile.getEmpID());
-//            }
-
         } catch (UserCurrentlyLoggedInException | CredentialsErrorException | EmptyFieldsException |
                  UserNotExistingException e) {
             if (e instanceof UserCurrentlyLoggedInException) {
@@ -57,7 +52,6 @@ public class AttendanceServant implements Attendance {
         JSONHandler.addTimeIn(employeeId, date);
 
         List<EmployeeProfile> list = JSONHandler.populateTable();
-//        EmployeeProfile employeeProfile = JSONHandler.populateTable();
         ObservableList<EmployeeProfile> tableData = FXCollections.observableList(list);
 
         ServerController serverController = null;

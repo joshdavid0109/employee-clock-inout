@@ -10,10 +10,14 @@
       "gender": "Male"
     },
     "isLoggedIn": false,
-    "status": "",
+    "status": "Working",
     "totalWorkingHours": 32,
     "employeeDailyReport": {
-      "listofTimeIns": [],
+      "timeIn": "Apr 13 2023, 18:43:54",
+      "date": "Apr 13 2023",
+      "listofTimeIns": [
+        "Apr 13 2023, 18:43:54"
+      ],
       "listofTimeOuts": []
     }
   },

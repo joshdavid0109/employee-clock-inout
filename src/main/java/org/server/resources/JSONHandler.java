@@ -29,6 +29,7 @@ public class JSONHandler<TimeIn> {
     private static final Gson gson = gsonBuilder
             .create();
 
+
     static private final File employeesJSONPath = new File("src/main/java/org/server/resources/employees.json");
     static private final File summaryReportsFile = new File("src/main/java/org/server/resources/summaryReports.json");
     static private final File pendingRegistersList = new File("src/main/java/org/server/resources/registers.json");
@@ -153,7 +154,10 @@ public class JSONHandler<TimeIn> {
             for (int i = 0; i < employees.size(); i++) {
                 EmployeeProfile emp =  employees.get(i);
                 if (emp.getEmpID().equals(employeeID)) {
-                    emp.setStatus("");
+                    if (emp.getEmployeeDailyReport().getDate()!= null) {
+                        if (!emp.getEmployeeDailyReport().getDate().equals(AttendanceServant.serverDate.toString()))
+                            emp.setStatus("");
+                    }
 
                     //add timein
                     List<String> timeIs = emp.getEmployeeDailyReport().getListofTimeIns();
@@ -255,7 +259,6 @@ public class JSONHandler<TimeIn> {
 
             try (FileWriter writer = new FileWriter(employeesJSONPath)) {
                 gson.toJson(employees, writer);
-
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -270,7 +273,7 @@ public class JSONHandler<TimeIn> {
             List<SummaryReport> summaryReports = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
             JsonParser parser = new JsonParser();
-            JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
+            JsonArray rootoObj = JsonParser.parseReader(reader).getAsJsonArray();
             SummaryReport summaryReport = null;
             for (int i = 0; i < rootoObj.size(); i++) {
                 JsonElement element = rootoObj.get(i);
@@ -369,8 +372,7 @@ public class JSONHandler<TimeIn> {
         try (Reader reader = Files.newBufferedReader(employeesJSONPath.toPath())) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            JsonParser parser = new JsonParser();
-            JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
+            JsonArray rootoObj = JsonParser.parseReader(reader).getAsJsonArray();
             EmployeeDailyReport employeeDailyReport;
             for (int i = 0; i < rootoObj.size(); i++) {
                 JsonElement element = rootoObj.get(i);
@@ -423,8 +425,7 @@ public class JSONHandler<TimeIn> {
         try (Reader reader = Files.newBufferedReader(employeesJSONPath.toPath())) {
             List<EmployeeProfile> employeeProfiles = new ArrayList<>();
 //            Type dataType = new TypeToken<List<EmployeeProfile>>(){}.getType();
-            JsonParser parser = new JsonParser();
-            JsonArray rootoObj = parser.parse(reader).getAsJsonArray();
+            JsonArray rootoObj = JsonParser.parseReader(reader).getAsJsonArray();
             EmployeeProfile employeeProfile;
             for (int i = 0; i < rootoObj.size(); i++) {
                 JsonElement employee = rootoObj.get(i);
@@ -500,28 +501,4 @@ public class JSONHandler<TimeIn> {
         }
         return "";
     }
-
-    /** incomplete.. need help.. zeph..*/
-    private List<TimeIn> timeInList;
-    public void getSummary() throws RemoteException {
-        Gson gson = new Gson();
-        try (Reader reader = new FileReader("summaryReports.json")) {
-            Type listType = new TypeToken<List<TimeIn>>() {}.getType();
-            timeInList = gson.fromJson(reader, listType);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public List<TimeIn> search(Date startDate, Date endDate) throws RemoteException {
-        List<TimeIn> results = new ArrayList<>();
-        for (TimeIn data : timeInList) {
-            /** if statement to for the search part*/
-//            if (data.getDate().after(startDate) && data.getDate().before(endDate)) {
-//                results.add(data);
-//            }
-        }
-        return results;
-    }
-
 }

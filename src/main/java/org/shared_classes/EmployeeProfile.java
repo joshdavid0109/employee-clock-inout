@@ -65,32 +65,6 @@ public class EmployeeProfile implements Serializable {
         return (int) totalWorkingHours;
     }
 
-    /**
-     * Computes total working hours for each day
-     * @throws ParseException
-     */
-    public void computeWorkingHours() throws ParseException {
-        String day;
-        for (int i =0 ;i< employeeDailyReport.getListofTimeOuts().size();i++) {
-            day = employeeDailyReport.getListofTimeOuts().get(employeeDailyReport.getListofTimeOuts().size()-1).split(", ")[1];
-            String timeIn = employeeDailyReport.getListofTimeIns().get(i).split(", ")[1];
-            String timeOut = employeeDailyReport.getListofTimeOuts().get(i).split(", ")[1];
-
-            Date d = timeFormat.parse(timeIn);
-            Date d2 = timeFormat.parse(timeOut);
-
-            long diff = d2.getTime() - d.getTime();
-
-            int minutes = (int) TimeUnit.MILLISECONDS.toMinutes(diff);
-
-            if (minutes<0)
-                minutes+=1440;
-
-
-        }
-//        WorkingDays.computeWorkingHours(employeeDailyReport);
-    }
-
     public void setEmpID(String empID) {
         this.empID = empID;
     }

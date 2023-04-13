@@ -83,7 +83,7 @@ public class AdminLoginInterfaceController implements Initializable {
                 serverController.setStubName(stubName);
 
 
-                if (!AttendanceServant.serverDate.toString().equals(dateFormat.format(new Date()))) {
+                if (!AttendanceServant.serverDate.toString().equals(dateFormat.format(new Date()).toString())) {
                     List<EmployeeProfile> employeeProfileList = JSONHandler.getEmployeesFromFile();
 
                     for (EmployeeProfile employeeProfile: employeeProfileList) {
